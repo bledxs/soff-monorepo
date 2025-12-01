@@ -162,7 +162,7 @@
   "bugs": {
     "url": "https://github.com/bledxs/soff-monorepo/issues"
   },
-  "homepage": "https://github.com/bledxs/soff-monorepo/tree/main/packages/soff-date#readme",
+  "homepage": "https://github.com/bledxs/soff-monorepo/tree/master/packages/soff-date#readme",
   "engines": {
     "node": ">=20"
   },

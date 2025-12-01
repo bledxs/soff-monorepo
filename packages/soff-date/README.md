@@ -1,11 +1,11 @@
 # Soff Date
 
 [![npm](https://img.shields.io/npm/v/soff-date)](https://www.npmjs.com/package/soff-date)
-[![License](https://img.shields.io/github/license/bledxs/soff-date)](LICENSE)
-[![Build Status](https://github.com/bledxs/soff-date/actions/workflows/ci.yml/badge.svg)](https://github.com/bledxs/soff-date/actions)
-[![codecov](https://codecov.io/gh/bledxs/soff-date/branch/main/graph/badge.svg)](https://codecov.io/gh/bledxs/soff-date)
+[![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](LICENSE)
+[![Build Status](https://github.com/bledxs/soff-monorepo/actions/workflows/ci.yml/badge.svg)](https://github.com/bledxs/soff-monorepo/actions)
+[![codecov](https://codecov.io/gh/bledxs/soff-monorepo/branch/master/graph/badge.svg)](https://codecov.io/gh/bledxs/soff-monorepo)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/soff-date)](https://bundlephobia.com/package/soff-date)
-[![All Contributors](https://img.shields.io/github/all-contributors/bledxs/soff-date?color=ee8449&style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/github/all-contributors/bledxs/soff-monorepo?color=ee8449&style=flat-square)](#contributors)
 
 Lightweight, tree-shakeable holiday calculator with algorithmic date computation.
 
@@ -268,7 +268,7 @@ Thanks goes to these wonderful people ([emoji key](https://all-contributors.js.o
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/bledxs"><img src="https://avatars.githubusercontent.com/u/90062924?v=4" width="100px;" alt="Luis C. Rojas"/><br /><sub><b>Luis C. Rojas</b></sub></a><br /><a href="https://github.com/bledxs/soff-date/commits?author=bledxs" title="Code">💻</a> <a href="https://github.com/bledxs/soff-date/commits?author=bledxs" title="Documentation">📖</a> <a href="#maintenance-bledxs" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/bledxs"><img src="https://avatars.githubusercontent.com/u/90062924?v=4" width="100px;" alt="Luis C. Rojas"/><br /><sub><b>Luis C. Rojas</b></sub></a><br /><a href="https://github.com/bledxs/soff-monorepo/commits?author=bledxs" title="Code">💻</a> <a href="https://github.com/bledxs/soff-monorepo/commits?author=bledxs" title="Documentation">📖</a> <a href="#maintenance-bledxs" title="Maintenance">🚧</a></td>
     </tr>
   </tbody>
 </table>

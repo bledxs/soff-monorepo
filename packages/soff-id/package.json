@@ -135,7 +135,7 @@
   "bugs": {
     "url": "https://github.com/bledxs/soff-monorepo/issues"
   },
-  "homepage": "https://github.com/bledxs/soff-monorepo/tree/main/packages/soff-id#readme",
+  "homepage": "https://github.com/bledxs/soff-monorepo/tree/master/packages/soff-id#readme",
   "engines": {
     "node": ">=20"
   },

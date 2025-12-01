@@ -86,7 +86,7 @@
   "bugs": {
     "url": "https://github.com/bledxs/soff-monorepo/issues"
   },
-  "homepage": "https://github.com/bledxs/soff-monorepo/tree/main/packages/soff-mask#readme",
+  "homepage": "https://github.com/bledxs/soff-monorepo/tree/master/packages/soff-mask#readme",
   "engines": {
     "node": ">=20"
   },
