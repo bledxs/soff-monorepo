@@ -1,11 +1,11 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
-  "changelog": "@changesets/cli/changelog",
+  "changelog": ["@changesets/changelog-github", { "repo": "bledxs/soff-monorepo" }],
   "commit": false,
   "fixed": [],
   "linked": [],
   "access": "public",
-  "baseBranch": "main",
+  "baseBranch": "master",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": ["@soff/docs"]
 }

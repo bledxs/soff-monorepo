@@ -1,0 +1,101 @@
+name: Changeset from PR
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [master]
+
+jobs:
+  create-changeset:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: master
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Determine version bump from PR title
+        id: bump
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+
+          # Check for breaking change indicator
+          if [[ "$TITLE" == *"!"* ]] || [[ "$TITLE" == *"BREAKING"* ]]; then
+            echo "type=major" >> $GITHUB_OUTPUT
+          elif [[ "$TITLE" =~ ^feat ]]; then
+            echo "type=minor" >> $GITHUB_OUTPUT
+          elif [[ "$TITLE" =~ ^(fix|perf|refactor|style|docs|test|chore|ci|build) ]]; then
+            echo "type=patch" >> $GITHUB_OUTPUT
+          else
+            echo "type=patch" >> $GITHUB_OUTPUT
+          fi
+
+          # Extract description (remove conventional commit prefix)
+          DESC=$(echo "$TITLE" | sed -E 's/^(feat|fix|perf|refactor|style|docs|test|chore|ci|build)(\([^)]*\))?!?:\s*//')
+          echo "description=$DESC" >> $GITHUB_OUTPUT
+
+      - name: Determine affected packages from changed files
+        id: packages
+        run: |
+          PACKAGES=""
+
+          # Get changed files in the PR
+          CHANGED_FILES=$(gh pr view ${{ github.event.pull_request.number }} --json files -q '.files[].path')
+
+          if echo "$CHANGED_FILES" | grep -q "^packages/soff-date/"; then
+            PACKAGES="$PACKAGES soff-date"
+          fi
+          if echo "$CHANGED_FILES" | grep -q "^packages/soff-id/"; then
+            PACKAGES="$PACKAGES soff-id"
+          fi
+          if echo "$CHANGED_FILES" | grep -q "^packages/soff-mask/"; then
+            PACKAGES="$PACKAGES soff-mask"
+          fi
+          if echo "$CHANGED_FILES" | grep -q "^packages/soff-money/"; then
+            PACKAGES="$PACKAGES soff-money"
+          fi
+
+          echo "list=$PACKAGES" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create changeset file
+        if: steps.packages.outputs.list != ''
+        run: |
+          PACKAGES="${{ steps.packages.outputs.list }}"
+          TYPE="${{ steps.bump.outputs.type }}"
+          DESC="${{ steps.bump.outputs.description }}"
+
+          # Generate unique filename
+          FILENAME=".changeset/pr-${{ github.event.pull_request.number }}-$(date +%s).md"
+
+          # Create changeset content
+          echo "---" > "$FILENAME"
+          for pkg in $PACKAGES; do
+            echo "'$pkg': $TYPE" >> "$FILENAME"
+          done
+          echo "---" >> "$FILENAME"
+          echo "" >> "$FILENAME"
+          echo "$DESC" >> "$FILENAME"
+
+          cat "$FILENAME"
+
+      - name: Commit and push changeset
+        if: steps.packages.outputs.list != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .changeset/
+          git commit -m "chore: add changeset for PR #${{ github.event.pull_request.number }}"
+          git push
