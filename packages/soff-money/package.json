@@ -1,6 +1,6 @@
 {
   "name": "soff-money",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Safe money handling for JavaScript with integer-based arithmetic and LATAM locale formatting",
   "type": "module",
   "main": "./dist/index.cjs",
