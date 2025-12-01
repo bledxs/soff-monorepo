@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0
+
+### Minor Changes
+
+- [`dd1b721`](https://github.com/bledxs/soff-monorepo/commit/dd1b72109b421dede8c3560c710f830eb12e2b67) Thanks [@bledxs](https://github.com/bledxs)! - Enhanced soff-id with 48 functions, improved test coverage to 91%
+
 ## 0.1.1
 
 ### Patch Changes
