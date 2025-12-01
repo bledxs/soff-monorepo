@@ -1,4 +1,10 @@
-# Soff Mask
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="100" height="100">
+  <h1>Soff Mask</h1>
+  <p>Lightweight, framework-agnostic input masking library.</p>
+</div>
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/soff-mask)](https://www.npmjs.com/package/soff-mask)
 [![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](LICENSE)
@@ -6,7 +12,9 @@
 [![codecov](https://codecov.io/gh/bledxs/soff-monorepo/branch/master/graph/badge.svg)](https://codecov.io/gh/bledxs/soff-monorepo)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/soff-mask)](https://bundlephobia.com/package/soff-mask)
 
-Lightweight, framework-agnostic input masking library.
+</div>
+
+---
 
 **Zero dependencies** · **TypeScript** · **~3KB core**
 

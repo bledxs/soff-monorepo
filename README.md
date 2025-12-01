@@ -1,11 +1,19 @@
-# Soff Monorepo
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="120" height="120">
+  <h1>Soff Monorepo</h1>
+  <p>A collection of lightweight, tree-shakeable TypeScript utilities for common business logic.</p>
+</div>
+
+<div align="center">
 
 [![CI](https://github.com/bledxs/soff-monorepo/actions/workflows/ci.yml/badge.svg)](https://github.com/bledxs/soff-monorepo/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/bledxs/soff-monorepo/branch/master/graph/badge.svg)](https://codecov.io/gh/bledxs/soff-monorepo)
 [![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](LICENSE)
 [![All Contributors](https://img.shields.io/github/all-contributors/bledxs/soff-monorepo?color=ee8449&style=flat-square)](#contributors)
 
-A collection of lightweight, tree-shakeable TypeScript utilities for common business logic.
+</div>
+
+---
 
 **Zero dependencies** · **TypeScript** · **Tree-shakeable** · **SSR Ready**
 

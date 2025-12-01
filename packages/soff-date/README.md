@@ -1,4 +1,10 @@
-# Soff Date
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="100" height="100">
+  <h1>Soff Date</h1>
+  <p>Lightweight, tree-shakeable holiday calculator with algorithmic date computation.</p>
+</div>
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/soff-date)](https://www.npmjs.com/package/soff-date)
 [![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](LICENSE)
@@ -7,7 +13,9 @@
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/soff-date)](https://bundlephobia.com/package/soff-date)
 [![All Contributors](https://img.shields.io/github/all-contributors/bledxs/soff-monorepo?color=ee8449&style=flat-square)](#contributors)
 
-Lightweight, tree-shakeable holiday calculator with algorithmic date computation.
+</div>
+
+---
 
 **Zero dependencies** · **TypeScript** · **~3KB per locale**
 

@@ -1,6 +1,14 @@
-# soff-phone
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="100" height="100">
+  <h1>Soff Phone</h1>
+  <p>Lightweight, tree-shakeable phone number validation and formatting library for LATAM.</p>
+</div>
 
-Lightweight, tree-shakeable phone number validation and formatting library for LATAM.
+<div align="center">
+
+</div>
+
+---
 
 ## Features
 

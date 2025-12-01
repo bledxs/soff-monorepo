@@ -1,10 +1,18 @@
-# Soff Geo
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="100" height="100">
+  <h1>Soff Geo</h1>
+  <p>Lightweight geographic data library for LATAM - Departments, municipalities, postal codes and more.</p>
+</div>
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/soff-geo)](https://www.npmjs.com/package/soff-geo)
 [![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](LICENSE)
 [![Build Status](https://github.com/bledxs/soff-monorepo/actions/workflows/ci.yml/badge.svg)](https://github.com/bledxs/soff-monorepo/actions)
 
-Lightweight geographic data library for LATAM - Departments, municipalities, postal codes and more.
+</div>
+
+---
 
 **Zero dependencies** · **TypeScript** · **Tree-shakeable**
 

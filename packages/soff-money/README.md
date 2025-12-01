@@ -1,4 +1,10 @@
-# Soff Money
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="100" height="100">
+  <h1>Soff Money</h1>
+  <p>Safe money handling for JavaScript with integer-based arithmetic and LATAM locale formatting.</p>
+</div>
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/soff-money)](https://www.npmjs.com/package/soff-money)
 [![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](LICENSE)
@@ -6,7 +12,9 @@
 [![codecov](https://codecov.io/gh/bledxs/soff-monorepo/branch/master/graph/badge.svg)](https://codecov.io/gh/bledxs/soff-monorepo)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/soff-money)](https://bundlephobia.com/package/soff-money)
 
-Safe money handling for JavaScript with integer-based arithmetic and LATAM locale formatting.
+</div>
+
+---
 
 **Zero dependencies** · **TypeScript** · **~8KB core**
 

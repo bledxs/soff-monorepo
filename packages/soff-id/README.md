@@ -1,4 +1,10 @@
-# Soff ID
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="100" height="100">
+  <h1>Soff ID</h1>
+  <p>LATAM document validation library - Validate NIT, RUT, CPF, CUIT, and more.</p>
+</div>
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/soff-id)](https://www.npmjs.com/package/soff-id)
 [![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](LICENSE)
@@ -6,7 +12,9 @@
 [![codecov](https://codecov.io/gh/bledxs/soff-monorepo/branch/master/graph/badge.svg)](https://codecov.io/gh/bledxs/soff-monorepo)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/soff-id)](https://bundlephobia.com/package/soff-id)
 
-LATAM document validation library - Validate NIT, RUT, CPF, CUIT, and more.
+</div>
+
+---
 
 **Zero dependencies** · **TypeScript** · **~1KB per locale**
 
