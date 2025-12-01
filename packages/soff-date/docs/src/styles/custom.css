@@ -1,0 +1,231 @@
+/* Custom styles for Soff Date documentation */
+
+:root {
+  --sl-color-accent-low: #e0f2fe;
+  --sl-color-accent: #0ea5e9;
+  --sl-color-accent-high: #0c4a6e;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #f8fafc;
+  --sl-color-gray-2: #f1f5f9;
+  --sl-color-gray-3: #e2e8f0;
+  --sl-color-gray-4: #cbd5e1;
+  --sl-color-gray-5: #64748b;
+  --sl-color-gray-6: #475569;
+  --sl-color-black: #0f172a;
+}
+
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #0c4a6e;
+  --sl-color-accent: #38bdf8;
+  --sl-color-accent-high: #e0f2fe;
+  --sl-color-white: #0f172a;
+  --sl-color-gray-1: #1e293b;
+  --sl-color-gray-2: #334155;
+  --sl-color-gray-3: #475569;
+  --sl-color-gray-4: #64748b;
+  --sl-color-gray-5: #94a3b8;
+  --sl-color-gray-6: #cbd5e1;
+  --sl-color-black: #f8fafc;
+}
+
+/* Hero section styling */
+.hero {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--sl-color-accent), var(--sl-color-accent-high));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  color: var(--sl-color-gray-5);
+  margin-bottom: 2rem;
+}
+
+/* Feature cards */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background: var(--sl-color-gray-1);
+  border: 1px solid var(--sl-color-gray-3);
+  transition: all 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--sl-color-accent);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--sl-color-black);
+}
+
+.feature-description {
+  color: var(--sl-color-gray-5);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Code blocks */
+.expressive-code {
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0.25rem;
+}
+
+.badge-primary {
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-accent-high);
+}
+
+.badge-success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Callouts enhancement */
+.starlight-aside {
+  border-left-width: 3px;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+th {
+  background: var(--sl-color-gray-2);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 2px solid var(--sl-color-gray-3);
+}
+
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--sl-color-gray-3);
+}
+
+tr:hover {
+  background: var(--sl-color-gray-1);
+}
+
+/* Stats section */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.stat {
+  padding: 1.5rem;
+  background: var(--sl-color-gray-1);
+  border-radius: 0.5rem;
+  border: 1px solid var(--sl-color-gray-3);
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--sl-color-accent);
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--sl-color-gray-5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Quick links */
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.quick-link {
+  display: block;
+  padding: 1.5rem;
+  background: var(--sl-color-gray-1);
+  border: 1px solid var(--sl-color-gray-3);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.quick-link:hover {
+  border-color: var(--sl-color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.quick-link-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--sl-color-accent);
+}
+
+.quick-link-description {
+  color: var(--sl-color-gray-5);
+  font-size: 0.9rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .features,
+  .quick-links {
+    grid-template-columns: 1fr;
+  }
+}

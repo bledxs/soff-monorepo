@@ -1,0 +1,204 @@
+{
+  "name": "soff-date",
+  "version": "0.2.0",
+  "description": "Lightweight, tree-shakeable holiday calculator with algorithmic date computation",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./core/engine": {
+      "import": {
+        "types": "./dist/core/engine.d.ts",
+        "default": "./dist/core/engine.js"
+      },
+      "require": {
+        "types": "./dist/core/engine.d.cts",
+        "default": "./dist/core/engine.cjs"
+      }
+    },
+    "./locales/co": {
+      "import": {
+        "types": "./dist/locales/co.d.ts",
+        "default": "./dist/locales/co.js"
+      },
+      "require": {
+        "types": "./dist/locales/co.d.cts",
+        "default": "./dist/locales/co.cjs"
+      }
+    },
+    "./locales/us": {
+      "import": {
+        "types": "./dist/locales/us.d.ts",
+        "default": "./dist/locales/us.js"
+      },
+      "require": {
+        "types": "./dist/locales/us.d.cts",
+        "default": "./dist/locales/us.cjs"
+      }
+    },
+    "./locales/mx": {
+      "import": {
+        "types": "./dist/locales/mx.d.ts",
+        "default": "./dist/locales/mx.js"
+      },
+      "require": {
+        "types": "./dist/locales/mx.d.cts",
+        "default": "./dist/locales/mx.cjs"
+      }
+    },
+    "./locales/ar": {
+      "import": {
+        "types": "./dist/locales/ar.d.ts",
+        "default": "./dist/locales/ar.js"
+      },
+      "require": {
+        "types": "./dist/locales/ar.d.cts",
+        "default": "./dist/locales/ar.cjs"
+      }
+    },
+    "./locales/br": {
+      "import": {
+        "types": "./dist/locales/br.d.ts",
+        "default": "./dist/locales/br.js"
+      },
+      "require": {
+        "types": "./dist/locales/br.d.cts",
+        "default": "./dist/locales/br.cjs"
+      }
+    },
+    "./i18n/es": {
+      "import": {
+        "types": "./dist/i18n/es.d.ts",
+        "default": "./dist/i18n/es.js"
+      },
+      "require": {
+        "types": "./dist/i18n/es.d.cts",
+        "default": "./dist/i18n/es.cjs"
+      }
+    },
+    "./i18n/en": {
+      "import": {
+        "types": "./dist/i18n/en.d.ts",
+        "default": "./dist/i18n/en.js"
+      },
+      "require": {
+        "types": "./dist/i18n/en.d.cts",
+        "default": "./dist/i18n/en.cjs"
+      }
+    },
+    "./i18n/pt": {
+      "import": {
+        "types": "./dist/i18n/pt.d.ts",
+        "default": "./dist/i18n/pt.js"
+      },
+      "require": {
+        "types": "./dist/i18n/pt.d.cts",
+        "default": "./dist/i18n/pt.cjs"
+      }
+    },
+    "./i18n": {
+      "import": {
+        "types": "./dist/i18n/index.d.ts",
+        "default": "./dist/i18n/index.js"
+      },
+      "require": {
+        "types": "./dist/i18n/index.d.cts",
+        "default": "./dist/i18n/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest --coverage",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "clean": "rimraf dist coverage .turbo",
+    "format": "prettier --write .",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
+    "prepublishOnly": "npm run build",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags",
+    "prepare": "husky",
+    "commitlint": "commitlint --edit",
+    "docs:dev": "cd docs && npm run dev",
+    "docs:build": "cd docs && npm run build",
+    "docs:preview": "cd docs && npm run preview",
+    "docs:install": "cd docs && npm install"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "keywords": [
+    "holidays",
+    "calendar",
+    "date",
+    "festivos",
+    "typescript",
+    "tree-shaking",
+    "colombia",
+    "usa",
+    "emiliani",
+    "working-days",
+    "business-days",
+    "date-manipulation",
+    "lightweight"
+  ],
+  "author": "Luis C. Rojas",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bledxs/soff-date.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bledxs/soff-date/issues"
+  },
+  "homepage": "https://github.com/bledxs/soff-date#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@eslint/js": "^9.39.1",
+    "@soff/tsconfig": "*",
+    "@vitest/coverage-v8": "^4.0.14",
+    "all-contributors-cli": "^6.26.1",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.5.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.3",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vitest": "^4.0.14"
+  }
+}

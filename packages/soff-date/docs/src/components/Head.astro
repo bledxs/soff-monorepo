@@ -1,0 +1,13 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+---
+
+<>
+  <meta property="og:title" content={`${Astro.props.entry.data.title} | Soff Date`} />
+  <meta property="og:description" content={Astro.props.entry.data.description} />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={`${Astro.props.entry.data.title} | Soff Date`} />
+  <meta name="twitter:description" content={Astro.props.entry.data.description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</>

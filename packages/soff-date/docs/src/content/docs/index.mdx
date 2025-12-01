@@ -1,0 +1,113 @@
+---
+title: Soff Date
+description: Lightweight, tree-shakeable holiday calculator with algorithmic date computation
+template: splash
+hero:
+  tagline: Zero dependencies · TypeScript · ~3KB per locale
+  image:
+    file: ../../assets/hero.png
+  actions:
+    - text: Get Started
+      link: /getting-started/introduction/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/bledxs/soff-date
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Why Soff Date?
+
+<CardGrid>
+  <Card title="📦 Tiny Bundle Size" icon="rocket">
+    Only ~3KB per locale. Tree-shakeable design means you only ship what you import.
+  </Card>
+  <Card title="🎯 Algorithmic Calculation" icon="puzzle">
+    No giant JSON files. Dates are calculated on-the-fly using smart algorithms.
+  </Card>
+  <Card title="🌍 Multi-locale Support" icon="translate">
+    Built-in support for Colombia, USA, Mexico, Argentina, and Brasil. Easy to add more.
+  </Card>
+  <Card title="⚙️ Powerful Shift Rules" icon="setting">
+    Emiliani, Observed US, and more. Handle complex holiday shifting logic.
+  </Card>
+  <Card title="📅 Business Days" icon="approve-check">
+    Calculate business days with holiday and weekend awareness.
+  </Card>
+  <Card title="🔧 TypeScript First" icon="seti:typescript">
+    Fully typed with excellent IDE support and autocomplete.
+  </Card>
+</CardGrid>
+
+## Quick Example
+
+```typescript
+import { getHolidays, isHoliday, getNextHoliday } from 'soff-date/locales/co';
+
+// Get all holidays for 2025
+const holidays = getHolidays(2025);
+
+// Check if today is a holiday
+const today = isHoliday(new Date());
+
+// Get the next holiday
+const next = getNextHoliday();
+```
+
+## Features at a Glance
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-value">0</div>
+    <div class="stat-label">Dependencies</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">~3KB</div>
+    <div class="stat-label">Per Locale</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Locales</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">3</div>
+    <div class="stat-label">Languages</div>
+  </div>
+</div>
+
+## What's Included?
+
+- **Fixed Dates**: December 25 (Christmas)
+- **Nth Weekday**: 3rd Monday of January (MLK Day)
+- **Easter-Relative**: Good Friday (Easter - 2 days)
+- **Custom Calculations**: Your own logic
+- **Shift Rules**: Move holidays from weekends to weekdays
+- **Business Days**: Skip weekends and holidays
+- **i18n Support**: English, Spanish, Portuguese
+
+## Ready to Get Started?
+
+<CardGrid>
+  <Card title="Installation" icon="rocket">
+    Install soff-date in your project
+
+    [Get Started →](/getting-started/installation/)
+  </Card>
+  <Card title="Quick Start" icon="open-book">
+    Learn the basics in 5 minutes
+
+    [Quick Start →](/getting-started/quick-start/)
+  </Card>
+  <Card title="API Reference" icon="document">
+    Explore the full API
+
+    [API Docs →](/api/overview/)
+  </Card>
+  <Card title="Examples" icon="laptop">
+    See real-world examples
+
+    [View Examples →](/examples/common-use-cases/)
+  </Card>
+</CardGrid>
