@@ -2,9 +2,7 @@
 
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
 import { Money, COP, USD, MXN, BRL, ARS } from 'soff-money';
-import type { Currency } from 'soff-money';
 
 const currencies = [
   { name: 'COP', currency: COP, flag: '🇨🇴' },

@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { CodeBlock } from '@/components/code-block';
-import { Money, COP, USD, MXN, BRL, ARS } from 'soff-money';
+import { Money, COP, USD, MXN } from 'soff-money';
 import { MoneyCalculator } from './money-calculator';
 import { getVersion } from '@/lib/versions';
 

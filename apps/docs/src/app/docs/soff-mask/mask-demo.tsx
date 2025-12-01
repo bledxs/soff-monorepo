@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { mask, unmask, maskWithResult } from 'soff-mask';
+import { mask, maskWithResult } from 'soff-mask';
 import { phoneCO, cpf, creditCard, nit } from 'soff-mask';
 
 const masks = [
