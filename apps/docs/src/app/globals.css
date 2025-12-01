@@ -121,3 +121,29 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Smooth transitions for sidebar collapse */
+[data-sidebar='menu-button'] span:last-child {
+  transition:
+    opacity 200ms ease-linear,
+    width 200ms ease-linear;
+}
+
+[data-slot='sidebar'][data-collapsible='icon'] [data-sidebar='menu-button'] span:last-child {
+  opacity: 0;
+  width: 0;
+}
+
+[data-sidebar='group-label'] {
+  transition:
+    opacity 200ms ease-linear,
+    margin 200ms ease-linear;
+}
+
+[data-sidebar='menu-badge'] {
+  transition: opacity 200ms ease-linear;
+}
+
+[data-slot='sidebar'][data-collapsible='icon'] [data-sidebar='menu-badge'] {
+  opacity: 0;
+}
