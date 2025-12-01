@@ -6,79 +6,79 @@
 [![codecov](https://codecov.io/gh/bledxs/soff-monorepo/branch/master/graph/badge.svg)](https://codecov.io/gh/bledxs/soff-monorepo)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/soff-mask)](https://bundlephobia.com/package/soff-mask)
 
-Lightweight, framework-agnostic input masking library.
+Librería de máscaras de input ligera y agnóstica de framework.
 
-**Zero dependencies** · **TypeScript** · **~3KB core**
+**Sin dependencias** · **TypeScript** · **~3KB core**
 
-## Table of Contents
+## Tabla de Contenidos
 
-- [Why?](#why)
-- [Install](#install)
-- [Quick Start](#quick-start)
-- [Mask Pattern Syntax](#mask-pattern-syntax)
-- [Pre-built Masks](#pre-built-masks)
-- [DOM Integration](#dom-integration)
-- [Dynamic Masks](#dynamic-masks)
-- [Bundle Size](#bundle-size)
-- [Contributing](#contributing)
-- [License](#license)
+- [¿Por qué?](#por-qué)
+- [Instalación](#instalación)
+- [Inicio Rápido](#inicio-rápido)
+- [Sintaxis de Patrones](#sintaxis-de-patrones)
+- [Máscaras Pre-construidas](#máscaras-pre-construidas)
+- [Integración DOM](#integración-dom)
+- [Máscaras Dinámicas](#máscaras-dinámicas)
+- [Tamaño del Bundle](#tamaño-del-bundle)
+- [Contribuir](#contribuir)
+- [Licencia](#licencia)
 
-## Why?
+## ¿Por qué?
 
-Making a phone input auto-format as you type `(300) 123-4567` is hard. Current libraries (react-input-mask, etc.) are often heavy or tied to a specific framework.
+Hacer que un input de teléfono se auto-formatee mientras escribes `(300) 123-4567` es difícil. Las librerías actuales (react-input-mask, etc.) suelen ser pesadas o estar atadas a un framework específico.
 
-This library provides a pure JavaScript masking engine that works with anything - React, Vue, Angular, or plain HTML.
+Esta librería provee un motor de máscaras en JavaScript puro que funciona con cualquier cosa - React, Vue, Angular, o HTML plano.
 
-## Install
+## Instalación
 
 ```bash
 npm install soff-mask
 ```
 
-## Quick Start
+## Inicio Rápido
 
 ```typescript
 import { mask, unmask } from 'soff-mask';
 
-// Apply mask
+// Aplicar máscara
 mask('3001234567', '(###) ###-####');
 // → '(300) 123-4567'
 
-// Remove mask
+// Remover máscara
 unmask('(300) 123-4567', '(###) ###-####');
 // → '3001234567'
 ```
 
-## Mask Pattern Syntax
+## Sintaxis de Patrones
 
-| Character | Description                |
-| --------- | -------------------------- |
-| `#`       | Any digit (0-9)            |
-| `A`       | Any letter (a-z, A-Z)      |
-| `S`       | Any alphanumeric character |
-| `*`       | Any character              |
-| Other     | Literal character          |
+| Carácter | Descripción                |
+| -------- | -------------------------- |
+| `#`      | Cualquier dígito (0-9)     |
+| `A`      | Cualquier letra (a-z, A-Z) |
+| `S`      | Cualquier alfanumérico     |
+| `*`      | Cualquier carácter         |
+| Otro     | Carácter literal           |
 
-### Pattern Examples
+### Ejemplos de Patrones
 
 ```typescript
-// Phone formats
+// Formatos de teléfono
 '(###) ###-####'; // US: (555) 123-4567
 '### ### ####'; // CO: 300 123 4567
 '+## ## ####-####'; // BR: +55 11 1234-5678
 
-// Documents
+// Documentos
 '###.###.###-##'; // CPF: 123.456.789-09
 '##.###.###/####-##'; // CNPJ: 12.345.678/0001-90
 
-// Credit Card
+// Tarjeta de Crédito
 '#### #### #### ####'; // 4111 1111 1111 1111
 
-// Date
+// Fecha
 '##/##/####'; // 25/12/2024
 ```
 
-## Pre-built Masks
+## Máscaras Pre-construidas
 
 ```typescript
 import { phoneCO, phoneMX, phoneUS, creditCard, cpf, nit, date } from 'soff-mask';
@@ -89,9 +89,9 @@ mask('12345678909', cpf); // → '123.456.789-09'
 mask('9001234567', nit); // → '900.123.456-7'
 ```
 
-### Available Pre-built Masks
+### Máscaras Pre-construidas Disponibles
 
-| Mask         | Pattern               | Example Output      |
+| Máscara      | Patrón                | Ejemplo de Salida   |
 | ------------ | --------------------- | ------------------- |
 | `phoneCO`    | `(###) ### ####`      | (300) 123 4567      |
 | `phoneMX`    | `(##) #### ####`      | (55) 1234 5678      |
@@ -102,9 +102,9 @@ mask('9001234567', nit); // → '900.123.456-7'
 | `nit`        | `###.###.###-#`       | 900.123.456-7       |
 | `date`       | `##/##/####`          | 25/12/2024          |
 
-## DOM Integration
+## Integración DOM
 
-### Vanilla JavaScript
+### JavaScript Vanilla
 
 ```typescript
 import { maskInput } from 'soff-mask/dom';
@@ -112,10 +112,10 @@ import { maskInput } from 'soff-mask/dom';
 const input = document.querySelector('input');
 const cleanup = maskInput(input, '(###) ###-####');
 
-// Later: cleanup() to remove event listeners
+// Después: cleanup() para remover event listeners
 ```
 
-### With React
+### Con React
 
 ```typescript
 import { useEffect, useRef } from 'react';
@@ -135,14 +135,14 @@ function PhoneInput() {
 }
 ```
 
-## Dynamic Masks
+## Máscaras Dinámicas
 
-For inputs that need different masks based on length:
+Para inputs que necesitan diferentes máscaras según la longitud:
 
 ```typescript
 import { createDynamicMask, mask } from 'soff-mask';
 
-// Phone that accepts 9 or 10 digits
+// Teléfono que acepta 9 o 10 dígitos
 const phoneMask = createDynamicMask([
   { maxLength: 9, pattern: '#### ####' },
   { maxLength: 10, pattern: '(##) #### ####' },
@@ -152,25 +152,21 @@ mask('12345678', phoneMask); // → '1234 5678'
 mask('1234567890', phoneMask); // → '(12) 3456 7890'
 ```
 
-## Bundle Size
+## Tamaño del Bundle
 
-| Import       | Size (minified) |
-| ------------ | --------------- |
-| `core`       | ~3.2KB          |
-| `masks`      | ~1.1KB          |
-| `dom`        | ~3.7KB          |
-| Full package | ~5.8KB          |
+| Import           | Tamaño (minified) |
+| ---------------- | ----------------- |
+| `core`           | ~3.2KB            |
+| `masks`          | ~1.1KB            |
+| `dom`            | ~3.7KB            |
+| Paquete completo | ~5.8KB            |
 
-Tree-shaking ensures you only ship what you import.
+Tree-shaking asegura que solo envías lo que importas.
 
-## Contributing
+## Contribuir
 
-Please read [CONTRIBUTING.md](../../CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests.
+Por favor lee [CONTRIBUTING.md](../../CONTRIBUTING.md) para detalles sobre nuestro código de conducta y el proceso para enviar pull requests.
 
-## License
+## Licencia
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Documentation
-
-- [Español](docs/README.es.md)
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
