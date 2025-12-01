@@ -9,8 +9,7 @@ export const metadata = {
   title: 'soff-id - Document Validation',
 };
 
-// Server-side validation examples
-function getServerExamples() {
+function getValidationExamples() {
   const validNIT = '900123456-7';
   const invalidNIT = '900123456-0';
 
@@ -25,7 +24,7 @@ function getServerExamples() {
 }
 
 export default function SoffIdPage() {
-  const examples = getServerExamples();
+  const examples = getValidationExamples();
 
   return (
     <article className="space-y-8">
@@ -51,10 +50,10 @@ export default function SoffIdPage() {
         </CardContent>
       </Card>
 
-      {/* Server Examples */}
+      {/* Examples */}
       <Card>
         <CardHeader>
-          <CardTitle>Server-side Validation Examples</CardTitle>
+          <CardTitle>Validation Examples</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">

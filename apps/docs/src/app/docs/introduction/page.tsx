@@ -32,7 +32,7 @@ export default function IntroductionPage() {
           <strong>Lightweight:</strong> Optimized for bundle size, typically &lt;1KB per locale.
         </li>
         <li>
-          <strong>SSR-friendly:</strong> Works in Node.js, browsers, and edge runtimes.
+          <strong>Universal:</strong> Works in Node.js, browsers, and edge runtimes.
         </li>
       </ul>
 

@@ -10,8 +10,7 @@ export const metadata = {
   title: 'soff-mask - Input Masking',
 };
 
-// Server-side examples
-function getServerExamples() {
+function getMaskingExamples() {
   return {
     phone: mask('3001234567', phoneCO),
     cpf: mask('12345678909', cpf),
@@ -23,7 +22,7 @@ function getServerExamples() {
 }
 
 export default function SoffMaskPage() {
-  const examples = getServerExamples();
+  const examples = getMaskingExamples();
 
   return (
     <article className="space-y-8">
@@ -49,10 +48,10 @@ export default function SoffMaskPage() {
         </CardContent>
       </Card>
 
-      {/* Server Examples */}
+      {/* Examples */}
       <Card>
         <CardHeader>
-          <CardTitle>Server-side Masking Examples</CardTitle>
+          <CardTitle>Masking Examples</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">

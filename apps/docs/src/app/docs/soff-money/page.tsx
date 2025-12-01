@@ -9,8 +9,7 @@ export const metadata = {
   title: 'soff-money - Currency Formatting',
 };
 
-// Server-side examples
-function getServerExamples() {
+function getFormattingExamples() {
   const cop = Money.fromDecimal(1500000, COP);
   const usd = Money.fromDecimal(100.5, USD);
   const mxn = Money.fromDecimal(25000, MXN);
@@ -28,7 +27,7 @@ function getServerExamples() {
 }
 
 export default function SoffMoneyPage() {
-  const examples = getServerExamples();
+  const examples = getFormattingExamples();
 
   return (
     <article className="space-y-8">
@@ -54,10 +53,10 @@ export default function SoffMoneyPage() {
         </CardContent>
       </Card>
 
-      {/* Server Examples */}
+      {/* Examples */}
       <Card>
         <CardHeader>
-          <CardTitle>Server-side Formatting Examples</CardTitle>
+          <CardTitle>Formatting Examples</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

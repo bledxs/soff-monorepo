@@ -9,8 +9,7 @@ export const metadata = {
   title: 'soff-date - Holiday Calculator',
 };
 
-// Server-side data fetching
-function getServerData() {
+function getHolidayData() {
   const year = new Date().getFullYear();
   const today = new Date();
 
@@ -28,7 +27,7 @@ function getServerData() {
 }
 
 export default function SoffDatePage() {
-  const { year, holidays, todayHoliday, nextHoliday, todayStr } = getServerData();
+  const { year, holidays, todayHoliday, nextHoliday, todayStr } = getHolidayData();
 
   return (
     <article className="space-y-8">
@@ -47,7 +46,7 @@ export default function SoffDatePage() {
       {/* Live Demo */}
       <Card>
         <CardHeader>
-          <CardTitle>🔴 Live Demo (Server-rendered)</CardTitle>
+          <CardTitle>🔴 Live Demo</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">
