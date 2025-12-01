@@ -11,12 +11,13 @@ A collection of lightweight, tree-shakeable TypeScript utilities for common busi
 
 ## Packages
 
-| Package                             | Version                                                                                     | Description                                          |
-| ----------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [soff-date](./packages/soff-date)   | [![npm](https://img.shields.io/npm/v/soff-date)](https://www.npmjs.com/package/soff-date)   | Holiday calculator with algorithmic date computation |
-| [soff-id](./packages/soff-id)       | [![npm](https://img.shields.io/npm/v/soff-id)](https://www.npmjs.com/package/soff-id)       | ID document validation for LATAM countries           |
-| [soff-mask](./packages/soff-mask)   | [![npm](https://img.shields.io/npm/v/soff-mask)](https://www.npmjs.com/package/soff-mask)   | Input masking utilities                              |
-| [soff-money](./packages/soff-money) | [![npm](https://img.shields.io/npm/v/soff-money)](https://www.npmjs.com/package/soff-money) | Currency formatting and manipulation                 |
+| Package                             | Version                                                                                     | Size (gzip)                   | Description                                             |
+| ----------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------- | ------------------------------------------------------- |
+| [soff-date](./packages/soff-date)   | [![npm](https://img.shields.io/npm/v/soff-date)](https://www.npmjs.com/package/soff-date)   | ~2KB (Core) / ~4KB (Loc)      | Holiday calculator with algorithmic date computation    |
+| [soff-geo](./packages/soff-geo)     | [![npm](https://img.shields.io/npm/v/soff-geo)](https://www.npmjs.com/package/soff-geo)     | ~1KB (Core) / ~45-100KB (Loc) | Geographic data for LATAM (Departments, Municipalities) |
+| [soff-id](./packages/soff-id)       | [![npm](https://img.shields.io/npm/v/soff-id)](https://www.npmjs.com/package/soff-id)       | ~0.5KB (Core) / ~1KB (Loc)    | ID document validation for LATAM countries              |
+| [soff-mask](./packages/soff-mask)   | [![npm](https://img.shields.io/npm/v/soff-mask)](https://www.npmjs.com/package/soff-mask)   | ~3KB (Core)                   | Input masking utilities                                 |
+| [soff-money](./packages/soff-money) | [![npm](https://img.shields.io/npm/v/soff-money)](https://www.npmjs.com/package/soff-money) | ~9KB (Core)                   | Currency formatting and manipulation                    |
 
 ## Features
 
@@ -47,6 +48,15 @@ getHolidays(2025);
 
 // Check if a date is a holiday
 isHoliday(new Date('2025-01-01')); // → { key: 'newYear', ... }
+```
+
+### soff-geo
+
+```typescript
+import { searchMunicipality } from 'soff-geo/locales/co';
+
+// Search for a municipality
+searchMunicipality('Medellin'); // → [{ name: 'Medellín', code: '05001', ... }]
 ```
 
 ### soff-id
