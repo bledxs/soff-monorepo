@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import { Sidebar } from '@/components/sidebar';
-import { MobileNav } from '@/components/mobile-nav';
+import { SidebarProvider, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
+import { AppSidebar } from '@/components/app-sidebar';
+import { Toaster } from '@/components/ui/sonner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,13 +29,17 @@ export default function RootLayout({
   return (
     <html lang="es" className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <MobileNav />
-        <div className="flex min-h-screen lg:min-h-screen">
-          <Sidebar />
-          <main className="min-h-[calc(100vh-3.5rem)] flex-1 overflow-auto lg:min-h-screen">
-            {children}
-          </main>
-        </div>
+        <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset>
+            <header className="flex h-14 items-center gap-2 border-b px-4">
+              <SidebarTrigger />
+              <span className="font-semibold md:hidden">Soff Libraries</span>
+            </header>
+            <main className="flex-1 overflow-auto">{children}</main>
+          </SidebarInset>
+        </SidebarProvider>
+        <Toaster richColors position="bottom-right" />
       </body>
     </html>
   );
