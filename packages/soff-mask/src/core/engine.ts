@@ -190,3 +190,78 @@ export function getPatternLength(pattern: string): number {
   const tokens = parsePattern(pattern);
   return tokens.filter((t) => t.type !== 'literal').length;
 }
+
+/**
+ * Get a placeholder string for a pattern
+ * @param pattern - The mask pattern
+ * @param placeholder - The placeholder character (default: '_')
+ * @returns A string with placeholders for input positions
+ */
+export function getPlaceholder(pattern: string, placeholder: string = '_'): string {
+  const tokens = parsePattern(pattern);
+  return tokens.map((t) => (t.type === 'literal' ? t.char : placeholder)).join('');
+}
+
+/**
+ * Validate if a value matches a pattern format
+ * @param value - The value to validate (can be masked or raw)
+ * @param pattern - The mask pattern
+ * @returns true if the value matches the pattern format
+ */
+export function isValidFormat(value: string, pattern: string): boolean {
+  const masked = mask(value, pattern);
+  const result = maskWithResult(masked, pattern);
+  return result.complete && masked === value;
+}
+
+/**
+ * Get the next cursor position after masking
+ * @param value - The current input value
+ * @param pattern - The mask pattern
+ * @param cursorPosition - The current cursor position
+ * @returns The adjusted cursor position
+ */
+export function getNextCursorPosition(
+  value: string,
+  pattern: string,
+  cursorPosition: number
+): number {
+  const tokens = parsePattern(pattern);
+  const masked = mask(value, pattern);
+
+  // Don't exceed masked length
+  if (cursorPosition >= masked.length) {
+    return masked.length;
+  }
+
+  // Skip over literals
+  let pos = cursorPosition;
+  while (pos < tokens.length && tokens[pos]?.type === 'literal') {
+    pos++;
+  }
+
+  return Math.min(pos, masked.length);
+}
+
+/**
+ * Extract only the raw characters from a masked value
+ * Alternative to unmask that doesn't require pattern matching
+ * @param value - The masked value
+ * @param extractType - Type of characters to extract ('digits' | 'letters' | 'alphanumeric' | 'all')
+ */
+export function extractRaw(
+  value: string,
+  extractType: 'digits' | 'letters' | 'alphanumeric' | 'all' = 'all'
+): string {
+  switch (extractType) {
+    case 'digits':
+      return value.replace(/\D/g, '');
+    case 'letters':
+      return value.replace(/[^a-zA-Z]/g, '');
+    case 'alphanumeric':
+      return value.replace(/[^a-zA-Z0-9]/g, '');
+    case 'all':
+    default:
+      return value;
+  }
+}

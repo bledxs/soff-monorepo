@@ -63,6 +63,9 @@ export const dateMDY = '##/##/####';
 /** Date: 2024-12-25 */
 export const dateISO = '####-##-##';
 
+/** Alias for dateDMY - Date: 25/12/2024 */
+export const date = dateDMY;
+
 /** Time: 14:30 */
 export const time24 = '##:##';
 

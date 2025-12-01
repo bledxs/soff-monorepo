@@ -15,4 +15,8 @@ export {
   parsePattern,
   isComplete,
   getPatternLength,
+  getPlaceholder,
+  isValidFormat,
+  getNextCursorPosition,
+  extractRaw,
 } from './engine.js';

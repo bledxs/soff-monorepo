@@ -12,16 +12,30 @@ Lightweight, framework-agnostic input masking library.
 
 ## Table of Contents
 
-- [Why?](#why)
-- [Install](#install)
-- [Quick Start](#quick-start)
-- [Mask Pattern Syntax](#mask-pattern-syntax)
-- [Pre-built Masks](#pre-built-masks)
-- [DOM Integration](#dom-integration)
-- [Dynamic Masks](#dynamic-masks)
-- [Bundle Size](#bundle-size)
-- [Contributing](#contributing)
-- [License](#license)
+- [Soff Mask](#soff-mask)
+  - [Table of Contents](#table-of-contents)
+  - [Why?](#why)
+  - [Install](#install)
+  - [Quick Start](#quick-start)
+  - [Mask Pattern Syntax](#mask-pattern-syntax)
+    - [Pattern Examples](#pattern-examples)
+  - [Pre-built Masks](#pre-built-masks)
+    - [Available Pre-built Masks](#available-pre-built-masks)
+      - [Phones](#phones)
+      - [Credit Cards](#credit-cards)
+      - [Documents (LATAM)](#documents-latam)
+      - [Dates and Time](#dates-and-time)
+      - [Other](#other)
+  - [Utility Functions](#utility-functions)
+  - [DOM Integration](#dom-integration)
+    - [Vanilla JavaScript](#vanilla-javascript)
+    - [With React](#with-react)
+    - [Mask Controller](#mask-controller)
+  - [Dynamic Masks](#dynamic-masks)
+  - [Bundle Size](#bundle-size)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Documentation](#documentation)
 
 ## Why?
 
@@ -91,16 +105,102 @@ mask('9001234567', nit); // → '900.123.456-7'
 
 ### Available Pre-built Masks
 
-| Mask         | Pattern               | Example Output      |
-| ------------ | --------------------- | ------------------- |
-| `phoneCO`    | `(###) ### ####`      | (300) 123 4567      |
-| `phoneMX`    | `(##) #### ####`      | (55) 1234 5678      |
-| `phoneUS`    | `(###) ###-####`      | (555) 123-4567      |
-| `creditCard` | `#### #### #### ####` | 4111 1111 1111 1111 |
-| `cpf`        | `###.###.###-##`      | 123.456.789-09      |
-| `cnpj`       | `##.###.###/####-##`  | 12.345.678/0001-90  |
-| `nit`        | `###.###.###-#`       | 900.123.456-7       |
-| `date`       | `##/##/####`          | 25/12/2024          |
+#### Phones
+
+| Mask        | Pattern             | Example Output    |
+| ----------- | ------------------- | ----------------- |
+| `phoneCO`   | `(###) ### ####`    | (300) 123 4567    |
+| `phoneMX`   | `(##) #### ####`    | (55) 1234 5678    |
+| `phoneUS`   | `(###) ###-####`    | (555) 123-4567    |
+| `phoneBR`   | `(##) #####-####`   | (11) 91234-5678   |
+| `phoneAR`   | `(##) ####-####`    | (11) 1234-5678    |
+| `phoneIntl` | `+# (###) ###-####` | +1 (555) 123-4567 |
+
+#### Credit Cards
+
+| Mask             | Pattern               | Example Output      |
+| ---------------- | --------------------- | ------------------- |
+| `creditCard`     | `#### #### #### ####` | 4111 1111 1111 1111 |
+| `creditCardAmex` | `#### ###### #####`   | 3782 822463 10005   |
+| `cardExpiry`     | `##/##`               | 12/24               |
+| `cvv`            | `###`                 | 123                 |
+| `cvvAmex`        | `####`                | 1234                |
+
+#### Documents (LATAM)
+
+| Mask   | Pattern              | Example Output     |
+| ------ | -------------------- | ------------------ |
+| `cpf`  | `###.###.###-##`     | 123.456.789-09     |
+| `cnpj` | `##.###.###/####-##` | 12.345.678/0001-90 |
+| `rut`  | `##.###.###-S`       | 12.345.678-9       |
+| `cuit` | `##-########-#`      | 20-12345678-9      |
+| `nit`  | `###.###.###-#`      | 900.123.456-7      |
+
+#### Dates and Time
+
+| Mask            | Pattern      | Example Output |
+| --------------- | ------------ | -------------- |
+| `date`          | `##/##/####` | 25/12/2024     |
+| `dateDMY`       | `##/##/####` | 25/12/2024     |
+| `dateMDY`       | `##/##/####` | 12/25/2024     |
+| `dateISO`       | `####-##-##` | 2024-12-25     |
+| `time24`        | `##:##`      | 14:30          |
+| `time24Seconds` | `##:##:##`   | 14:30:00       |
+| `time12`        | `##:## AA`   | 02:30 PM       |
+
+#### Other
+
+| Mask         | Pattern           | Example Output |
+| ------------ | ----------------- | -------------- |
+| `zipUS`      | `#####`           | 12345          |
+| `zipUS4`     | `#####-####`      | 12345-6789     |
+| `zipBR`      | `#####-###`       | 12345-678      |
+| `ipAddress`  | `###.###.###.###` | 192.168.1.1    |
+| `percentage` | `##.##%`          | 99.99%         |
+
+## Utility Functions
+
+Beyond basic masking, the library provides utilities for common use cases:
+
+```typescript
+import {
+  mask,
+  unmask,
+  maskWithResult,
+  isComplete,
+  getPatternLength,
+  getPlaceholder,
+  isValidFormat,
+  getNextCursorPosition,
+  extractRaw,
+  parsePattern,
+  createDynamicMask,
+} from 'soff-mask';
+
+// Check if input is complete
+isComplete('(300) 123-4567', '(###) ###-####'); // → true
+isComplete('(300) 123-45', '(###) ###-####'); // → false
+
+// Get expected length of masked output
+getPatternLength('(###) ###-####'); // → 14
+
+// Generate placeholder text
+getPlaceholder('(###) ###-####'); // → '(___) ___-____'
+getPlaceholder('##/##/####', '*'); // → '**/**/****'
+
+// Validate format matches pattern
+isValidFormat('(300) 123-4567', '(###) ###-####'); // → true
+isValidFormat('300-123-4567', '(###) ###-####'); // → false
+
+// Get next cursor position (useful for input handling)
+getNextCursorPosition('(30', '(###) ###-####'); // → 3
+
+// Extract raw value (alias for unmask with extras stripped)
+extractRaw('(300) 123-4567', '(###) ###-####'); // → '3001234567'
+
+// Parse pattern into tokens (advanced use)
+parsePattern('##/##'); // → [{type: 'digit'}, {type: 'digit'}, {type: 'literal', char: '/'}, ...]
+```
 
 ## DOM Integration
 
@@ -133,6 +233,28 @@ function PhoneInput() {
 
   return <input ref={inputRef} />;
 }
+```
+
+### Mask Controller
+
+For more control over the masking process:
+
+```typescript
+import { createMaskController } from 'soff-mask/dom';
+
+const controller = createMaskController('(###) ###-####');
+
+// Apply mask programmatically
+controller.apply('3001234567'); // → '(300) 123-4567'
+
+// Get current values
+controller.value; // → '(300) 123-4567'
+controller.raw; // → '3001234567'
+
+// Bind to an input
+const cleanup = controller.bind(inputElement, {
+  onChange: (masked, raw) => console.log({ masked, raw }),
+});
 ```
 
 ## Dynamic Masks
