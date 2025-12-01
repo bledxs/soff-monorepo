@@ -6,6 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { CodeBlock } from '@/components/code-block';
 import { Money, COP, USD, MXN, BRL, ARS } from 'soff-money';
 import { MoneyCalculator } from './money-calculator';
+import { getVersion } from '@/lib/versions';
 
 export const metadata = {
   title: 'soff-money - Currency Formatting',
@@ -30,15 +31,16 @@ function getFormattingExamples() {
 
 export default function SoffMoneyPage() {
   const examples = getFormattingExamples();
+  const version = getVersion('soff-money');
 
   return (
     <article className="space-y-8">
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
-          <Coins size={36} className="text-primary" />
+          <Coins size={36} className="text-soff-money" />
           <h1 className="text-3xl font-bold">soff-money</h1>
-          <Badge>v0.1.0</Badge>
+          <Badge>v{version}</Badge>
         </div>
         <p className="mt-2 text-lg text-muted-foreground">
           Immutable money class with precise arithmetic for LATAM currencies.

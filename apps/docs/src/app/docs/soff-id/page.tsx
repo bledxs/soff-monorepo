@@ -6,6 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { CodeBlock } from '@/components/code-block';
 import { validateNIT, formatNIT, calculateNITCheckDigit } from 'soff-id/locales/co';
 import { NITValidator } from './nit-validator';
+import { getVersion } from '@/lib/versions';
 
 export const metadata = {
   title: 'soff-id - Document Validation',
@@ -27,15 +28,16 @@ function getValidationExamples() {
 
 export default function SoffIdPage() {
   const examples = getValidationExamples();
+  const version = getVersion('soff-id');
 
   return (
     <article className="space-y-8">
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
-          <IdCard size={36} className="text-primary" />
+          <IdCard size={36} className="text-soff-id" />
           <h1 className="text-3xl font-bold">soff-id</h1>
-          <Badge>v0.1.0</Badge>
+          <Badge>v{version}</Badge>
         </div>
         <p className="mt-2 text-lg text-muted-foreground">
           LATAM document validation library - Validate NIT, RUT, CPF, CUIT, and more.

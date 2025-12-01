@@ -26,6 +26,7 @@ import {
   SidebarMenuBadge,
   SidebarRail,
 } from '@/components/ui/sidebar';
+import { versions, type LibraryName } from '@/lib/versions';
 
 const gettingStarted = [
   {
@@ -42,32 +43,28 @@ const gettingStarted = [
 
 const libraries = [
   {
-    title: 'soff-date',
+    name: 'soff-date' as LibraryName,
     href: '/docs/soff-date',
     icon: Calendar,
-    version: '0.2.0',
-    status: 'stable' as const,
+    colorClass: 'text-soff-date',
   },
   {
-    title: 'soff-id',
+    name: 'soff-id' as LibraryName,
     href: '/docs/soff-id',
     icon: IdCard,
-    version: '0.1.0',
-    status: 'stable' as const,
+    colorClass: 'text-soff-id',
   },
   {
-    title: 'soff-mask',
+    name: 'soff-mask' as LibraryName,
     href: '/docs/soff-mask',
     icon: Theater,
-    version: '0.1.0',
-    status: 'beta' as const,
+    colorClass: 'text-soff-mask',
   },
   {
-    title: 'soff-money',
+    name: 'soff-money' as LibraryName,
     href: '/docs/soff-money',
     icon: Coins,
-    version: '0.1.0',
-    status: 'beta' as const,
+    colorClass: 'text-soff-money',
   },
 ];
 
@@ -116,21 +113,15 @@ export function AppSidebar() {
                   <SidebarMenuButton
                     asChild
                     isActive={pathname === lib.href}
-                    tooltip={`${lib.title} ${lib.version}`}
+                    tooltip={`${lib.name} v${versions[lib.name]}`}
                   >
                     <Link href={lib.href}>
-                      <lib.icon />
-                      <span>{lib.title}</span>
+                      <lib.icon className={lib.colorClass} />
+                      <span>{lib.name}</span>
                     </Link>
                   </SidebarMenuButton>
-                  <SidebarMenuBadge
-                    className={
-                      lib.status === 'stable'
-                        ? 'bg-primary/10 text-primary'
-                        : 'bg-muted text-muted-foreground'
-                    }
-                  >
-                    {lib.version}
+                  <SidebarMenuBadge className="bg-muted text-muted-foreground">
+                    {versions[lib.name]}
                   </SidebarMenuBadge>
                 </SidebarMenuItem>
               ))}

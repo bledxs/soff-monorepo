@@ -7,6 +7,7 @@ import { CodeBlock } from '@/components/code-block';
 import { mask, unmask, maskWithResult } from 'soff-mask';
 import { phoneCO, cpf, creditCard, dateDMY } from 'soff-mask';
 import { MaskDemo } from './mask-demo';
+import { getVersion } from '@/lib/versions';
 
 export const metadata = {
   title: 'soff-mask - Input Masking',
@@ -25,15 +26,16 @@ function getMaskingExamples() {
 
 export default function SoffMaskPage() {
   const examples = getMaskingExamples();
+  const version = getVersion('soff-mask');
 
   return (
     <article className="space-y-8">
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
-          <Theater size={36} className="text-primary" />
+          <Theater size={36} className="text-soff-mask" />
           <h1 className="text-3xl font-bold">soff-mask</h1>
-          <Badge>v0.1.0</Badge>
+          <Badge>v{version}</Badge>
         </div>
         <p className="mt-2 text-lg text-muted-foreground">
           Input masking for forms - Phone numbers, documents, credit cards, dates and more.

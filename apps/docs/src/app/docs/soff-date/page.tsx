@@ -6,6 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { CodeBlock } from '@/components/code-block';
 import { getHolidays, isHoliday, getNextHoliday } from 'soff-date/locales/co';
 import { HolidaysList } from './holidays-list';
+import { getVersion } from '@/lib/versions';
 
 export const metadata = {
   title: 'soff-date - Holiday Calculator',
@@ -30,15 +31,16 @@ function getHolidayData() {
 
 export default function SoffDatePage() {
   const { year, holidays, todayHoliday, nextHoliday, todayStr } = getHolidayData();
+  const version = getVersion('soff-date');
 
   return (
     <article className="space-y-8">
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
-          <Calendar size={36} className="text-primary" />
+          <Calendar size={36} className="text-soff-date" />
           <h1 className="text-3xl font-bold">soff-date</h1>
-          <Badge>v0.2.0</Badge>
+          <Badge>v{version}</Badge>
         </div>
         <p className="mt-2 text-lg text-muted-foreground">
           Lightweight, tree-shakeable holiday calculator with algorithmic date computation.

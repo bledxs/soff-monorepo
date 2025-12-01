@@ -3,49 +3,29 @@ import { Calendar, IdCard, Theater, Coins, TreeDeciduous, Package, Globe } from 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { libraries as libraryData } from '@/lib/versions';
 import type { LucideIcon } from 'lucide-react';
 
-const libraries: {
-  name: string;
-  description: string;
-  href: string;
-  version: string;
-  features: string[];
-  icon: LucideIcon;
-}[] = [
-  {
-    name: 'soff-date',
-    description: 'Lightweight, tree-shakeable holiday calculator with algorithmic date computation',
-    href: '/docs/soff-date',
-    version: '0.2.0',
-    features: ['Zero dependencies', '~3KB per locale', '5 countries'],
-    icon: Calendar,
-  },
-  {
-    name: 'soff-id',
-    description: 'LATAM document validation library - Validate NIT, RUT, CPF, CUIT, and more',
-    href: '/docs/soff-id',
-    version: '0.1.0',
-    features: ['Official algorithms', '<1KB gzipped', '5 countries'],
-    icon: IdCard,
-  },
-  {
-    name: 'soff-mask',
-    description: 'Input masking for forms - Phone numbers, documents, currency',
-    href: '/docs/soff-mask',
-    version: '0.1.0',
-    features: ['Framework agnostic', 'DOM & headless', 'Custom masks'],
-    icon: Theater,
-  },
-  {
-    name: 'soff-money',
-    description: 'Currency formatting and calculation for LATAM currencies',
-    href: '/docs/soff-money',
-    version: '0.1.0',
-    features: ['Locale-aware', 'Precise decimals', 'Multiple currencies'],
-    icon: Coins,
-  },
-];
+const iconMap: Record<string, LucideIcon> = {
+  'soff-date': Calendar,
+  'soff-id': IdCard,
+  'soff-mask': Theater,
+  'soff-money': Coins,
+};
+
+const colorMap: Record<string, string> = {
+  'soff-date': 'text-soff-date',
+  'soff-id': 'text-soff-id',
+  'soff-mask': 'text-soff-mask',
+  'soff-money': 'text-soff-money',
+};
+
+const featuresMap: Record<string, string[]> = {
+  'soff-date': ['Zero dependencies', '~3KB per locale', '5 countries'],
+  'soff-id': ['Official algorithms', '<1KB gzipped', '5 countries'],
+  'soff-mask': ['Framework agnostic', 'DOM & headless', 'Custom masks'],
+  'soff-money': ['Locale-aware', 'Precise decimals', 'Multiple currencies'],
+};
 
 export default function HomePage() {
   return (
@@ -77,31 +57,36 @@ export default function HomePage() {
       <section>
         <h2 className="mb-6 text-2xl font-semibold">Libraries</h2>
         <div className="grid gap-6 sm:grid-cols-2">
-          {libraries.map((lib) => (
-            <Link key={lib.name} href={lib.href} className="group">
-              <Card className="h-full transition-colors hover:border-primary">
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="flex items-center gap-2">
-                      <lib.icon size={24} />
-                      {lib.name}
-                    </CardTitle>
-                    <Badge variant="secondary">{lib.version}</Badge>
-                  </div>
-                  <CardDescription>{lib.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {lib.features.map((feature) => (
-                      <Badge key={feature} variant="outline">
-                        {feature}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+          {libraryData.map((lib) => {
+            const Icon = iconMap[lib.name];
+            const colorClass = colorMap[lib.name];
+            const features = featuresMap[lib.name];
+            return (
+              <Link key={lib.name} href={`/docs/${lib.name}`} className="group">
+                <Card className="h-full transition-colors hover:border-primary">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="flex items-center gap-2">
+                        <Icon size={24} className={colorClass} />
+                        {lib.name}
+                      </CardTitle>
+                      <Badge variant="secondary">{lib.version}</Badge>
+                    </div>
+                    <CardDescription>{lib.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {features.map((feature) => (
+                        <Badge key={feature} variant="outline">
+                          {feature}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
