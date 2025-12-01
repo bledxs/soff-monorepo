@@ -8,6 +8,7 @@ import { mask, unmask, maskWithResult, getPlaceholder, isValidFormat, extractRaw
 import { phoneCO, cpf, creditCard, dateDMY } from 'soff-mask';
 import { MaskDemo } from './mask-demo';
 import { getVersion } from '@/lib/versions';
+import { JsonLd } from '@/components/json-ld';
 
 export const metadata = {
   title: 'soff-mask - Input Masking',
@@ -33,6 +34,11 @@ export default function SoffMaskPage() {
 
   return (
     <article className="space-y-8">
+      <JsonLd
+        name="soff-mask"
+        description="Input masking for forms - Phone numbers, documents, credit cards, dates and more."
+        package="soff-mask"
+      />
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
@@ -99,13 +105,13 @@ export default function SoffMaskPage() {
       <Separator />
 
       {/* Installation */}
-      <section>
+      <section id="installation">
         <h2 className="mb-4 text-2xl font-semibold">Installation</h2>
         <CodeBlock code="npm install soff-mask">npm install soff-mask</CodeBlock>
       </section>
 
       {/* Quick Start */}
-      <section>
+      <section id="quick-start">
         <h2 className="mb-4 text-2xl font-semibold">Quick Start</h2>
         <CodeBlock
           code={`import { mask, unmask, maskWithResult, getPlaceholder, isValidFormat, extractRaw } from 'soff-mask';
@@ -167,7 +173,7 @@ mask('ABC123', 'AAA-###');           // 'ABC-123'`}</CodeBlock>
       </section>
 
       {/* Pattern Tokens */}
-      <section>
+      <section id="pattern-tokens">
         <h2 className="mb-4 text-2xl font-semibold">Pattern Tokens</h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[400px] text-sm">
@@ -210,7 +216,7 @@ mask('ABC123', 'AAA-###');           // 'ABC-123'`}</CodeBlock>
       </section>
 
       {/* Pre-built Masks */}
-      <section>
+      <section id="pre-built-masks">
         <h2 className="mb-4 text-2xl font-semibold">Pre-built Masks</h2>
 
         <Tabs defaultValue="phone">
@@ -310,7 +316,7 @@ mask('ABC123', 'AAA-###');           // 'ABC-123'`}</CodeBlock>
       </section>
 
       {/* DOM Integration */}
-      <section>
+      <section id="dom-integration">
         <h2 className="mb-4 text-2xl font-semibold">DOM Integration</h2>
         <CodeBlock
           code={`import { maskInput, createMaskController } from 'soff-mask';
@@ -362,7 +368,7 @@ function PhoneInput() {
       </section>
 
       {/* API Reference */}
-      <section>
+      <section id="api-reference">
         <h2 className="mb-4 text-2xl font-semibold">API Reference</h2>
         <CodeBlock
           code={`// Core functions

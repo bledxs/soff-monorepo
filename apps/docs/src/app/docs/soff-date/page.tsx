@@ -7,6 +7,7 @@ import { CodeBlock } from '@/components/code-block';
 import { getHolidays, isHoliday, getNextHoliday } from 'soff-date/locales/co';
 import { HolidaysList } from './holidays-list';
 import { getVersion } from '@/lib/versions';
+import { JsonLd } from '@/components/json-ld';
 
 export const metadata = {
   title: 'soff-date - Holiday Calculator',
@@ -35,6 +36,11 @@ export default function SoffDatePage() {
 
   return (
     <article className="space-y-8">
+      <JsonLd
+        name="soff-date"
+        description="Lightweight, tree-shakeable holiday calculator with algorithmic date computation."
+        package="soff-date"
+      />
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
@@ -75,13 +81,13 @@ export default function SoffDatePage() {
       <Separator />
 
       {/* Installation */}
-      <section>
+      <section id="installation">
         <h2 className="mb-4 text-2xl font-semibold">Installation</h2>
         <CodeBlock code="npm install soff-date">npm install soff-date</CodeBlock>
       </section>
 
       {/* Quick Start */}
-      <section>
+      <section id="quick-start">
         <h2 className="mb-4 text-2xl font-semibold">Quick Start</h2>
         <CodeBlock
           code={`import { getHolidays, isHoliday, getNextHoliday } from 'soff-date/locales/co';
@@ -113,7 +119,7 @@ const next = getNextHoliday(new Date());
       </section>
 
       {/* Available Locales */}
-      <section>
+      <section id="available-locales">
         <h2 className="mb-4 text-2xl font-semibold">Available Locales</h2>
         <div className="grid gap-2">
           {[
@@ -147,7 +153,7 @@ const next = getNextHoliday(new Date());
       </section>
 
       {/* API Reference */}
-      <section>
+      <section id="api-reference">
         <h2 className="mb-4 text-2xl font-semibold">API Reference</h2>
 
         <Tabs defaultValue="getHolidays">

@@ -13,19 +13,9 @@ export default function SoffPhonePage() {
   return (
     <div className="container max-w-4xl py-6 lg:py-10">
       <JsonLd
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'SoftwareApplication',
-          name: 'soff-phone',
-          applicationCategory: 'DeveloperApplication',
-          operatingSystem: 'Any',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-          },
-          description: 'Lightweight phone number validation and formatting for LATAM.',
-        }}
+        name="soff-phone"
+        description="Lightweight phone number validation and formatting for LATAM."
+        package="soff-phone"
       />
       <JsonLd
         data={{

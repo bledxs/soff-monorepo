@@ -13,6 +13,7 @@ import {
 } from 'soff-id/locales/co';
 import { NITValidator } from './nit-validator';
 import { getVersion } from '@/lib/versions';
+import { JsonLd } from '@/components/json-ld';
 
 export const metadata = {
   title: 'soff-id - Document Validation',
@@ -40,6 +41,11 @@ export default function SoffIdPage() {
 
   return (
     <article className="space-y-8">
+      <JsonLd
+        name="soff-id"
+        description="LATAM document validation library - Validate NIT, RUT, CPF, CUIT, and more."
+        package="soff-id"
+      />
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
@@ -114,13 +120,13 @@ export default function SoffIdPage() {
       <Separator />
 
       {/* Installation */}
-      <section>
+      <section id="installation">
         <h2 className="mb-4 text-2xl font-semibold">Installation</h2>
         <CodeBlock code="npm install soff-id">npm install soff-id</CodeBlock>
       </section>
 
       {/* Quick Start */}
-      <section>
+      <section id="quick-start">
         <h2 className="mb-4 text-2xl font-semibold">Quick Start</h2>
         <CodeBlock
           code={`// Import only what you need
@@ -164,7 +170,7 @@ validateCUIT('20-12345678-9');     // true/false`}</CodeBlock>
       </section>
 
       {/* Available Locales */}
-      <section>
+      <section id="available-locales">
         <h2 className="mb-4 text-2xl font-semibold">Available Locales</h2>
         <div className="grid gap-2">
           {[
@@ -233,7 +239,7 @@ validateCUIT('20-12345678-9');     // true/false`}</CodeBlock>
       </section>
 
       {/* API Reference */}
-      <section>
+      <section id="api-reference">
         <h2 className="mb-4 text-2xl font-semibold">API Reference</h2>
 
         <Tabs defaultValue="co">

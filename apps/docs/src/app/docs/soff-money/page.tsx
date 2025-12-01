@@ -7,6 +7,7 @@ import { CodeBlock } from '@/components/code-block';
 import { Money, COP, USD, MXN, CLP, EUR } from 'soff-money';
 import { MoneyCalculator } from './money-calculator';
 import { getVersion } from '@/lib/versions';
+import { JsonLd } from '@/components/json-ld';
 
 export const metadata = {
   title: 'soff-money - Currency Formatting',
@@ -41,6 +42,11 @@ export default function SoffMoneyPage() {
 
   return (
     <article className="space-y-8">
+      <JsonLd
+        name="soff-money"
+        description="Immutable money class with precise arithmetic for LATAM currencies."
+        package="soff-money"
+      />
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
@@ -111,13 +117,13 @@ export default function SoffMoneyPage() {
       <Separator />
 
       {/* Installation */}
-      <section>
+      <section id="installation">
         <h2 className="mb-4 text-2xl font-semibold">Installation</h2>
         <CodeBlock code="npm install soff-money">npm install soff-money</CodeBlock>
       </section>
 
       {/* Quick Start */}
-      <section>
+      <section id="quick-start">
         <h2 className="mb-4 text-2xl font-semibold">Quick Start</h2>
         <CodeBlock
           code={`import { Money, COP, USD, MXN } from 'soff-money';
@@ -157,7 +163,7 @@ const shares = Money.fromDecimal(100, USD).distribute(3);
       </section>
 
       {/* Key Features */}
-      <section>
+      <section id="key-features">
         <h2 className="mb-4 text-2xl font-semibold">Key Features</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-lg border border-border p-4">
@@ -212,7 +218,7 @@ const shares = Money.fromDecimal(100, USD).distribute(3);
       </section>
 
       {/* Available Currencies */}
-      <section>
+      <section id="available-currencies">
         <h2 className="mb-4 text-2xl font-semibold">Available Currencies</h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[500px] text-sm">
@@ -249,7 +255,7 @@ const shares = Money.fromDecimal(100, USD).distribute(3);
       </section>
 
       {/* API Reference */}
-      <section>
+      <section id="api-reference">
         <h2 className="mb-4 text-2xl font-semibold">API Reference</h2>
 
         <Tabs defaultValue="creation">
@@ -463,7 +469,7 @@ price.toString()   // '$1,500.50'`}</CodeBlock>
       </section>
 
       {/* Common Patterns */}
-      <section>
+      <section id="common-patterns">
         <h2 className="mb-4 text-2xl font-semibold">Common Patterns</h2>
         <CodeBlock
           code={`// Shopping cart total

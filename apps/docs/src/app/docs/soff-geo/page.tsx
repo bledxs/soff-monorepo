@@ -18,20 +18,9 @@ export default function SoffGeoPage() {
   return (
     <article className="space-y-8">
       <JsonLd
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'SoftwareApplication',
-          name: 'soff-geo',
-          applicationCategory: 'DeveloperApplication',
-          operatingSystem: 'Any',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-          },
-          description:
-            'Lightweight geographic data library for LATAM - Departments, municipalities, postal codes and more.',
-        }}
+        name="soff-geo"
+        description="Lightweight geographic data library for LATAM - Departments, municipalities, postal codes and more."
+        package="soff-geo"
       />
       <JsonLd
         data={{
