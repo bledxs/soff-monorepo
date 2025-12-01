@@ -1,7 +1,9 @@
+import { Calendar, Radio } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
+import { CodeBlock } from '@/components/code-block';
 import { getHolidays, isHoliday, getNextHoliday } from 'soff-date/locales/co';
 import { HolidaysList } from './holidays-list';
 
@@ -34,7 +36,7 @@ export default function SoffDatePage() {
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
-          <span className="text-4xl">📅</span>
+          <Calendar size={36} className="text-primary" />
           <h1 className="text-3xl font-bold">soff-date</h1>
           <Badge>v0.2.0</Badge>
         </div>
@@ -46,7 +48,9 @@ export default function SoffDatePage() {
       {/* Live Demo */}
       <Card>
         <CardHeader>
-          <CardTitle>🔴 Live Demo</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Radio size={18} className="text-red-500" /> Live Demo
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">
@@ -71,16 +75,14 @@ export default function SoffDatePage() {
       {/* Installation */}
       <section>
         <h2 className="mb-4 text-2xl font-semibold">Installation</h2>
-        <pre className="rounded-lg bg-muted p-4">
-          <code>npm install soff-date</code>
-        </pre>
+        <CodeBlock code="npm install soff-date">npm install soff-date</CodeBlock>
       </section>
 
       {/* Quick Start */}
       <section>
         <h2 className="mb-4 text-2xl font-semibold">Quick Start</h2>
-        <pre className="rounded-lg bg-muted p-4 text-sm">
-          <code>{`import { getHolidays, isHoliday, getNextHoliday } from 'soff-date/locales/co';
+        <CodeBlock
+          code={`import { getHolidays, isHoliday, getNextHoliday } from 'soff-date/locales/co';
 
 // Get all holidays for a year
 const holidays = getHolidays(${year});
@@ -92,8 +94,20 @@ const today = isHoliday(new Date());
 
 // Get the next upcoming holiday
 const next = getNextHoliday(new Date());
-// → { date: '...', key: '...', name: '...' }`}</code>
-        </pre>
+// → { date: '...', key: '...', name: '...' }`}
+        >{`import { getHolidays, isHoliday, getNextHoliday } from 'soff-date/locales/co';
+
+// Get all holidays for a year
+const holidays = getHolidays(${year});
+// → [{ date: '${year}-01-01', key: 'newYear', name: 'Año Nuevo' }, ...]
+
+// Check if today is a holiday
+const today = isHoliday(new Date());
+// → { date: '...', key: '...', name: '...' } or null
+
+// Get the next upcoming holiday
+const next = getNextHoliday(new Date());
+// → { date: '...', key: '...', name: '...' }`}</CodeBlock>
       </section>
 
       {/* Available Locales */}
@@ -144,44 +158,52 @@ const next = getNextHoliday(new Date());
 
           <TabsContent value="getHolidays" className="mt-4 space-y-4">
             <p className="text-muted-foreground">Returns all holidays for a given year.</p>
-            <pre className="rounded-lg bg-muted p-4 text-sm">
-              <code>{`function getHolidays(year: number, options?: { lang?: HolidayNames }): Holiday[]
+            <CodeBlock
+              code={`function getHolidays(year: number, options?: { lang?: HolidayNames }): Holiday[]
 
 interface Holiday {
   date: string;      // ISO date: '2025-01-01'
   key: string;       // Identifier: 'newYear'
   name: string;      // Display name: 'Año Nuevo'
   isShifted?: boolean; // True if moved by shift rule
-}`}</code>
-            </pre>
+}`}
+            >{`function getHolidays(year: number, options?: { lang?: HolidayNames }): Holiday[]
+
+interface Holiday {
+  date: string;      // ISO date: '2025-01-01'
+  key: string;       // Identifier: 'newYear'
+  name: string;      // Display name: 'Año Nuevo'
+  isShifted?: boolean; // True if moved by shift rule
+}`}</CodeBlock>
           </TabsContent>
 
           <TabsContent value="isHoliday" className="mt-4 space-y-4">
             <p className="text-muted-foreground">
               Check if a date is a holiday. Returns the holiday info or null.
             </p>
-            <pre className="rounded-lg bg-muted p-4 text-sm">
-              <code>{`function isHoliday(date: Date, options?: { lang?: HolidayNames }): Holiday | null`}</code>
-            </pre>
+            <CodeBlock
+              code={`function isHoliday(date: Date, options?: { lang?: HolidayNames }): Holiday | null`}
+            >{`function isHoliday(date: Date, options?: { lang?: HolidayNames }): Holiday | null`}</CodeBlock>
           </TabsContent>
 
           <TabsContent value="getNextHoliday" className="mt-4 space-y-4">
             <p className="text-muted-foreground">
               Get the next holiday from a given date (defaults to today).
             </p>
-            <pre className="rounded-lg bg-muted p-4 text-sm">
-              <code>{`function getNextHoliday(from?: Date, options?: { lang?: HolidayNames }): Holiday | null`}</code>
-            </pre>
+            <CodeBlock
+              code={`function getNextHoliday(from?: Date, options?: { lang?: HolidayNames }): Holiday | null`}
+            >{`function getNextHoliday(from?: Date, options?: { lang?: HolidayNames }): Holiday | null`}</CodeBlock>
           </TabsContent>
 
           <TabsContent value="isBusinessDay" className="mt-4 space-y-4">
             <p className="text-muted-foreground">
               Check if a date is a business day (not weekend, not holiday).
             </p>
-            <pre className="rounded-lg bg-muted p-4 text-sm">
-              <code>{`function isBusinessDay(date: Date): boolean
-function businessDays(date: Date, amount: number): Date`}</code>
-            </pre>
+            <CodeBlock
+              code={`function isBusinessDay(date: Date): boolean
+function businessDays(date: Date, amount: number): Date`}
+            >{`function isBusinessDay(date: Date): boolean
+function businessDays(date: Date, amount: number): Date`}</CodeBlock>
           </TabsContent>
         </Tabs>
       </section>

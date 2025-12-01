@@ -1,7 +1,9 @@
+import { IdCard, Radio } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
+import { CodeBlock } from '@/components/code-block';
 import { validateNIT, formatNIT, calculateNITCheckDigit } from 'soff-id/locales/co';
 import { NITValidator } from './nit-validator';
 
@@ -31,7 +33,7 @@ export default function SoffIdPage() {
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
-          <span className="text-4xl">🪪</span>
+          <IdCard size={36} className="text-primary" />
           <h1 className="text-3xl font-bold">soff-id</h1>
           <Badge>v0.1.0</Badge>
         </div>
@@ -43,7 +45,9 @@ export default function SoffIdPage() {
       {/* Live Demo */}
       <Card>
         <CardHeader>
-          <CardTitle>🔴 Live Demo - NIT Validator (Colombia)</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Radio size={18} className="text-red-500" /> Live Demo - NIT Validator (Colombia)
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <NITValidator />
@@ -92,16 +96,14 @@ export default function SoffIdPage() {
       {/* Installation */}
       <section>
         <h2 className="mb-4 text-2xl font-semibold">Installation</h2>
-        <pre className="rounded-lg bg-muted p-4">
-          <code>npm install soff-id</code>
-        </pre>
+        <CodeBlock code="npm install soff-id">npm install soff-id</CodeBlock>
       </section>
 
       {/* Quick Start */}
       <section>
         <h2 className="mb-4 text-2xl font-semibold">Quick Start</h2>
-        <pre className="rounded-lg bg-muted p-4 text-sm">
-          <code>{`// Import only what you need
+        <CodeBlock
+          code={`// Import only what you need
 import { validateNIT, formatNIT, calculateNITCheckDigit } from 'soff-id/locales/co';
 import { validateCPF, validateCNPJ } from 'soff-id/locales/br';
 import { validateRUT } from 'soff-id/locales/cl';
@@ -119,8 +121,26 @@ validateCPF('123.456.789-09');     // true/false
 validateRUT('12.345.678-5');       // true/false
 
 // Argentine CUIT
-validateCUIT('20-12345678-9');     // true/false`}</code>
-        </pre>
+validateCUIT('20-12345678-9');     // true/false`}
+        >{`// Import only what you need
+import { validateNIT, formatNIT, calculateNITCheckDigit } from 'soff-id/locales/co';
+import { validateCPF, validateCNPJ } from 'soff-id/locales/br';
+import { validateRUT } from 'soff-id/locales/cl';
+import { validateCUIT } from 'soff-id/locales/ar';
+
+// Colombian NIT
+validateNIT('900123456-7');        // true
+calculateNITCheckDigit('900123456'); // '7'
+formatNIT('9001234567');            // '900.123.456-7'
+
+// Brazilian CPF
+validateCPF('123.456.789-09');     // true/false
+
+// Chilean RUT
+validateRUT('12.345.678-5');       // true/false
+
+// Argentine CUIT
+validateCUIT('20-12345678-9');     // true/false`}</CodeBlock>
       </section>
 
       {/* Available Locales */}
@@ -161,15 +181,15 @@ validateCUIT('20-12345678-9');     // true/false`}</code>
           ].map((locale) => (
             <div
               key={locale.name}
-              className="flex items-center justify-between rounded-lg border border-border p-3"
+              className="flex flex-col gap-2 rounded-lg border border-border p-3 sm:flex-row sm:items-center sm:justify-between"
             >
               <div className="flex items-center gap-2">
                 <span className="text-xl">{locale.flag}</span>
                 <span className="font-medium">{locale.name}</span>
               </div>
-              <div className="flex items-center gap-4">
-                <code className="text-sm text-muted-foreground">{locale.import}</code>
-                <div className="flex gap-1">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+                <code className="text-xs text-muted-foreground sm:text-sm">{locale.import}</code>
+                <div className="flex flex-wrap gap-1">
                   {locale.docs.map((doc) => (
                     <Badge key={doc} variant="outline">
                       {doc}

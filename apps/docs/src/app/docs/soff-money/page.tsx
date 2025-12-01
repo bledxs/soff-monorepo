@@ -1,7 +1,9 @@
+import { Coins, Radio, Gem, Binary, Globe, Scale } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
+import { CodeBlock } from '@/components/code-block';
 import { Money, COP, USD, MXN, BRL, ARS } from 'soff-money';
 import { MoneyCalculator } from './money-calculator';
 
@@ -34,7 +36,7 @@ export default function SoffMoneyPage() {
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
-          <span className="text-4xl">💰</span>
+          <Coins size={36} className="text-primary" />
           <h1 className="text-3xl font-bold">soff-money</h1>
           <Badge>v0.1.0</Badge>
         </div>
@@ -46,7 +48,9 @@ export default function SoffMoneyPage() {
       {/* Live Demo */}
       <Card>
         <CardHeader>
-          <CardTitle>🔴 Live Demo - Money Calculator</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Radio size={18} className="text-red-500" /> Live Demo - Money Calculator
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <MoneyCalculator />
@@ -89,9 +93,7 @@ export default function SoffMoneyPage() {
       {/* Installation */}
       <section>
         <h2 className="mb-4 text-2xl font-semibold">Installation</h2>
-        <pre className="rounded-lg bg-muted p-4">
-          <code>npm install soff-money</code>
-        </pre>
+        <CodeBlock code="npm install soff-money">npm install soff-money</CodeBlock>
       </section>
 
       {/* Quick Start */}
@@ -123,25 +125,33 @@ const shares = Money.fromDecimal(100, USD).distribute(3);
         <h2 className="mb-4 text-2xl font-semibold">Key Features</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-lg border border-border p-4">
-            <h3 className="font-semibold">💎 Immutable</h3>
+            <h3 className="flex items-center gap-2 font-semibold">
+              <Gem size={16} /> Immutable
+            </h3>
             <p className="mt-1 text-sm text-muted-foreground">
               All operations return new Money instances. Safe for React state.
             </p>
           </div>
           <div className="rounded-lg border border-border p-4">
-            <h3 className="font-semibold">🔢 Integer Arithmetic</h3>
+            <h3 className="flex items-center gap-2 font-semibold">
+              <Binary size={16} /> Integer Arithmetic
+            </h3>
             <p className="mt-1 text-sm text-muted-foreground">
               Uses cents internally to avoid floating-point precision issues.
             </p>
           </div>
           <div className="rounded-lg border border-border p-4">
-            <h3 className="font-semibold">🌎 LATAM Currencies</h3>
+            <h3 className="flex items-center gap-2 font-semibold">
+              <Globe size={16} /> LATAM Currencies
+            </h3>
             <p className="mt-1 text-sm text-muted-foreground">
               Pre-configured COP, MXN, BRL, ARS, USD with correct formatting.
             </p>
           </div>
           <div className="rounded-lg border border-border p-4">
-            <h3 className="font-semibold">⚖️ Fair Distribution</h3>
+            <h3 className="flex items-center gap-2 font-semibold">
+              <Scale size={16} /> Fair Distribution
+            </h3>
             <p className="mt-1 text-sm text-muted-foreground">
               Split money without losing cents. Perfect for bill splitting.
             </p>
@@ -152,8 +162,8 @@ const shares = Money.fromDecimal(100, USD).distribute(3);
       {/* Available Currencies */}
       <section>
         <h2 className="mb-4 text-2xl font-semibold">Available Currencies</h2>
-        <div className="rounded-lg border border-border">
-          <table className="w-full text-sm">
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[500px] text-sm">
             <thead>
               <tr className="border-b border-border bg-muted/50">
                 <th className="px-4 py-3 text-left font-medium">Currency</th>

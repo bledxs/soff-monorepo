@@ -1,7 +1,9 @@
+import { Theater, Radio } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
+import { CodeBlock } from '@/components/code-block';
 import { mask, unmask, maskWithResult } from 'soff-mask';
 import { phoneCO, cpf, creditCard, dateDMY } from 'soff-mask';
 import { MaskDemo } from './mask-demo';
@@ -29,7 +31,7 @@ export default function SoffMaskPage() {
       {/* Header */}
       <div>
         <div className="flex items-center gap-3">
-          <span className="text-4xl">🎭</span>
+          <Theater size={36} className="text-primary" />
           <h1 className="text-3xl font-bold">soff-mask</h1>
           <Badge>v0.1.0</Badge>
         </div>
@@ -41,7 +43,9 @@ export default function SoffMaskPage() {
       {/* Live Demo */}
       <Card>
         <CardHeader>
-          <CardTitle>🔴 Live Demo - Try it!</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Radio size={18} className="text-red-500" /> Live Demo - Try it!
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <MaskDemo />
@@ -82,9 +86,7 @@ export default function SoffMaskPage() {
       {/* Installation */}
       <section>
         <h2 className="mb-4 text-2xl font-semibold">Installation</h2>
-        <pre className="rounded-lg bg-muted p-4">
-          <code>npm install soff-mask</code>
-        </pre>
+        <CodeBlock code="npm install soff-mask">npm install soff-mask</CodeBlock>
       </section>
 
       {/* Quick Start */}

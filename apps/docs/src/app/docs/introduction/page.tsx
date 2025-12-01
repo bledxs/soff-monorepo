@@ -1,3 +1,4 @@
+import { Calendar, IdCard, Theater, Coins } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata = {
@@ -41,7 +42,7 @@ export default function IntroductionPage() {
       <div className="not-prose grid gap-4">
         <div className="rounded-lg border border-border p-4">
           <div className="flex items-center gap-2">
-            <span className="text-2xl">📅</span>
+            <Calendar size={24} className="text-primary" />
             <h3 className="text-lg font-semibold">soff-date</h3>
             <Badge>v0.2.0</Badge>
           </div>
@@ -53,7 +54,7 @@ export default function IntroductionPage() {
 
         <div className="rounded-lg border border-border p-4">
           <div className="flex items-center gap-2">
-            <span className="text-2xl">🪪</span>
+            <IdCard size={24} className="text-primary" />
             <h3 className="text-lg font-semibold">soff-id</h3>
             <Badge>v0.1.0</Badge>
           </div>
@@ -64,7 +65,7 @@ export default function IntroductionPage() {
 
         <div className="rounded-lg border border-border p-4">
           <div className="flex items-center gap-2">
-            <span className="text-2xl">🎭</span>
+            <Theater size={24} className="text-primary" />
             <h3 className="text-lg font-semibold">soff-mask</h3>
             <Badge variant="secondary">v0.1.0</Badge>
           </div>
@@ -75,7 +76,7 @@ export default function IntroductionPage() {
 
         <div className="rounded-lg border border-border p-4">
           <div className="flex items-center gap-2">
-            <span className="text-2xl">💰</span>
+            <Coins size={24} className="text-primary" />
             <h3 className="text-lg font-semibold">soff-money</h3>
             <Badge variant="secondary">v0.1.0</Badge>
           </div>

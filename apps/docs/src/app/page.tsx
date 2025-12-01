@@ -1,16 +1,25 @@
 import Link from 'next/link';
+import { Calendar, IdCard, Theater, Coins, TreeDeciduous, Package, Globe } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import type { LucideIcon } from 'lucide-react';
 
-const libraries = [
+const libraries: {
+  name: string;
+  description: string;
+  href: string;
+  version: string;
+  features: string[];
+  icon: LucideIcon;
+}[] = [
   {
     name: 'soff-date',
     description: 'Lightweight, tree-shakeable holiday calculator with algorithmic date computation',
     href: '/docs/soff-date',
     version: '0.2.0',
     features: ['Zero dependencies', '~3KB per locale', '5 countries'],
-    icon: '📅',
+    icon: Calendar,
   },
   {
     name: 'soff-id',
@@ -18,7 +27,7 @@ const libraries = [
     href: '/docs/soff-id',
     version: '0.1.0',
     features: ['Official algorithms', '<1KB gzipped', '5 countries'],
-    icon: '🪪',
+    icon: IdCard,
   },
   {
     name: 'soff-mask',
@@ -26,7 +35,7 @@ const libraries = [
     href: '/docs/soff-mask',
     version: '0.1.0',
     features: ['Framework agnostic', 'DOM & headless', 'Custom masks'],
-    icon: '🎭',
+    icon: Theater,
   },
   {
     name: 'soff-money',
@@ -34,7 +43,7 @@ const libraries = [
     href: '/docs/soff-money',
     version: '0.1.0',
     features: ['Locale-aware', 'Precise decimals', 'Multiple currencies'],
-    icon: '💰',
+    icon: Coins,
   },
 ];
 
@@ -74,7 +83,7 @@ export default function HomePage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center gap-2">
-                      <span className="text-2xl">{lib.icon}</span>
+                      <lib.icon size={24} />
                       {lib.name}
                     </CardTitle>
                     <Badge variant="secondary">{lib.version}</Badge>
@@ -101,19 +110,25 @@ export default function HomePage() {
         <h2 className="mb-6 text-2xl font-semibold">Why Soff?</h2>
         <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
           <div className="rounded-lg border border-border p-6">
-            <h3 className="mb-2 font-semibold">🌳 Tree-shakeable</h3>
+            <h3 className="mb-2 flex items-center gap-2 font-semibold">
+              <TreeDeciduous size={18} /> Tree-shakeable
+            </h3>
             <p className="text-sm text-muted-foreground">
               Import only what you need. Each locale and function is independently importable.
             </p>
           </div>
           <div className="rounded-lg border border-border p-6">
-            <h3 className="mb-2 font-semibold">📦 Zero Dependencies</h3>
+            <h3 className="mb-2 flex items-center gap-2 font-semibold">
+              <Package size={18} /> Zero Dependencies
+            </h3>
             <p className="text-sm text-muted-foreground">
               Pure TypeScript with no external dependencies. Keep your bundle clean.
             </p>
           </div>
           <div className="rounded-lg border border-border p-6">
-            <h3 className="mb-2 font-semibold">🌎 LATAM First</h3>
+            <h3 className="mb-2 flex items-center gap-2 font-semibold">
+              <Globe size={18} /> LATAM First
+            </h3>
             <p className="text-sm text-muted-foreground">
               Built for Colombia, Mexico, Brazil, Argentina, Chile and more.
             </p>
