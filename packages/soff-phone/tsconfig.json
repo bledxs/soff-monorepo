@@ -1,0 +1,10 @@
+{
+  "extends": "@soff/tsconfig/library.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src", "tests", "tsup.config.ts", "vitest.config.ts", "eslint.config.js"]
+}

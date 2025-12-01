@@ -1,0 +1,105 @@
+{
+  "name": "soff-phone",
+  "version": "0.0.1",
+  "description": "Lightweight phone number validation and formatting library for LATAM",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./co": {
+      "import": {
+        "types": "./dist/locales/co.d.ts",
+        "default": "./dist/locales/co.js"
+      },
+      "require": {
+        "types": "./dist/locales/co.d.cts",
+        "default": "./dist/locales/co.cjs"
+      }
+    },
+    "./mx": {
+      "import": {
+        "types": "./dist/locales/mx.d.ts",
+        "default": "./dist/locales/mx.js"
+      },
+      "require": {
+        "types": "./dist/locales/mx.d.cts",
+        "default": "./dist/locales/mx.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest --coverage",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "clean": "rimraf dist coverage .turbo",
+    "format": "prettier --write ."
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "keywords": [
+    "phone",
+    "validation",
+    "formatting",
+    "colombia",
+    "mexico",
+    "latam",
+    "typescript",
+    "tree-shaking",
+    "lightweight"
+  ],
+  "author": "Luis C. Rojas",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bledxs/soff-monorepo.git",
+    "directory": "packages/soff-phone"
+  },
+  "bugs": {
+    "url": "https://github.com/bledxs/soff-monorepo/issues"
+  },
+  "homepage": "https://github.com/bledxs/soff-monorepo/tree/master/packages/soff-phone#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@soff/tsconfig": "*",
+    "@vitest/coverage-v8": "^4.0.14",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.5.0",
+    "prettier": "^3.7.3",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vitest": "^4.0.14"
+  }
+}

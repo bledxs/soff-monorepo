@@ -18,6 +18,7 @@ A collection of lightweight, tree-shakeable TypeScript utilities for common busi
 | [soff-id](./packages/soff-id)       | [![npm](https://img.shields.io/npm/v/soff-id)](https://www.npmjs.com/package/soff-id)       | ~0.5KB (Core) / ~1KB (Loc)    | ID document validation for LATAM countries              |
 | [soff-mask](./packages/soff-mask)   | [![npm](https://img.shields.io/npm/v/soff-mask)](https://www.npmjs.com/package/soff-mask)   | ~3KB (Core)                   | Input masking utilities                                 |
 | [soff-money](./packages/soff-money) | [![npm](https://img.shields.io/npm/v/soff-money)](https://www.npmjs.com/package/soff-money) | ~9KB (Core)                   | Currency formatting and manipulation                    |
+| [soff-phone](./packages/soff-phone) | [![npm](https://img.shields.io/npm/v/soff-phone)](https://www.npmjs.com/package/soff-phone) | ~0.5KB (Core) / ~1KB (Loc)    | Phone number validation and formatting                  |
 
 ## Features
 
@@ -88,6 +89,15 @@ const price = Money.fromDecimal(1500000, COP);
 price.format(); // → '$1.500.000'
 ```
 
+### soff-phone
+
+```typescript
+import { validate } from 'soff-phone/co';
+
+// Validate phone
+validate('3001234567'); // → { isValid: true, type: 'mobile', ... }
+```
+
 ## Development
 
 This monorepo uses [Turborepo](https://turbo.build/) and [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces).
@@ -120,9 +130,11 @@ soff-monorepo/
 │   └── docs/          # Documentation website (Next.js)
 ├── packages/
 │   ├── soff-date/     # Holiday calculator
+│   ├── soff-geo/      # Geographic data
 │   ├── soff-id/       # ID validation
 │   ├── soff-mask/     # Input masking
 │   ├── soff-money/    # Currency utilities
+│   ├── soff-phone/    # Phone validation
 │   └── tsconfig/      # Shared TypeScript configs
 ├── .github/
 │   └── workflows/     # CI/CD pipelines

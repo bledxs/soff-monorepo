@@ -12,6 +12,7 @@ import {
   ExternalLink,
   Package,
   Map,
+  Phone,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -72,6 +73,12 @@ const libraries = [
     href: '/docs/soff-money',
     icon: Coins,
     colorClass: 'text-soff-money',
+  },
+  {
+    name: 'soff-phone' as LibraryName,
+    href: '/docs/soff-phone',
+    icon: Phone,
+    colorClass: 'text-soff-phone',
   },
 ];
 

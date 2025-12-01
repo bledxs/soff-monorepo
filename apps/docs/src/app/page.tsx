@@ -1,5 +1,15 @@
 import Link from 'next/link';
-import { Calendar, IdCard, Theater, Coins, TreeDeciduous, Package, Globe, Map } from 'lucide-react';
+import {
+  Calendar,
+  IdCard,
+  Theater,
+  Coins,
+  TreeDeciduous,
+  Package,
+  Globe,
+  Map,
+  Phone,
+} from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -12,6 +22,7 @@ const iconMap: Record<string, LucideIcon> = {
   'soff-id': IdCard,
   'soff-mask': Theater,
   'soff-money': Coins,
+  'soff-phone': Phone,
 };
 
 const colorMap: Record<string, string> = {
@@ -20,6 +31,7 @@ const colorMap: Record<string, string> = {
   'soff-id': 'text-soff-id',
   'soff-mask': 'text-soff-mask',
   'soff-money': 'text-soff-money',
+  'soff-phone': 'text-soff-phone',
 };
 
 const featuresMap: Record<string, string[]> = {
@@ -28,6 +40,7 @@ const featuresMap: Record<string, string[]> = {
   'soff-id': ['Official algorithms', '<1KB gzipped', '5 countries'],
   'soff-mask': ['Framework agnostic', 'DOM & headless', 'Custom masks'],
   'soff-money': ['Locale-aware', 'Precise decimals', 'Multiple currencies'],
+  'soff-phone': ['Validation & Format', 'CO & MX support', 'Tree-shakeable'],
 };
 
 export default function HomePage() {

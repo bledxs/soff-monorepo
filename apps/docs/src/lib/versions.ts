@@ -3,6 +3,7 @@ import soffGeoPkg from '../../../../packages/soff-geo/package.json';
 import soffIdPkg from '../../../../packages/soff-id/package.json';
 import soffMaskPkg from '../../../../packages/soff-mask/package.json';
 import soffMoneyPkg from '../../../../packages/soff-money/package.json';
+import soffPhonePkg from '../../../../packages/soff-phone/package.json';
 
 export const versions = {
   'soff-date': soffDatePkg.version,
@@ -10,6 +11,7 @@ export const versions = {
   'soff-id': soffIdPkg.version,
   'soff-mask': soffMaskPkg.version,
   'soff-money': soffMoneyPkg.version,
+  'soff-phone': soffPhonePkg.version,
 } as const;
 
 export type LibraryName = keyof typeof versions;
@@ -43,5 +45,10 @@ export const libraries = [
     name: 'soff-money' as const,
     description: soffMoneyPkg.description,
     version: soffMoneyPkg.version,
+  },
+  {
+    name: 'soff-phone' as const,
+    description: soffPhonePkg.description,
+    version: soffPhonePkg.version,
   },
 ] as const;
