@@ -1,5 +1,11 @@
 # soff-mask
 
+## 0.2.1
+
+### Patch Changes
+
+- [#5](https://github.com/bledxs/soff-monorepo/pull/5) [`9e983bd`](https://github.com/bledxs/soff-monorepo/commit/9e983bd270008a964afcbcc4d65aca6445718851) Thanks [@github-actions](https://github.com/apps/github-actions)! - standardize tsup configuration across all packages
+
 ## 0.2.0
 
 ### Minor Changes
