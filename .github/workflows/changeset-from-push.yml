@@ -85,6 +85,12 @@ jobs:
           if echo "$CHANGED_FILES" | grep -q "^packages/soff-money/"; then
             PACKAGES="$PACKAGES soff-money"
           fi
+          if echo "$CHANGED_FILES" | grep -q "^packages/soff-geo/"; then
+            PACKAGES="$PACKAGES soff-geo"
+          fi
+          if echo "$CHANGED_FILES" | grep -q "^packages/soff-phone/"; then
+            PACKAGES="$PACKAGES soff-phone"
+          fi
 
           echo "list=$PACKAGES" >> $GITHUB_OUTPUT
           echo "Affected packages: $PACKAGES"
