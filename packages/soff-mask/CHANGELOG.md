@@ -1,5 +1,13 @@
 # soff-mask
 
+## 0.2.2
+
+### Patch Changes
+
+- [#7](https://github.com/bledxs/soff-monorepo/pull/7) [`d90a600`](https://github.com/bledxs/soff-monorepo/commit/d90a6000322453adefcc80d6d92931a21f590d46) Thanks [@github-actions](https://github.com/apps/github-actions)! - modernize Spanish README files with logos and visual improvements
+
+- [#8](https://github.com/bledxs/soff-monorepo/pull/8) [`fb2fe09`](https://github.com/bledxs/soff-monorepo/commit/fb2fe09f2325182bb3bd6f884b829971172dff44) Thanks [@github-actions](https://github.com/apps/github-actions)! - sync Spanish READMEs with English versions
+
 ## 0.2.1
 
 ### Patch Changes

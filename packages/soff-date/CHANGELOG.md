@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+### Patch Changes
+
+- [#7](https://github.com/bledxs/soff-monorepo/pull/7) [`d90a600`](https://github.com/bledxs/soff-monorepo/commit/d90a6000322453adefcc80d6d92931a21f590d46) Thanks [@github-actions](https://github.com/apps/github-actions)! - modernize Spanish README files with logos and visual improvements
+
 ## 1.0.1
 
 ### Patch Changes
