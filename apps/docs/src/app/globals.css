@@ -45,9 +45,11 @@
 
   /* Soff brand colors */
   --color-soff-date: var(--soff-date);
+  --color-soff-geo: var(--soff-geo);
   --color-soff-id: var(--soff-id);
   --color-soff-mask: var(--soff-mask);
   --color-soff-money: var(--soff-money);
+  --color-soff-phone: var(--soff-phone);
   --color-soff-brand: var(--soff-brand);
 }
 

@@ -1,5 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { CodeBlock } from '@/components/code-block';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { CheckCircle2, Package, Zap, Code2 } from 'lucide-react';
 
 export const metadata = {
   title: 'Installation - Soff Libraries',
@@ -8,13 +10,57 @@ export const metadata = {
 export default function InstallationPage() {
   return (
     <article className="prose prose-invert max-w-none">
-      <h1>Installation</h1>
+      <div className="mb-8">
+        <h1 className="mb-4 bg-gradient-to-r from-soff-date via-soff-id to-soff-money bg-clip-text text-transparent">
+          Installation
+        </h1>
+        <p className="lead text-xl text-muted-foreground">
+          Each Soff library can be installed independently. Install only what you need.
+        </p>
+      </div>
 
-      <p className="lead text-xl text-muted-foreground">
-        Each Soff library can be installed independently. Install only what you need.
-      </p>
+      <div className="not-prose mb-8 grid gap-4 md:grid-cols-3">
+        <Card className="glass-effect">
+          <CardHeader>
+            <CheckCircle2 className="mb-2 h-8 w-8 text-soff-date" />
+            <CardTitle>Tree-shakeable</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <CardDescription>
+              Import only what you need. Each locale is independently importable.
+            </CardDescription>
+          </CardContent>
+        </Card>
 
-      <h2>Package Managers</h2>
+        <Card className="glass-effect">
+          <CardHeader>
+            <Package className="mb-2 h-8 w-8 text-soff-id" />
+            <CardTitle>Zero dependencies</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <CardDescription>
+              Pure TypeScript with no external runtime dependencies.
+            </CardDescription>
+          </CardContent>
+        </Card>
+
+        <Card className="glass-effect">
+          <CardHeader>
+            <Zap className="mb-2 h-8 w-8 text-soff-money" />
+            <CardTitle>Lightweight</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <CardDescription>
+              Optimized for bundle size, typically &lt;1KB per locale.
+            </CardDescription>
+          </CardContent>
+        </Card>
+      </div>
+
+      <h2 className="mb-4 flex items-center gap-2">
+        <Code2 className="h-6 w-6 text-soff-mask" />
+        Package Managers
+      </h2>
 
       <Tabs defaultValue="npm" className="not-prose">
         <TabsList>
@@ -29,6 +75,9 @@ export default function InstallationPage() {
             code={`# Holiday calculator
 npm install soff-date
 
+# Geographic data
+npm install soff-geo
+
 # Document validation
 npm install soff-id
 
@@ -36,10 +85,16 @@ npm install soff-id
 npm install soff-mask
 
 # Currency formatting
-npm install soff-money`}
+npm install soff-money
+
+# Phone validation
+npm install soff-phone`}
           >{`# Holiday calculator
 npm install soff-date
 
+# Geographic data
+npm install soff-geo
+
 # Document validation
 npm install soff-id
 
@@ -47,7 +102,10 @@ npm install soff-id
 npm install soff-mask
 
 # Currency formatting
-npm install soff-money`}</CodeBlock>
+npm install soff-money
+
+# Phone validation
+npm install soff-phone`}</CodeBlock>
         </TabsContent>
 
         <TabsContent value="pnpm" className="mt-4">
@@ -55,6 +113,9 @@ npm install soff-money`}</CodeBlock>
             code={`# Holiday calculator
 pnpm add soff-date
 
+# Geographic data
+pnpm add soff-geo
+
 # Document validation
 pnpm add soff-id
 
@@ -62,10 +123,16 @@ pnpm add soff-id
 pnpm add soff-mask
 
 # Currency formatting
-pnpm add soff-money`}
+pnpm add soff-money
+
+# Phone validation
+pnpm add soff-phone`}
           >{`# Holiday calculator
 pnpm add soff-date
 
+# Geographic data
+pnpm add soff-geo
+
 # Document validation
 pnpm add soff-id
 
@@ -73,7 +140,10 @@ pnpm add soff-id
 pnpm add soff-mask
 
 # Currency formatting
-pnpm add soff-money`}</CodeBlock>
+pnpm add soff-money
+
+# Phone validation
+pnpm add soff-phone`}</CodeBlock>
         </TabsContent>
 
         <TabsContent value="yarn" className="mt-4">
@@ -81,6 +151,9 @@ pnpm add soff-money`}</CodeBlock>
             code={`# Holiday calculator
 yarn add soff-date
 
+# Geographic data
+yarn add soff-geo
+
 # Document validation
 yarn add soff-id
 
@@ -88,10 +161,16 @@ yarn add soff-id
 yarn add soff-mask
 
 # Currency formatting
-yarn add soff-money`}
+yarn add soff-money
+
+# Phone validation
+yarn add soff-phone`}
           >{`# Holiday calculator
 yarn add soff-date
 
+# Geographic data
+yarn add soff-geo
+
 # Document validation
 yarn add soff-id
 
@@ -99,7 +178,10 @@ yarn add soff-id
 yarn add soff-mask
 
 # Currency formatting
-yarn add soff-money`}</CodeBlock>
+yarn add soff-money
+
+# Phone validation
+yarn add soff-phone`}</CodeBlock>
         </TabsContent>
 
         <TabsContent value="bun" className="mt-4">
@@ -107,6 +189,9 @@ yarn add soff-money`}</CodeBlock>
             code={`# Holiday calculator
 bun add soff-date
 
+# Geographic data
+bun add soff-geo
+
 # Document validation
 bun add soff-id
 
@@ -114,10 +199,16 @@ bun add soff-id
 bun add soff-mask
 
 # Currency formatting
-bun add soff-money`}
+bun add soff-money
+
+# Phone validation
+bun add soff-phone`}
           >{`# Holiday calculator
 bun add soff-date
 
+# Geographic data
+bun add soff-geo
+
 # Document validation
 bun add soff-id
 
@@ -125,18 +216,40 @@ bun add soff-id
 bun add soff-mask
 
 # Currency formatting
-bun add soff-money`}</CodeBlock>
+bun add soff-money
+
+# Phone validation
+bun add soff-phone`}</CodeBlock>
         </TabsContent>
       </Tabs>
 
-      <h2>Requirements</h2>
+      <div className="not-prose my-8">
+        <Card className="border-soff-geo/20">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <CheckCircle2 className="h-5 w-5 text-soff-geo" />
+              Requirements
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2 text-muted-foreground">
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-soff-geo" />
+                Node.js 20 or higher
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-soff-geo" />
+                TypeScript 5.0+ (optional, but recommended)
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
 
-      <ul>
-        <li>Node.js 20 or higher</li>
-        <li>TypeScript 5.0+ (optional, but recommended)</li>
-      </ul>
-
-      <h2>Tree-shaking</h2>
+      <h2 className="mb-4 flex items-center gap-2">
+        <Zap className="h-6 w-6 text-soff-date" />
+        Tree-shaking
+      </h2>
 
       <p>
         All libraries support tree-shaking. Import only the locales you need to minimize bundle
@@ -157,7 +270,10 @@ import { getHolidays } from 'soff-date/locales/co';
 import { getHolidays } from 'soff-date';`}</CodeBlock>
       </div>
 
-      <h2>ESM & CommonJS</h2>
+      <h2 className="mb-4 flex items-center gap-2">
+        <Package className="h-6 w-6 text-soff-id" />
+        ESM & CommonJS
+      </h2>
 
       <p>All libraries ship both ESM and CommonJS builds:</p>
 
