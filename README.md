@@ -28,24 +28,71 @@
 | [soff-money](./packages/soff-money) | [![npm](https://img.shields.io/npm/v/soff-money)](https://www.npmjs.com/package/soff-money) | ~9KB (Core)                   | Currency formatting and manipulation                    |
 | [soff-phone](./packages/soff-phone) | [![npm](https://img.shields.io/npm/v/soff-phone)](https://www.npmjs.com/package/soff-phone) | ~0.5KB (Core) / ~1KB (Loc)    | Phone number validation and formatting                  |
 
-## Features
+## ✨ Features
 
-- 🚀 **Lightweight** - Each package is optimized for minimal bundle size
-- 🌳 **Tree-shakeable** - Import only what you need
-- 📦 **Zero dependencies** - No external runtime dependencies
-- 🔷 **TypeScript** - Full type safety out of the box
-- 🌐 **SSR Ready** - Works in Node.js and browser environments
-- 🌎 **LATAM Focus** - Built with Latin American business requirements in mind
+<table>
+<tr>
+<td width="33%">
 
-## Quick Start
+### 🚀 Lightweight
+
+Each package is optimized for minimal bundle size. Most packages are under 5KB gzipped.
+
+</td>
+<td width="33%">
+
+### 🌳 Tree-shakeable
+
+Import only what you need. Every function and locale is independently importable.
+
+</td>
+<td width="33%">
+
+### 📦 Zero Dependencies
+
+Pure TypeScript with no external runtime dependencies.
+
+</td>
+</tr>
+<tr>
+<td width="33%">
+
+### 🔷 TypeScript First
+
+Full type safety out of the box with exported types and interfaces.
+
+</td>
+<td width="33%">
+
+### 🌐 Universal
+
+Works in Node.js, browsers, and edge runtimes (Cloudflare, Vercel, etc.).
+
+</td>
+<td width="33%">
+
+### 🌎 LATAM Focus
+
+Built specifically for Latin American business requirements and regulations.
+
+</td>
+</tr>
+</table>
+
+## 🚀 Quick Start
 
 ```bash
 # Install individual packages
-npm install soff-date
-npm install soff-id
-npm install soff-mask
-npm install soff-money
+npm install soff-date soff-id soff-mask soff-money
+
+# Or with pnpm
+pnpm add soff-date soff-id soff-mask soff-money
+
+# Or with yarn
+yarn add soff-date soff-id soff-mask soff-money
 ```
+
+### 📚 Usage Examples
 
 ### soff-date
 

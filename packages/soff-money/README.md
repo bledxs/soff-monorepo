@@ -41,35 +41,58 @@
   - [License](#license)
   - [Documentation](#documentation)
 
-## Why?
+## 🤔 Why?
 
-In JavaScript, `0.1 + 0.2 === 0.30000000000000004`. This is fatal for e-commerce or financial applications. Additionally, formatting currencies in Latin America is painful - does the symbol go before or after? Dots or commas for thousands?
+In JavaScript, `0.1 + 0.2 === 0.30000000000000004`. This is **fatal** for e-commerce or financial applications. 🚨
 
-This library handles money using integers (Safe Money pattern) and formats according to the country's locale.
+Additionally, formatting currencies in Latin America is painful:
 
-## Install
+- Does the symbol go before or after? 🤔
+- Dots or commas for thousands?
+- How many decimals?
+
+This library solves both problems:
+
+| Problem                      | Solution                                           |
+| ---------------------------- | -------------------------------------------------- |
+| 🐞 **Floating point errors** | Uses **Safe Money Pattern** (integer cents)        |
+| 🌎 **LATAM formatting**      | Locale-aware formatting (COP, MXN, ARS, BRL, etc.) |
+| 🧩 **Lost cents**            | Fair distribution algorithm (no money lost!)       |
+| ⚔️ **Math operations**       | Immutable Money objects with safe arithmetic       |
+
+## 📦 Install
 
 ```bash
+# npm
 npm install soff-money
+
+# pnpm
+pnpm add soff-money
+
+# yarn
+yarn add soff-money
+
+# bun
+bun add soff-money
 ```
 
-## Quick Start
+## 🚀 Quick Start
 
 ```typescript
 import { Money, COP, USD } from 'soff-money';
 
-// Create money from decimal (safe - converted to cents internally)
+// 💵 Create money from decimal (safe - converted to cents internally)
 const price = Money.fromDecimal(1500000, COP);
 
-// Arithmetic operations (all return new Money instances)
+// 🧮 Arithmetic operations (all return new Money instances)
 const withTax = price.addPercentage(19); // Add 19% tax
 const discounted = withTax.subtractPercentage(10); // 10% discount
 
-// Format for display
+// 🎨 Format for display
 console.log(price.format()); // "$ 1.500.000,00"
 console.log(discounted.format()); // "$ 1.606.500,00"
 
-// Safe comparisons
+// ⚖️ Safe comparisons
 price.equals(Money.fromDecimal(1500000, COP)); // true
 price.greaterThan(discounted); // false
 ```

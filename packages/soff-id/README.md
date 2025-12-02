@@ -37,31 +37,49 @@
   - [License](#license)
   - [Documentation](#documentation)
 
-## Why?
+## 🤔 Why?
 
-Validating a NIT in Colombia (calculating the verification digit), a RUT in Chile, a CPF in Brazil, or a CUIT in Argentina is something that all developers in the region have to reprogram over and over again.
+Validating identity documents in LATAM is something **every developer** in the region has to implement:
 
-This library provides a modular, tree-shakeable solution using the same architecture as `soff-date`. Import only the validators you need.
+| Country      | Documents       | Complexity               |
+| ------------ | --------------- | ------------------------ |
+| 🇨🇴 Colombia  | NIT, CC, CE, TI | ✅ Check digit algorithm |
+| 🇧🇷 Brasil    | CPF, CNPJ       | ✅ Two check digits      |
+| 🇦🇷 Argentina | DNI, CUIT, CUIL | ✅ Modulus 11            |
+| 🇨🇱 Chile     | RUT, RUN        | ✅ Check digit with 'K'  |
+| 🇲🇽 México    | RFC, CURP       | ✅ Complex validation    |
 
-## Install
+This library provides **official algorithms** in a modular, tree-shakeable way. Import only what you need! 🌳
+
+## 📦 Install
 
 ```bash
+# npm
 npm install soff-id
+
+# pnpm
+pnpm add soff-id
+
+# yarn
+yarn add soff-id
+
+# bun
+bun add soff-id
 ```
 
-## Quick Start
+## 🚀 Quick Start
 
 ```typescript
 // Only Colombia included in bundle (~1KB)
 import { validateNIT, formatNIT, calculateNITCheckDigit } from 'soff-id/locales/co';
 
-// Validate NIT
+// ✅ Validate NIT
 validateNIT('900123456-7'); // → true
 
-// Calculate check digit
+// 🧠 Calculate check digit
 calculateNITCheckDigit('900123456'); // → '7'
 
-// Format NIT
+// 🎨 Format NIT
 formatNIT('9001234567'); // → '900.123.456-7'
 ```
 

@@ -21,68 +21,81 @@
 
 ## Table of Contents
 
-- [Soff Date](#soff-date)
-  - [Table of Contents](#table-of-contents)
-  - [Why?](#why)
-  - [Install](#install)
-  - [Quick Start](#quick-start)
-  - [i18n Support](#i18n-support)
-  - [Available Locales](#available-locales)
-  - [Available Languages](#available-languages)
-  - [Shift Rules Explained](#shift-rules-explained)
-    - [Emiliani (Colombia, Argentina)](#emiliani-colombia-argentina)
-    - [Observed US (USA, UK)](#observed-us-usa-uk)
-  - [Advanced: Create Your Own Locale](#advanced-create-your-own-locale)
-  - [Advanced: Use Algorithms Directly](#advanced-use-algorithms-directly)
-  - [Bundle Size](#bundle-size)
-  - [API Reference](#api-reference)
-    - [`getHolidays(year, options?)`](#getholidaysyear-options)
-    - [`isHoliday(date, options?)`](#isholidaydate-options)
-    - [`getNextHoliday(from?, options?)`](#getnextholidayfrom-options)
-  - [Types](#types)
-  - [Contributing](#contributing)
-  - [License](#license)
-  - [Documentation](#documentation)
-  - [Contributors](#contributors)
+- [Table of Contents](#table-of-contents)
+- [🤔 Why?](#-why)
+- [📦 Install](#-install)
+- [🚀 Quick Start](#-quick-start)
+- [🌍 i18n Support](#-i18n-support)
+- [Available Locales](#available-locales)
+- [Available Languages](#available-languages)
+- [Shift Rules Explained](#shift-rules-explained)
+  - [Emiliani (Colombia, Argentina)](#emiliani-colombia-argentina)
+  - [Observed US (USA, UK)](#observed-us-usa-uk)
+- [Advanced: Create Your Own Locale](#advanced-create-your-own-locale)
+- [Advanced: Use Algorithms Directly](#advanced-use-algorithms-directly)
+- [Bundle Size](#bundle-size)
+- [API Reference](#api-reference)
+  - [`getHolidays(year, options?)`](#getholidaysyear-options)
+  - [`isHoliday(date, options?)`](#isholidaydate-options)
+  - [`getNextHoliday(from?, options?)`](#getnextholidayfrom-options)
+- [Types](#types)
+- [Contributing](#contributing)
+- [License](#license)
+- [Documentation](#documentation)
+- [Contributors](#contributors)
 
-## Why?
+## 🤔 Why?
 
-Most holiday libraries ship giant JSON files with dates until 2050. This library **calculates dates algorithmically**, supporting:
+Most holiday libraries ship **giant JSON files** with dates until 2050. This library **calculates dates algorithmically**, supporting:
 
-- Fixed dates (`December 25`)
-- Nth weekday (`3rd Monday of January`)
-- Easter-relative (`Good Friday = Easter - 2 days`)
-- Shift rules (`Emiliani`, `Observed US`)
+| Feature                | Description                   | Example                         |
+| ---------------------- | ----------------------------- | ------------------------------- |
+| 📅 **Fixed Dates**     | Static dates every year       | December 25 (Christmas)         |
+| 📆 **Nth Weekday**     | Relative weekday calculations | 3rd Monday of January (MLK Day) |
+| ✨ **Easter-relative** | Based on Easter calculation   | Good Friday = Easter - 2 days   |
+| 🔄 **Shift Rules**     | Move holidays to workdays     | Colombia's Emiliani Law         |
 
-## Install
+**Result:** Tiny bundle size (~3KB) with unlimited year support! 🎉
+
+## 📦 Install
 
 ```bash
+# npm
 npm install soff-date
+
+# pnpm
+pnpm add soff-date
+
+# yarn
+yarn add soff-date
+
+# bun
+bun add soff-date
 ```
 
-## Quick Start
+## 🚀 Quick Start
 
 ```typescript
 // Only Colombia included in bundle (~3KB)
 import { getHolidays, isHoliday, getNextHoliday } from 'soff-date/locales/co';
 
-// Get all holidays for a year
+// 🏆 Get all holidays for a year
 getHolidays(2025);
 // → [{ date: '2025-01-01', key: 'newYear', name: 'Año Nuevo' }, ...]
 
-// Check if a date is a holiday
+// ❓ Check if a date is a holiday
 isHoliday(new Date('2025-01-01'));
 // → { date: '2025-01-01', key: 'newYear', name: 'Año Nuevo' }
 
 isHoliday(new Date('2025-01-02'));
 // → null
 
-// Get next holiday from a date
+// ➡️ Get next holiday from a date
 getNextHoliday(new Date('2025-01-02'));
 // → { date: '2025-01-06', key: 'epiphany', name: 'Día de los Reyes Magos' }
 ```
 
-## i18n Support
+## 🌍 i18n Support
 
 ```typescript
 import { getHolidays } from 'soff-date/locales/co';

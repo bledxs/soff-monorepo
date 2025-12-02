@@ -45,28 +45,54 @@
   - [License](#license)
   - [Documentation](#documentation)
 
-## Why?
+## 🤔 Why?
 
-Making a phone input auto-format as you type `(300) 123-4567` is hard. Current libraries (react-input-mask, etc.) are often heavy or tied to a specific framework.
+Making an input auto-format as you type is **surprisingly hard**:
 
-This library provides a pure JavaScript masking engine that works with anything - React, Vue, Angular, or plain HTML.
-
-## Install
-
-```bash
-npm install soff-mask
+```
+User types: 3001234567
+You want:   (300) 123-4567 ✨
 ```
 
-## Quick Start
+Current solutions:
+
+- ❌ Tied to specific frameworks (react-input-mask)
+- ❌ Heavy bundles (10KB+)
+- ❌ Limited customization
+
+This library is:
+
+- ✅ **Framework agnostic** - Works with React, Vue, Angular, or vanilla JS
+- ✅ **Lightweight** - ~3KB core
+- ✅ **Flexible** - Custom masks, pre-built patterns, dynamic masks
+- ✅ **TypeScript first** - Full type safety
+
+## 📦 Install
+
+```bash
+# npm
+npm install soff-mask
+
+# pnpm
+pnpm add soff-mask
+
+# yarn
+yarn add soff-mask
+
+# bun
+bun add soff-mask
+```
+
+## 🚀 Quick Start
 
 ```typescript
 import { mask, unmask } from 'soff-mask';
 
-// Apply mask
+// ✨ Apply mask
 mask('3001234567', '(###) ###-####');
 // → '(300) 123-4567'
 
-// Remove mask
+// 🧯 Remove mask
 unmask('(300) 123-4567', '(###) ###-####');
 // → '3001234567'
 ```
