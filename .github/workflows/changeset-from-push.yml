@@ -73,24 +73,24 @@ jobs:
           # Get changed files in this commit
           CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
 
-          if echo "$CHANGED_FILES" | grep -q "^packages/soff-date/"; then
-            PACKAGES="$PACKAGES soff-date"
-          fi
-          if echo "$CHANGED_FILES" | grep -q "^packages/soff-id/"; then
-            PACKAGES="$PACKAGES soff-id"
-          fi
-          if echo "$CHANGED_FILES" | grep -q "^packages/soff-mask/"; then
-            PACKAGES="$PACKAGES soff-mask"
-          fi
-          if echo "$CHANGED_FILES" | grep -q "^packages/soff-money/"; then
-            PACKAGES="$PACKAGES soff-money"
-          fi
-          if echo "$CHANGED_FILES" | grep -q "^packages/soff-geo/"; then
-            PACKAGES="$PACKAGES soff-geo"
-          fi
-          if echo "$CHANGED_FILES" | grep -q "^packages/soff-phone/"; then
-            PACKAGES="$PACKAGES soff-phone"
-          fi
+          # Extract unique package directories from changed files
+          # We filter for files that are inside a subdirectory of packages/
+          CHANGED_DIRS=$(echo "$CHANGED_FILES" | grep "^packages/[^/]*/" | cut -d/ -f2 | sort | uniq)
+
+          for dir in $CHANGED_DIRS; do
+            PACKAGE_JSON="packages/$dir/package.json"
+            if [ -f "$PACKAGE_JSON" ]; then
+              # Extract package name using node to be safe with JSON parsing
+              PKG_NAME=$(node -p "try { require('./$PACKAGE_JSON').name } catch(e) { '' }")
+              
+              if [ -n "$PKG_NAME" ]; then
+                PACKAGES="$PACKAGES $PKG_NAME"
+              fi
+            fi
+          done
+
+          # Trim leading space
+          PACKAGES=$(echo $PACKAGES | xargs)
 
           echo "list=$PACKAGES" >> $GITHUB_OUTPUT
           echo "Affected packages: $PACKAGES"
