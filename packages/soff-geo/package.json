@@ -1,6 +1,6 @@
 {
   "name": "soff-geo",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Lightweight geographic data library for LATAM - Departments, municipalities, postal codes and more",
   "type": "module",
   "main": "./dist/index.cjs",

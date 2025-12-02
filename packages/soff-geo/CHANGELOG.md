@@ -1,5 +1,11 @@
 # soff-geo
 
+## 0.2.2
+
+### Patch Changes
+
+- [#17](https://github.com/bledxs/soff-monorepo/pull/17) [`412c033`](https://github.com/bledxs/soff-monorepo/commit/412c0337e2addc23c33c2e1154fa73115fcfa347) Thanks [@github-actions](https://github.com/apps/github-actions)! - Merge branch 'master' of https://github.com/bledxs/soff-monorepo
+
 ## 0.2.1
 
 ### Patch Changes
