@@ -18,6 +18,7 @@ export default {
         'ci',
         'chore',
         'revert',
+        'perf',
       ],
     ],
     'subject-case': [0],
