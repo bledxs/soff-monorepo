@@ -1,9 +1,17 @@
-# Soff Geo
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="100" height="100">
+  <h1>Soff Geo</h1>
+  <p>Librería ligera de datos geográficos para LATAM - Departamentos, municipios, códigos postales y más.</p>
+</div>
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/soff-geo)](https://www.npmjs.com/package/soff-geo)
 [![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](../LICENSE)
 
-Librería ligera de datos geográficos para LATAM - Departamentos, municipios, códigos postales y más.
+</div>
+
+---
 
 **Cero dependencias** · **TypeScript** · **Tree-shakeable**
 
@@ -17,35 +25,52 @@ Librería ligera de datos geográficos para LATAM - Departamentos, municipios, c
   - [Países Disponibles](#países-disponibles)
   - [Referencia API](#referencia-api)
 
-## ¿Por qué?
+## 🤔 ¿Por qué?
 
-A menudo necesitas listas de departamentos/provincias y municipios/ciudades para formularios de dirección, pero las APIs son lentas o las librerías existentes son pesadas y contienen datos de todo el mundo.
+A menudo necesitas listas de departamentos/provincias y municipios/ciudades para formularios de dirección:
+
+| Problema                  | Solución tradicional        | Solución Soff Geo                 |
+| ------------------------- | --------------------------- | --------------------------------- |
+| 🌐 **Datos actualizados** | APIs externas lentas        | ✅ Datos embebidos, cero latencia |
+| 📦 **Tamaño del bundle**  | Librerías globales (100KB+) | ✅ Solo tu país (~45-100KB)       |
+| 🔍 **Búsqueda**           | Implementación manual       | ✅ Búsqueda fuzzy incluida        |
+| 🌳 **Tree-shaking**       | Todo o nada                 | ✅ Importa solo lo que necesitas  |
 
 `soff-geo` ofrece una solución modular donde importas solo los datos del país que necesitas.
 
-## Instalación
+## 📦 Instalación
 
 ```bash
+# npm
 npm install soff-geo
+
+# pnpm
+pnpm add soff-geo
+
+# yarn
+yarn add soff-geo
+
+# bun
+bun add soff-geo
 ```
 
-## Inicio Rápido
+## 🚀 Inicio Rápido
 
 ```typescript
 // Solo Colombia incluido en el bundle
 import { getDepartments, getMunicipalities, searchMunicipalities } from 'soff-geo/co';
 
-// Obtener todos los departamentos
+// 📍 Obtener todos los departamentos
 const departments = getDepartments();
-// [{ code: '05', name: 'Antioquia', ... }, ...]
+// → [{ code: '05', name: 'Antioquia', ... }, ...]
 
-// Obtener municipios por departamento
+// 🏙️ Obtener municipios por departamento
 const antioquiaMunis = getDepartmentMunicipalities('05');
-// [{ code: '05001', name: 'Medellín', ... }, ...]
+// → [{ code: '05001', name: 'Medellín', ... }, ...]
 
-// Buscar
+// 🔍 Buscar
 const results = searchMunicipalities('medellin');
-// [{ item: { name: 'Medellín', ... }, score: 1 }]
+// → [{ item: { name: 'Medellín', ... }, score: 1 }]
 ```
 
 ## Países Disponibles

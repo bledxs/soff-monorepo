@@ -1,4 +1,10 @@
-# Soff Mask
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="100" height="100">
+  <h1>Soff Mask</h1>
+  <p>Librería de máscaras de input ligera y agnóstica de framework.</p>
+</div>
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/soff-mask)](https://www.npmjs.com/package/soff-mask)
 [![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](LICENSE)
@@ -6,7 +12,9 @@
 [![codecov](https://codecov.io/gh/bledxs/soff-monorepo/branch/master/graph/badge.svg)](https://codecov.io/gh/bledxs/soff-monorepo)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/soff-mask)](https://bundlephobia.com/package/soff-mask)
 
-Librería de máscaras de input ligera y agnóstica de framework.
+</div>
+
+---
 
 **Sin dependencias** · **TypeScript** · **~3KB core**
 
@@ -23,28 +31,54 @@ Librería de máscaras de input ligera y agnóstica de framework.
 - [Contribuir](#contribuir)
 - [Licencia](#licencia)
 
-## ¿Por qué?
+## 🤔 ¿Por qué?
 
-Hacer que un input de teléfono se auto-formatee mientras escribes `(300) 123-4567` es difícil. Las librerías actuales (react-input-mask, etc.) suelen ser pesadas o estar atadas a un framework específico.
+Hacer que un input se auto-formatee mientras escribes es **sorprendentemente difícil**:
 
-Esta librería provee un motor de máscaras en JavaScript puro que funciona con cualquier cosa - React, Vue, Angular, o HTML plano.
-
-## Instalación
-
-```bash
-npm install soff-mask
+```
+Usuario escribe: 3001234567
+Tú quieres:      (300) 123-4567 ✨
 ```
 
-## Inicio Rápido
+Soluciones actuales:
+
+- ❌ Atadas a frameworks específicos (react-input-mask)
+- ❌ Bundles pesados (10KB+)
+- ❌ Personalización limitada
+
+Esta librería es:
+
+- ✅ **Agnóstica de framework** - Funciona con React, Vue, Angular o JS vanilla
+- ✅ **Ligera** - ~3KB core
+- ✅ **Flexible** - Máscaras personalizadas, patrones pre-construidos, máscaras dinámicas
+- ✅ **TypeScript first** - Seguridad de tipos completa
+
+## 📦 Instalación
+
+```bash
+# npm
+npm install soff-mask
+
+# pnpm
+pnpm add soff-mask
+
+# yarn
+yarn add soff-mask
+
+# bun
+bun add soff-mask
+```
+
+## 🚀 Inicio Rápido
 
 ```typescript
 import { mask, unmask } from 'soff-mask';
 
-// Aplicar máscara
+// ✨ Aplicar máscara
 mask('3001234567', '(###) ###-####');
 // → '(300) 123-4567'
 
-// Remover máscara
+// 🧹 Remover máscara
 unmask('(300) 123-4567', '(###) ###-####');
 // → '3001234567'
 ```

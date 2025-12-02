@@ -1,4 +1,10 @@
-# Soff ID
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="100" height="100">
+  <h1>Soff ID</h1>
+  <p>Librería de validación de documentos LATAM - Valida NIT, RUT, CPF, CUIT, y más.</p>
+</div>
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/soff-id)](https://www.npmjs.com/package/soff-id)
 [![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](LICENSE)
@@ -6,7 +12,9 @@
 [![codecov](https://codecov.io/gh/bledxs/soff-monorepo/branch/master/graph/badge.svg)](https://codecov.io/gh/bledxs/soff-monorepo)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/soff-id)](https://bundlephobia.com/package/soff-id)
 
-Librería de validación de documentos LATAM - Valida NIT, RUT, CPF, CUIT, y más.
+</div>
+
+---
 
 **Sin dependencias** · **TypeScript** · **~1KB por locale**
 
@@ -21,31 +29,49 @@ Librería de validación de documentos LATAM - Valida NIT, RUT, CPF, CUIT, y má
 - [Contribuir](#contribuir)
 - [Licencia](#licencia)
 
-## ¿Por qué?
+## 🤔 ¿Por qué?
 
-Validar un NIT en Colombia (calcular el dígito de verificación), un RUT en Chile, un CPF en Brasil, o un CUIT en Argentina es algo que todos los desarrolladores de la región tenemos que reprogramar una y otra vez.
+Validar documentos de identidad en LATAM es algo que **todos los desarrolladores** de la región tenemos que implementar:
 
-Esta librería provee una solución modular y tree-shakeable usando la misma arquitectura que `soff-date`. Importa solo los validadores que necesitas.
+| País         | Documentos      | Complejidad                            |
+| ------------ | --------------- | -------------------------------------- |
+| 🇨🇴 Colombia  | NIT, CC, CE, TI | ✅ Algoritmo de dígito de verificación |
+| 🇧🇷 Brasil    | CPF, CNPJ       | ✅ Dos dígitos verificadores           |
+| 🇦🇷 Argentina | DNI, CUIT, CUIL | ✅ Módulo 11                           |
+| 🇨🇱 Chile     | RUT, RUN        | ✅ Dígito verificador con 'K'          |
+| 🇲🇽 México    | RFC, CURP       | ✅ Validación compleja                 |
 
-## Instalación
+Esta librería provee **algoritmos oficiales** de forma modular y tree-shakeable. ¡Importa solo lo que necesitas! 🌳
+
+## 📦 Instalación
 
 ```bash
+# npm
 npm install soff-id
+
+# pnpm
+pnpm add soff-id
+
+# yarn
+yarn add soff-id
+
+# bun
+bun add soff-id
 ```
 
-## Inicio Rápido
+## 🚀 Inicio Rápido
 
 ```typescript
 // Solo Colombia incluido en el bundle (~1KB)
 import { validateNIT, formatNIT, calculateNITCheckDigit } from 'soff-id/locales/co';
 
-// Validar NIT
+// ✅ Validar NIT
 validateNIT('900123456-7'); // → true
 
-// Calcular dígito de verificación
+// 🧠 Calcular dígito de verificación
 calculateNITCheckDigit('900123456'); // → '7'
 
-// Formatear NIT
+// 🎨 Formatear NIT
 formatNIT('9001234567'); // → '900.123.456-7'
 ```
 

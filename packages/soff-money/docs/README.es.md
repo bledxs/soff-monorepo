@@ -1,4 +1,10 @@
-# Soff Money
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="100" height="100">
+  <h1>Soff Money</h1>
+  <p>Manejo seguro de dinero para JavaScript con aritmética basada en enteros y formato de locales LATAM.</p>
+</div>
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/soff-money)](https://www.npmjs.com/package/soff-money)
 [![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](LICENSE)
@@ -6,7 +12,9 @@
 [![codecov](https://codecov.io/gh/bledxs/soff-monorepo/branch/master/graph/badge.svg)](https://codecov.io/gh/bledxs/soff-monorepo)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/soff-money)](https://bundlephobia.com/package/soff-money)
 
-Manejo seguro de dinero para JavaScript con aritmética basada en enteros y formato de locales LATAM.
+</div>
+
+---
 
 **Sin dependencias** · **TypeScript** · **~6KB core**
 
@@ -22,35 +30,58 @@ Manejo seguro de dinero para JavaScript con aritmética basada en enteros y form
 - [Contribuir](#contribuir)
 - [Licencia](#licencia)
 
-## ¿Por qué?
+## 🤔 ¿Por qué?
 
-En JavaScript, `0.1 + 0.2 === 0.30000000000000004`. Esto es fatal para aplicaciones de e-commerce o financieras. Además, formatear monedas en Latinoamérica es doloroso - ¿el símbolo va antes o después? ¿Puntos o comas para los miles?
+En JavaScript, `0.1 + 0.2 === 0.30000000000000004`. Esto es **fatal** para aplicaciones de e-commerce o financieras. 🚨
 
-Esta librería maneja dinero usando enteros (patrón Safe Money) y formatea según el locale del país.
+Además, formatear monedas en Latinoamérica es doloroso:
 
-## Instalación
+- ¿El símbolo va antes o después? 🤔
+- ¿Puntos o comas para los miles?
+- ¿Cuántos decimales?
+
+Esta librería resuelve ambos problemas:
+
+| Problema                         | Solución                                                |
+| -------------------------------- | ------------------------------------------------------- |
+| 🐞 **Errores de punto flotante** | Usa el **Patrón Safe Money** (centavos enteros)         |
+| 🌎 **Formato LATAM**             | Formato consciente de locale (COP, MXN, ARS, BRL, etc.) |
+| 🧩 **Centavos perdidos**         | Algoritmo de distribución justa (¡no se pierde dinero!) |
+| ⚔️ **Operaciones matemáticas**   | Objetos Money inmutables con aritmética segura          |
+
+## 📦 Instalación
 
 ```bash
+# npm
 npm install soff-money
+
+# pnpm
+pnpm add soff-money
+
+# yarn
+yarn add soff-money
+
+# bun
+bun add soff-money
 ```
 
-## Inicio Rápido
+## 🚀 Inicio Rápido
 
 ```typescript
 import { Money, COP, USD } from 'soff-money';
 
-// Crear dinero desde decimal (seguro - convertido a centavos internamente)
+// 💵 Crear dinero desde decimal (seguro - convertido a centavos internamente)
 const precio = Money.fromDecimal(1500000, COP);
 
-// Operaciones aritméticas (todas retornan nuevas instancias de Money)
-const conIva = precio.multiply(1.19); // Agregar 19% IVA
-const conDescuento = conIva.multiply(0.9); // 10% descuento
+// 🧮 Operaciones aritméticas (todas retornan nuevas instancias de Money)
+const conIva = precio.addPercentage(19); // Agregar 19% IVA
+const conDescuento = conIva.subtractPercentage(10); // 10% descuento
 
-// Formatear para mostrar
-console.log(precio.format()); // "$ 1.500.000"
-console.log(conDescuento.format()); // "$ 1.606.500"
+// 🎨 Formatear para mostrar
+console.log(precio.format()); // "$ 1.500.000,00"
+console.log(conDescuento.format()); // "$ 1.606.500,00"
 
-// Comparaciones seguras
+// ⚖️ Comparaciones seguras
 precio.equals(Money.fromDecimal(1500000, COP)); // true
 precio.greaterThan(conDescuento); // false
 ```

@@ -1,6 +1,14 @@
-# soff-phone
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="100" height="100">
+  <h1>Soff Phone</h1>
+  <p>Librería ligera y tree-shakeable para validación y formato de números telefónicos en LATAM.</p>
+</div>
 
-Librería ligera y tree-shakeable para validación y formato de números telefónicos en LATAM.
+<div align="center">
+
+</div>
+
+---
 
 ## Características
 
@@ -10,34 +18,40 @@ Librería ligera y tree-shakeable para validación y formato de números telefó
 - 🇲🇽 **México**: Validación de 10 dígitos
 - ⚡ **Typescript**: Completamente tipado
 
-## Instalación
+## 📦 Instalación
 
 ```bash
+# npm
 npm install soff-phone
-# o
+
+# pnpm
 pnpm add soff-phone
-# o
+
+# yarn
 yarn add soff-phone
+
+# bun
+bun add soff-phone
 ```
 
-## Uso
+## 🚀 Uso
 
 ### Colombia 🇨🇴
 
 ```typescript
 import { validate } from 'soff-phone/co';
 
-// Validar móvil
+// ✅ Validar móvil
 const mobile = validate('3001234567');
 console.log(mobile);
 // { isValid: true, type: 'mobile', formatted: '3001234567' }
 
-// Validar fijo
+// ☎️ Validar fijo
 const landline = validate('6011234567');
 console.log(landline);
 // { isValid: true, type: 'landline', formatted: '6011234567' }
 
-// Formato E.164
+// 🌐 Formato E.164
 const e164 = validate('3001234567', { format: 'e164' });
 console.log(e164.formatted); // +573001234567
 ```

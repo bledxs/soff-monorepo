@@ -1,4 +1,10 @@
-# Soff Date
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bledxs/soff-monorepo/master/assets/logo.png" alt="Soff Logo" width="100" height="100">
+  <h1>Soff Date</h1>
+  <p>Calculadora de festivos ligera y "tree-shakeable" con cálculo algorítmico de fechas.</p>
+</div>
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/soff-date)](https://www.npmjs.com/package/soff-date)
 [![License](https://img.shields.io/github/license/bledxs/soff-date)](../LICENSE)
@@ -7,7 +13,9 @@
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/soff-date)](https://bundlephobia.com/package/soff-date)
 [![All Contributors](https://img.shields.io/github/all-contributors/bledxs/soff-date?color=ee8449&style=flat-square)](#contributors)
 
-Calculadora de festivos ligera y "tree-shakeable" con cálculo algorítmico de fechas.
+</div>
+
+---
 
 **Cero dependencias** · **TypeScript** · **~3KB por locale**
 
@@ -15,10 +23,10 @@ Calculadora de festivos ligera y "tree-shakeable" con cálculo algorítmico de f
 
 - [Soff Date](#soff-date)
   - [Tabla de Contenidos](#tabla-de-contenidos)
-  - [¿Por qué?](#por-qué)
-  - [Instalación](#instalación)
-  - [Inicio Rápido](#inicio-rápido)
-  - [Soporte i18n](#soporte-i18n)
+  - [🤔 ¿Por qué?](#-por-qué)
+  - [📦 Instalación](#-instalación)
+  - [🚀 Inicio Rápido](#-inicio-rápido)
+  - [🌍 Soporte i18n](#-soporte-i18n)
   - [Locales Disponibles](#locales-disponibles)
   - [Idiomas Disponibles](#idiomas-disponibles)
   - [Explicación de Reglas de Traslado](#explicación-de-reglas-de-traslado)
@@ -37,44 +45,58 @@ Calculadora de festivos ligera y "tree-shakeable" con cálculo algorítmico de f
   - [Documentación](#documentación)
   - [Contribuidores](#contribuidores)
 
-## ¿Por qué?
+## 🤔 ¿Por qué?
 
-La mayoría de las librerías de festivos incluyen archivos JSON gigantes con fechas hasta 2050. Esta librería **calcula las fechas algorítmicamente**, soportando:
+La mayoría de las librerías de festivos incluyen **archivos JSON gigantes** con fechas hasta 2050. Esta librería **calcula las fechas algorítmicamente**, soportando:
 
-- Fechas fijas (`25 de Diciembre`)
-- N-ésimo día de la semana (`3er Lunes de Enero`)
-- Relativo a Pascua (`Viernes Santo = Pascua - 2 días`)
-- Reglas de traslado (`Ley Emiliani`, `Observed US`)
+| Característica            | Descripción                      | Ejemplo                         |
+| ------------------------- | -------------------------------- | ------------------------------- |
+| 📅 **Fechas Fijas**       | Fechas estáticas cada año        | 25 de Diciembre (Navidad)       |
+| 📆 **N-ésimo Día**        | Cálculos relativos de días       | 3er Lunes de Enero (MLK Day)    |
+| ✨ **Relativo a Pascua**  | Basado en el cálculo de Pascua   | Viernes Santo = Pascua - 2 días |
+| 🔄 **Reglas de Traslado** | Mover festivos a días laborables | Ley Emiliani de Colombia        |
 
-## Instalación
+**Resultado:** ¡Tamaño de bundle diminuto (~3KB) con soporte ilimitado de años! 🎉
+
+## 📦 Instalación
 
 ```bash
+# npm
 npm install soff-date
+
+# pnpm
+pnpm add soff-date
+
+# yarn
+yarn add soff-date
+
+# bun
+bun add soff-date
 ```
 
-## Inicio Rápido
+## 🚀 Inicio Rápido
 
 ```typescript
 // Solo Colombia incluido en el bundle (~3KB)
 import { getHolidays, isHoliday, getNextHoliday } from 'soff-date/locales/co';
 
-// Obtener todos los festivos de un año
+// 🏆 Obtener todos los festivos de un año
 getHolidays(2025);
 // → [{ date: '2025-01-01', key: 'newYear', name: 'Año Nuevo' }, ...]
 
-// Verificar si una fecha es festivo
+// ❓ Verificar si una fecha es festivo
 isHoliday(new Date('2025-01-01'));
 // → { date: '2025-01-01', key: 'newYear', name: 'Año Nuevo' }
 
 isHoliday(new Date('2025-01-02'));
 // → null
 
-// Obtener el próximo festivo desde una fecha
+// ➡️ Obtener el próximo festivo desde una fecha
 getNextHoliday(new Date('2025-01-02'));
 // → { date: '2025-01-06', key: 'epiphany', name: 'Día de los Reyes Magos' }
 ```
 
-## Soporte i18n
+## 🌍 Soporte i18n
 
 ```typescript
 import { getHolidays } from 'soff-date/locales/co';
