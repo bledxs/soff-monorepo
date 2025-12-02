@@ -1,5 +1,11 @@
 # soff-geo
 
+## 0.2.0
+
+### Minor Changes
+
+- [`03c3d7c`](https://github.com/bledxs/soff-monorepo/commit/03c3d7c155990d6f57ea6d4f27cced914fdaf93f) Thanks [@bledxs](https://github.com/bledxs)! - Optimize municipalities data structure to reduce bundle size by ~50%
+
 ## 0.1.1
 
 ### Patch Changes
