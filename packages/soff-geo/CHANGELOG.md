@@ -1,5 +1,11 @@
 # soff-geo
 
+## 0.2.1
+
+### Patch Changes
+
+- [#15](https://github.com/bledxs/soff-monorepo/pull/15) [`9c7d3d4`](https://github.com/bledxs/soff-monorepo/commit/9c7d3d4f96b41b36f7e59cb37a9525878f53c295) Thanks [@github-actions](https://github.com/apps/github-actions)! - update bundle size stats
+
 ## 0.2.0
 
 ### Minor Changes
