@@ -103,8 +103,8 @@ Search for municipalities by name or code.
 
 | Import       | Size (minified) |
 | ------------ | --------------- |
-| `locales/co` | ~28KB           |
-| `locales/mx` | ~67KB           |
+| `locales/co` | ~21KB           |
+| `locales/mx` | ~52KB           |
 | Core only    | ~1.2KB          |
 
 Tree-shaking ensures you only ship what you import.
