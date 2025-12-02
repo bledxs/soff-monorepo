@@ -39,7 +39,7 @@ export function MaskDemo() {
             onClick={() => handleMaskChange(m)}
             className={`rounded-md px-3 py-1.5 text-sm transition-colors ${
               selectedMask.name === m.name
-                ? 'bg-primary text-primary-foreground'
+                ? 'bg-soff-mask/20 text-soff-mask'
                 : 'bg-muted hover:bg-muted/80'
             }`}
           >

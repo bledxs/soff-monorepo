@@ -40,7 +40,7 @@ export function MoneyCalculator() {
             onClick={() => setSelectedCurrency(c)}
             className={`flex items-center gap-1 rounded-md px-3 py-1.5 text-sm transition-colors ${
               selectedCurrency.name === c.name
-                ? 'bg-primary text-primary-foreground'
+                ? 'bg-soff-money/20 text-soff-money'
                 : 'bg-muted hover:bg-muted/80'
             }`}
           >
