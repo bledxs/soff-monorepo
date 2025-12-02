@@ -1,6 +1,6 @@
 {
   "name": "soff-date",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lightweight, tree-shakeable holiday calculator with algorithmic date computation",
   "type": "module",
   "main": "./dist/index.cjs",

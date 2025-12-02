@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3
+
+### Patch Changes
+
+- [#10](https://github.com/bledxs/soff-monorepo/pull/10) [`267317f`](https://github.com/bledxs/soff-monorepo/commit/267317f17b6a6252920c7257904eac38231775c1) Thanks [@github-actions](https://github.com/apps/github-actions)! - update locale tests to cover business days functions
+
 ## 1.0.2
 
 ### Patch Changes
