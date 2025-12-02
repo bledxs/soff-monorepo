@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { checkIsBusinessDay, addBusinessDays, isWeekend } from '../../src/core/business';
+import {
+  checkIsBusinessDay,
+  addBusinessDays,
+  isWeekend,
+  getBusinessDaysBetween,
+} from '../../src/core/business';
 import type { HolidayDefinition } from '../../src/core/types';
 
 // Mock definitions: Only Jan 1st is a holiday
@@ -73,6 +78,41 @@ describe('Business Days Logic', () => {
       const start = new Date('2025-01-06');
       const result = addBusinessDays(mockDefinitions, start, -1);
       expect(result.toISOString().split('T')[0]).toBe('2025-01-03');
+    });
+  });
+
+  describe('getBusinessDaysBetween', () => {
+    it('calculates diff within same week', () => {
+      // Mon Jan 6 to Fri Jan 10 -> 4 days (Tue, Wed, Thu, Fri)
+      const start = new Date('2025-01-06');
+      const end = new Date('2025-01-10');
+      expect(getBusinessDaysBetween(mockDefinitions, start, end)).toBe(4);
+    });
+
+    it('calculates diff across weekend', () => {
+      // Fri Jan 3 to Mon Jan 6 -> 1 day
+      const start = new Date('2025-01-03');
+      const end = new Date('2025-01-06');
+      expect(getBusinessDaysBetween(mockDefinitions, start, end)).toBe(1);
+    });
+
+    it('calculates diff across holiday', () => {
+      // Tue Dec 31 to Thu Jan 2 -> 1 day (Jan 1 is holiday)
+      const start = new Date('2024-12-31');
+      const end = new Date('2025-01-02');
+      expect(getBusinessDaysBetween(mockDefinitions, start, end)).toBe(1);
+    });
+
+    it('returns negative if end is before start', () => {
+      // Mon Jan 6 to Fri Jan 3 -> -1 day
+      const start = new Date('2025-01-06');
+      const end = new Date('2025-01-03');
+      expect(getBusinessDaysBetween(mockDefinitions, start, end)).toBe(-1);
+    });
+
+    it('returns 0 for same day', () => {
+      const start = new Date('2025-01-06');
+      expect(getBusinessDaysBetween(mockDefinitions, start, start)).toBe(0);
     });
   });
 });

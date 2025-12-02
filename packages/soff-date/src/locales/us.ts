@@ -1,6 +1,6 @@
 import type { HolidayDefinition, Holiday, HolidayNames } from '../core/types';
 import { resolveHolidays, checkIsHoliday, findNextHoliday } from '../core/engine';
-import { checkIsBusinessDay, addBusinessDays } from '../core/business';
+import { checkIsBusinessDay, addBusinessDays, getBusinessDaysBetween } from '../core/business';
 import { en } from '../i18n/en';
 
 const definitions: HolidayDefinition[] = [
@@ -81,4 +81,8 @@ export function isBusinessDay(date: Date): boolean {
 
 export function businessDays(date: Date, amount: number): Date {
   return addBusinessDays(definitions, date, amount);
+}
+
+export function diffBusinessDays(startDate: Date, endDate: Date): number {
+  return getBusinessDaysBetween(definitions, startDate, endDate);
 }

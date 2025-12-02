@@ -38,6 +38,7 @@
   - [`getHolidays(year, options?)`](#getholidaysyear-options)
   - [`isHoliday(date, options?)`](#isholidaydate-options)
   - [`getNextHoliday(from?, options?)`](#getnextholidayfrom-options)
+- [Business Days Calculation](#business-days-calculation)
 - [Types](#types)
 - [Contributing](#contributing)
 - [License](#license)
@@ -212,11 +213,11 @@ applyShift(new Date('2026-07-04'), 'observedUS');
 
 | Import       | Size (minified) |
 | ------------ | --------------- |
-| `locales/co` | ~4.3KB          |
-| `locales/us` | ~3.7KB          |
-| `i18n/es`    | ~1.2KB          |
+| `locales/co` | ~5.8KB          |
+| `locales/us` | ~4.5KB          |
+| `i18n/es`    | ~1.9KB          |
 | `i18n/en`    | ~1.1KB          |
-| Core only    | ~1.9KB          |
+| Core only    | ~2.7KB          |
 
 Tree-shaking ensures you only ship what you import.
 
@@ -248,6 +249,27 @@ Returns holiday info if the date is a holiday, `null` otherwise.
 ### `getNextHoliday(from?, options?)`
 
 Returns the next holiday from a given date (defaults to today).
+
+## Business Days Calculation
+
+In addition to holiday calculation, `soff-date` provides utilities to work with business days (skipping weekends and holidays).
+
+```typescript
+import { isBusinessDay, businessDays, diffBusinessDays } from 'soff-date/locales/co';
+
+// Check if a date is a business day
+isBusinessDay(new Date('2025-01-01')); // false (Holiday)
+isBusinessDay(new Date('2025-01-04')); // false (Saturday)
+isBusinessDay(new Date('2025-01-02')); // true
+
+// Add business days
+businessDays(new Date('2025-01-03'), 1);
+// → Date('2025-01-06') (Friday + 1 business day = Monday)
+
+// Calculate difference in business days
+diffBusinessDays(new Date('2025-01-06'), new Date('2025-01-10'));
+// → 4
+```
 
 ## Types
 

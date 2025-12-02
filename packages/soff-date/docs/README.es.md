@@ -21,29 +21,29 @@
 
 ## Tabla de Contenidos
 
-- [Soff Date](#soff-date)
-  - [Tabla de Contenidos](#tabla-de-contenidos)
-  - [🤔 ¿Por qué?](#-por-qué)
-  - [📦 Instalación](#-instalación)
-  - [🚀 Inicio Rápido](#-inicio-rápido)
-  - [🌍 Soporte i18n](#-soporte-i18n)
-  - [Locales Disponibles](#locales-disponibles)
-  - [Idiomas Disponibles](#idiomas-disponibles)
-  - [Explicación de Reglas de Traslado](#explicación-de-reglas-de-traslado)
-    - [Emiliani (Colombia, Argentina)](#emiliani-colombia-argentina)
-    - [Observed US (USA, UK)](#observed-us-usa-uk)
-  - [Avanzado: Crea Tu Propio Locale](#avanzado-crea-tu-propio-locale)
-  - [Avanzado: Usar Algoritmos Directamente](#avanzado-usar-algoritmos-directamente)
-  - [Tamaño del Bundle](#tamaño-del-bundle)
-  - [Referencia de API](#referencia-de-api)
-    - [`getHolidays(year, options?)`](#getholidaysyear-options)
-    - [`isHoliday(date, options?)`](#isholidaydate-options)
-    - [`getNextHoliday(from?, options?)`](#getnextholidayfrom-options)
-  - [Tipos](#tipos)
-  - [Contribuir](#contribuir)
-  - [Licencia](#licencia)
-  - [Documentación](#documentación)
-  - [Contribuidores](#contribuidores)
+- [Tabla de Contenidos](#tabla-de-contenidos)
+- [🤔 ¿Por qué?](#-por-qué)
+- [📦 Instalación](#-instalación)
+- [🚀 Inicio Rápido](#-inicio-rápido)
+- [🌍 Soporte i18n](#-soporte-i18n)
+- [Locales Disponibles](#locales-disponibles)
+- [Idiomas Disponibles](#idiomas-disponibles)
+- [Explicación de Reglas de Traslado](#explicación-de-reglas-de-traslado)
+  - [Emiliani (Colombia, Argentina)](#emiliani-colombia-argentina)
+  - [Observed US (USA, UK)](#observed-us-usa-uk)
+- [Avanzado: Crea Tu Propio Locale](#avanzado-crea-tu-propio-locale)
+- [Avanzado: Usar Algoritmos Directamente](#avanzado-usar-algoritmos-directamente)
+- [Tamaño del Bundle](#tamaño-del-bundle)
+- [Referencia de API](#referencia-de-api)
+  - [`getHolidays(year, options?)`](#getholidaysyear-options)
+  - [`isHoliday(date, options?)`](#isholidaydate-options)
+  - [`getNextHoliday(from?, options?)`](#getnextholidayfrom-options)
+- [Cálculo de Días Hábiles](#cálculo-de-días-hábiles)
+- [Tipos](#tipos)
+- [Contribuir](#contribuir)
+- [Licencia](#licencia)
+- [Documentación](#documentación)
+- [Contribuidores](#contribuidores)
 
 ## 🤔 ¿Por qué?
 
@@ -213,11 +213,11 @@ applyShift(new Date('2026-07-04'), 'observedUS');
 
 | Import       | Tamaño (minificado) |
 | ------------ | ------------------- |
-| `locales/co` | ~4.3KB              |
-| `locales/us` | ~3.7KB              |
-| `i18n/es`    | ~1.2KB              |
+| `locales/co` | ~5.8KB              |
+| `locales/us` | ~4.5KB              |
+| `i18n/es`    | ~1.9KB              |
 | `i18n/en`    | ~1.1KB              |
-| Core only    | ~1.9KB              |
+| Core only    | ~2.7KB              |
 
 El "Tree-shaking" asegura que solo envíes lo que importas.
 
@@ -249,6 +249,27 @@ Retorna información del festivo si la fecha es festivo, `null` en caso contrari
 ### `getNextHoliday(from?, options?)`
 
 Retorna el próximo festivo desde una fecha dada (por defecto hoy).
+
+## Cálculo de Días Hábiles
+
+Además del cálculo de festivos, `soff-date` proporciona utilidades para trabajar con días hábiles (omitiendo fines de semana y festivos).
+
+```typescript
+import { isBusinessDay, businessDays, diffBusinessDays } from 'soff-date/locales/co';
+
+// Verificar si una fecha es día hábil
+isBusinessDay(new Date('2025-01-01')); // false (Festivo)
+isBusinessDay(new Date('2025-01-04')); // false (Sábado)
+isBusinessDay(new Date('2025-01-02')); // true
+
+// Sumar días hábiles
+businessDays(new Date('2025-01-03'), 1);
+// → Date('2025-01-06') (Viernes + 1 día hábil = Lunes)
+
+// Calcular diferencia en días hábiles
+diffBusinessDays(new Date('2025-01-06'), new Date('2025-01-10'));
+// → 4
+```
 
 ## Tipos
 

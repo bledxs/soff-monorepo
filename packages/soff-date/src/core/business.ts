@@ -39,3 +39,39 @@ export function addBusinessDays(
 
   return result;
 }
+
+/**
+ * Calculates the number of business days between two dates
+ * Returns the number of days to add to startDate to get endDate (can be negative)
+ * If startDate and endDate are the same, returns 0
+ */
+export function getBusinessDaysBetween(
+  definitions: HolidayDefinition[],
+  startDate: Date,
+  endDate: Date,
+): number {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  // Reset hours to avoid issues with daylight saving time or partial days
+  start.setUTCHours(0, 0, 0, 0);
+  end.setUTCHours(0, 0, 0, 0);
+
+  if (start.getTime() === end.getTime()) return 0;
+
+  const direction = start < end ? 1 : -1;
+  let count = 0;
+  const current = new Date(start);
+
+  // If direction is positive, we count days starting from start+1 until end
+  // If direction is negative, we count days starting from start-1 until end
+
+  while (current.getTime() !== end.getTime()) {
+    current.setUTCDate(current.getUTCDate() + direction);
+    if (checkIsBusinessDay(definitions, current)) {
+      count += direction;
+    }
+  }
+
+  return count;
+}
