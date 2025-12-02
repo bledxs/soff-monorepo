@@ -106,10 +106,11 @@ const [alice, bob, charlie] = cuenta.distribute(3);
 
 ```typescript
 const total = Money.fromDecimal(100, USD);
-const [parte1, parte2] = total.distributeBy([70, 30]);
+const [share1, share2, share3] = total.distributeByRatios([1, 2, 2]);
 
-// parte1: $70.00 (70%)
-// parte2: $30.00 (30%)
+// share1: $20.00 (20%)
+// share2: $40.00 (40%)
+// share3: $40.00 (40%)
 ```
 
 ## Locales Disponibles
@@ -121,6 +122,10 @@ const [parte1, parte2] = total.distributeBy([70, 30]);
 | 🇦🇷 Argentina | `soff-money/locales/ar` | ARS    | $       | $ 1.500,00  |
 | 🇧🇷 Brasil    | `soff-money/locales/br` | BRL    | R$      | R$ 1.500,00 |
 | 🇺🇸 USA       | `soff-money/locales/us` | USD    | $       | $1,500.00   |
+| 🇨🇱 Chile     | `soff-money/locales/cl` | CLP    | $       | $ 1.500     |
+| 🇵🇪 Perú      | `soff-money/locales/pe` | PEN    | S/      | S/ 1,500.00 |
+| 🇺🇾 Uruguay   | `soff-money/locales/uy` | UYU    | $       | $ 1.500,00  |
+| 🇪🇺 Euro      | `soff-money/locales/eu` | EUR    | €       | 1.500,00 €  |
 
 ## Referencia de API
 
@@ -150,9 +155,34 @@ a.subtract(b); // $50
 a.multiply(2); // $200
 a.multiply(0.5); // $50
 a.divide(2); // $50
-a.percentage(10); // $10 (10% de a)
 a.negate(); // -$100
 a.abs(); // $100 (valor absoluto)
+```
+
+### Operaciones de Porcentaje
+
+```typescript
+const precio = Money.fromDecimal(100, COP);
+
+precio.percentage(10); // $10.00 (10% del precio)
+precio.addPercentage(19); // $119.00 (precio + 19% IVA)
+precio.subtractPercentage(10); // $90.00 (precio - 10% descuento)
+```
+
+### Operaciones Min/Max
+
+```typescript
+const a = Money.fromDecimal(100, COP);
+const b = Money.fromDecimal(50, COP);
+
+a.min(b); // $50 (mínimo de a y b)
+a.max(b); // $100 (máximo de a y b)
+
+const min = Money.fromDecimal(10, COP);
+const max = Money.fromDecimal(100, COP);
+a.clamp(min, max); // $100 (ajusta a entre min y max)
+
+a.isBetween(min, max); // true (verifica si a está en el rango)
 ```
 
 ### Comparaciones
@@ -173,23 +203,38 @@ a.isNegative(); // false
 ```typescript
 const precio = Money.fromDecimal(1500000, COP);
 
-precio.format(); // "$ 1.500.000"
+precio.format(); // "$ 1.500.000,00"
+precio.format({ showSymbol: false }); // "1.500.000,00"
+precio.format({ showDecimals: false }); // "$ 1.500.000"
+precio.format({ symbolPosition: 'after' }); // "1.500.000,00 $"
 precio.toDecimal(); // 1500000
 precio.toCents(); // 150000000
-precio.toString(); // "COP 1500000.00"
+precio.toJSON(); // { cents: 150000000, currency: 'COP' }
+```
+
+## Métodos Estáticos
+
+```typescript
+// Sumar múltiples valores
+const items = [Money.fromDecimal(100, COP), Money.fromDecimal(50, COP), Money.fromDecimal(25, COP)];
+
+Money.sum(items); // $175.00
+
+// Obtener min/max del array
+Money.minimum(items); // $25.00
+Money.maximum(items); // $100.00
+
+// Calcular promedio
+Money.average(items); // $58.33
 ```
 
 ## Tamaño del Bundle
 
 | Import           | Tamaño (minified) |
 | ---------------- | ----------------- |
-| `core`           | ~6.2KB            |
-| `locales/co`     | ~0.3KB            |
-| `locales/mx`     | ~0.3KB            |
-| `locales/ar`     | ~0.3KB            |
-| `locales/br`     | ~0.3KB            |
-| `locales/us`     | ~0.3KB            |
-| Paquete completo | ~7.2KB            |
+| `core`           | ~8.8KB            |
+| `locales/*`      | ~0.3KB cada uno   |
+| Paquete completo | ~10.6KB           |
 
 Tree-shaking asegura que solo envías lo que importas.
 
@@ -199,4 +244,8 @@ Por favor lee [CONTRIBUTING.md](../../CONTRIBUTING.md) para detalles sobre nuest
 
 ## Licencia
 
-Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](../LICENSE) para más detalles.
+
+## Documentación
+
+- [English](../README.md)

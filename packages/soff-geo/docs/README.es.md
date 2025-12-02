@@ -8,6 +8,7 @@
 
 [![npm](https://img.shields.io/npm/v/soff-geo)](https://www.npmjs.com/package/soff-geo)
 [![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](../LICENSE)
+[![Build Status](https://github.com/bledxs/soff-monorepo/actions/workflows/ci.yml/badge.svg)](https://github.com/bledxs/soff-monorepo/actions)
 
 </div>
 
@@ -111,3 +112,25 @@ Busca departamentos/estados por nombre o código.
 ### `searchMunicipalities(query)`
 
 Busca municipios por nombre o código.
+
+## Tamaño del Bundle
+
+| Import       | Tamaño (minified) |
+| ------------ | ----------------- |
+| `locales/co` | ~45KB             |
+| `locales/mx` | ~100KB            |
+| Core only    | ~1.2KB            |
+
+Tree-shaking asegura que solo envías lo que importas.
+
+## Contribuir
+
+Por favor lee [CONTRIBUTING.md](../../CONTRIBUTING.md) para detalles sobre nuestro código de conducta y el proceso para enviar pull requests.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](../LICENSE) para más detalles.
+
+## Documentación
+
+- [English](../README.md)

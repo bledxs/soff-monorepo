@@ -6,9 +6,15 @@
 
 <div align="center">
 
+[![npm](https://img.shields.io/npm/v/soff-phone)](https://www.npmjs.com/package/soff-phone)
+[![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](../LICENSE)
+[![Build Status](https://github.com/bledxs/soff-monorepo/actions/workflows/ci.yml/badge.svg)](https://github.com/bledxs/soff-monorepo/actions)
+
 </div>
 
 ---
+
+**Cero dependencias** · **TypeScript** · **Tree-shakeable**
 
 ## Características
 
@@ -66,6 +72,22 @@ console.log(result);
 // { isValid: true, type: 'unknown', formatted: '5512345678' }
 ```
 
+## Tamaño del Bundle
+
+| Módulo | Tamaño (minified) | Tamaño (gzipped) |
+| ------ | ----------------- | ---------------- |
+| Core   | ~0.5KB            | ~0.3KB           |
+| CO     | ~0.8KB            | ~0.4KB           |
+| MX     | ~0.8KB            | ~0.4KB           |
+
+## Contribuir
+
+Por favor lee [CONTRIBUTING.md](../../CONTRIBUTING.md) para detalles sobre nuestro código de conducta y el proceso para enviar pull requests.
+
 ## Licencia
 
 MIT © [Luis C. Rojas](https://github.com/bledxs)
+
+## Documentación
+
+- [English](../README.md)

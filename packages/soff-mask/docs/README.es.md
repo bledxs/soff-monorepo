@@ -20,16 +20,30 @@
 
 ## Tabla de Contenidos
 
-- [¿Por qué?](#por-qué)
-- [Instalación](#instalación)
-- [Inicio Rápido](#inicio-rápido)
-- [Sintaxis de Patrones](#sintaxis-de-patrones)
-- [Máscaras Pre-construidas](#máscaras-pre-construidas)
-- [Integración DOM](#integración-dom)
-- [Máscaras Dinámicas](#máscaras-dinámicas)
-- [Tamaño del Bundle](#tamaño-del-bundle)
-- [Contribuir](#contribuir)
-- [Licencia](#licencia)
+- [Soff Mask](#soff-mask)
+  - [Tabla de Contenidos](#tabla-de-contenidos)
+  - [¿Por qué?](#por-qué)
+  - [Instalación](#instalación)
+  - [Inicio Rápido](#inicio-rápido)
+  - [Sintaxis de Patrones de Máscara](#sintaxis-de-patrones-de-máscara)
+    - [Ejemplos de Patrones](#ejemplos-de-patrones)
+  - [Máscaras Pre-construidas](#máscaras-pre-construidas)
+    - [Máscaras Pre-construidas Disponibles](#máscaras-pre-construidas-disponibles)
+      - [Teléfonos](#teléfonos)
+      - [Tarjetas de Crédito](#tarjetas-de-crédito)
+      - [Documentos (LATAM)](#documentos-latam)
+      - [Fechas y Hora](#fechas-y-hora)
+      - [Otros](#otros)
+  - [Funciones Utilitarias](#funciones-utilitarias)
+  - [Integración DOM](#integración-dom)
+    - [JavaScript Vanilla](#javascript-vanilla)
+    - [Con React](#con-react)
+    - [Controlador de Máscara](#controlador-de-máscara)
+  - [Máscaras Dinámicas](#máscaras-dinámicas)
+  - [Tamaño del Bundle](#tamaño-del-bundle)
+  - [Contribuir](#contribuir)
+  - [Licencia](#licencia)
+  - [Documentación](#documentación)
 
 ## 🤔 ¿Por qué?
 
@@ -83,7 +97,7 @@ unmask('(300) 123-4567', '(###) ###-####');
 // → '3001234567'
 ```
 
-## Sintaxis de Patrones
+## Sintaxis de Patrones de Máscara
 
 | Carácter | Descripción                |
 | -------- | -------------------------- |
@@ -125,16 +139,102 @@ mask('9001234567', nit); // → '900.123.456-7'
 
 ### Máscaras Pre-construidas Disponibles
 
-| Máscara      | Patrón                | Ejemplo de Salida   |
-| ------------ | --------------------- | ------------------- |
-| `phoneCO`    | `(###) ### ####`      | (300) 123 4567      |
-| `phoneMX`    | `(##) #### ####`      | (55) 1234 5678      |
-| `phoneUS`    | `(###) ###-####`      | (555) 123-4567      |
-| `creditCard` | `#### #### #### ####` | 4111 1111 1111 1111 |
-| `cpf`        | `###.###.###-##`      | 123.456.789-09      |
-| `cnpj`       | `##.###.###/####-##`  | 12.345.678/0001-90  |
-| `nit`        | `###.###.###-#`       | 900.123.456-7       |
-| `date`       | `##/##/####`          | 25/12/2024          |
+#### Teléfonos
+
+| Máscara     | Patrón              | Ejemplo de Salida |
+| ----------- | ------------------- | ----------------- |
+| `phoneCO`   | `(###) ### ####`    | (300) 123 4567    |
+| `phoneMX`   | `(##) #### ####`    | (55) 1234 5678    |
+| `phoneUS`   | `(###) ###-####`    | (555) 123-4567    |
+| `phoneBR`   | `(##) #####-####`   | (11) 91234-5678   |
+| `phoneAR`   | `(##) ####-####`    | (11) 1234-5678    |
+| `phoneIntl` | `+# (###) ###-####` | +1 (555) 123-4567 |
+
+#### Tarjetas de Crédito
+
+| Máscara          | Patrón                | Ejemplo de Salida   |
+| ---------------- | --------------------- | ------------------- |
+| `creditCard`     | `#### #### #### ####` | 4111 1111 1111 1111 |
+| `creditCardAmex` | `#### ###### #####`   | 3782 822463 10005   |
+| `cardExpiry`     | `##/##`               | 12/24               |
+| `cvv`            | `###`                 | 123                 |
+| `cvvAmex`        | `####`                | 1234                |
+
+#### Documentos (LATAM)
+
+| Máscara | Patrón               | Ejemplo de Salida  |
+| ------- | -------------------- | ------------------ |
+| `cpf`   | `###.###.###-##`     | 123.456.789-09     |
+| `cnpj`  | `##.###.###/####-##` | 12.345.678/0001-90 |
+| `rut`   | `##.###.###-S`       | 12.345.678-9       |
+| `cuit`  | `##-########-#`      | 20-12345678-9      |
+| `nit`   | `###.###.###-#`      | 900.123.456-7      |
+
+#### Fechas y Hora
+
+| Máscara         | Patrón       | Ejemplo de Salida |
+| --------------- | ------------ | ----------------- |
+| `date`          | `##/##/####` | 25/12/2024        |
+| `dateDMY`       | `##/##/####` | 25/12/2024        |
+| `dateMDY`       | `##/##/####` | 12/25/2024        |
+| `dateISO`       | `####-##-##` | 2024-12-25        |
+| `time24`        | `##:##`      | 14:30             |
+| `time24Seconds` | `##:##:##`   | 14:30:00          |
+| `time12`        | `##:## AA`   | 02:30 PM          |
+
+#### Otros
+
+| Máscara      | Patrón            | Ejemplo de Salida |
+| ------------ | ----------------- | ----------------- |
+| `zipUS`      | `#####`           | 12345             |
+| `zipUS4`     | `#####-####`      | 12345-6789        |
+| `zipBR`      | `#####-###`       | 12345-678         |
+| `ipAddress`  | `###.###.###.###` | 192.168.1.1       |
+| `percentage` | `##.##%`          | 99.99%            |
+
+## Funciones Utilitarias
+
+Más allá del enmascaramiento básico, la librería provee utilidades para casos de uso comunes:
+
+```typescript
+import {
+  mask,
+  unmask,
+  maskWithResult,
+  isComplete,
+  getPatternLength,
+  getPlaceholder,
+  isValidFormat,
+  getNextCursorPosition,
+  extractRaw,
+  parsePattern,
+  createDynamicMask,
+} from 'soff-mask';
+
+// Verificar si el input está completo
+isComplete('(300) 123-4567', '(###) ###-####'); // → true
+isComplete('(300) 123-45', '(###) ###-####'); // → false
+
+// Obtener longitud esperada de la salida enmascarada
+getPatternLength('(###) ###-####'); // → 14
+
+// Generar texto de placeholder
+getPlaceholder('(###) ###-####'); // → '(___) ___-____'
+getPlaceholder('##/##/####', '*'); // → '**/**/****'
+
+// Validar que el formato coincida con el patrón
+isValidFormat('(300) 123-4567', '(###) ###-####'); // → true
+isValidFormat('300-123-4567', '(###) ###-####'); // → false
+
+// Obtener siguiente posición del cursor (útil para manejo de input)
+getNextCursorPosition('(30', '(###) ###-####'); // → 3
+
+// Extraer valor crudo (alias para unmask con extras removidos)
+extractRaw('(300) 123-4567', '(###) ###-####'); // → '3001234567'
+
+// Parsear patrón en tokens (uso avanzado)
+parsePattern('##/##'); // → [{type: 'digit'}, {type: 'digit'}, {type: 'literal', char: '/'}, ...]
+```
 
 ## Integración DOM
 
@@ -167,6 +267,28 @@ function PhoneInput() {
 
   return <input ref={inputRef} />;
 }
+```
+
+### Controlador de Máscara
+
+Para más control sobre el proceso de enmascaramiento:
+
+```typescript
+import { createMaskController } from 'soff-mask/dom';
+
+const controller = createMaskController('(###) ###-####');
+
+// Aplicar máscara programáticamente
+controller.apply('3001234567'); // → '(300) 123-4567'
+
+// Obtener valores actuales
+controller.value; // → '(300) 123-4567'
+controller.raw; // → '3001234567'
+
+// Vincular a un input
+const cleanup = controller.bind(inputElement, {
+  onChange: (masked, raw) => console.log({ masked, raw }),
+});
 ```
 
 ## Máscaras Dinámicas
@@ -203,4 +325,8 @@ Por favor lee [CONTRIBUTING.md](../../CONTRIBUTING.md) para detalles sobre nuest
 
 ## Licencia
 
-Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](../LICENSE) para más detalles.
+
+## Documentación
+
+- [English](../README.md)
