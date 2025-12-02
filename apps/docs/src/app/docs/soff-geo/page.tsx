@@ -58,6 +58,7 @@ export default function SoffGeoPage() {
             soff-geo
           </h1>
           <Badge className="bg-soff-geo/20 text-soff-geo">v{version}</Badge>
+          <Badge variant="outline">~2KB Core</Badge>
         </div>
         <p className="mt-2 text-lg text-muted-foreground">
           Lightweight geographic data library for LATAM - Departments, municipalities, postal codes

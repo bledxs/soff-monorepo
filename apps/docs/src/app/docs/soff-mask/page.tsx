@@ -49,6 +49,7 @@ export default function SoffMaskPage() {
             soff-mask
           </h1>
           <Badge className="bg-soff-mask/20 text-soff-mask">v{version}</Badge>
+          <Badge variant="outline">~0.5KB Core</Badge>
         </div>
         <p className="mt-2 text-lg text-muted-foreground">
           Input masking for forms - Phone numbers, documents, credit cards, dates and more.

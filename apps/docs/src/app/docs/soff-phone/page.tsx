@@ -1,66 +1,41 @@
-import { Metadata } from 'next';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Phone } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { JsonLd } from '@/components/json-ld';
+import { getVersion } from '@/lib/versions';
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'soff-phone - Phone Validation',
   description: 'Lightweight phone number validation and formatting for LATAM',
 };
 
 export default function SoffPhonePage() {
+  const version = getVersion('soff-phone');
+
   return (
-    <div className="container max-w-4xl py-6 lg:py-10">
+    <article className="space-y-8">
       <JsonLd
         name="soff-phone"
         description="Lightweight phone number validation and formatting for LATAM."
         package="soff-phone"
       />
-      <JsonLd
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            {
-              '@type': 'ListItem',
-              position: 1,
-              name: 'Home',
-              item: 'https://soff.dev',
-            },
-            {
-              '@type': 'ListItem',
-              position: 2,
-              name: 'Documentation',
-              item: 'https://soff.dev/docs',
-            },
-            {
-              '@type': 'ListItem',
-              position: 3,
-              name: 'soff-phone',
-              item: 'https://soff.dev/docs/soff-phone',
-            },
-          ],
-        }}
-      />
-      <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-        <div className="flex-1 space-y-4">
-          <h1 className="bg-linear-to-r from-soff-phone to-soff-phone/70 bg-clip-text inline-block font-heading text-4xl tracking-tight text-transparent lg:text-5xl">
+      {/* Header */}
+      <div>
+        <div className="flex items-center gap-3">
+          <div className="rounded-lg bg-soff-phone/10 p-2">
+            <Phone size={36} className="text-soff-phone" />
+          </div>
+          <h1 className="bg-linear-to-r from-soff-phone to-soff-phone/70 bg-clip-text text-3xl font-bold text-transparent">
             soff-phone
           </h1>
-          <p className="text-xl text-muted-foreground">
-            Lightweight phone number validation and formatting for LATAM.
-          </p>
+          <Badge className="bg-soff-phone/20 text-soff-phone">v{version}</Badge>
+          <Badge variant="outline">~0.5KB Core</Badge>
         </div>
-        <div className="flex items-center space-x-2">
-          <Badge className="bg-soff-phone/20 text-sm text-soff-phone">v0.0.1</Badge>
-          <Badge variant="outline" className="text-sm">
-            ~0.5KB Core
-          </Badge>
-        </div>
+        <p className="mt-2 text-lg text-muted-foreground">
+          Lightweight phone number validation and formatting for LATAM.
+        </p>
       </div>
-
-      <hr className="my-8" />
 
       <div className="grid gap-6 md:grid-cols-2">
         <Card id="features" className="border-soff-phone/20">
@@ -79,7 +54,7 @@ export default function SoffPhonePage() {
           </CardContent>
         </Card>
 
-        <Card id="installation">
+        <Card id="installation" className="border-soff-phone/20">
           <CardHeader>
             <CardTitle>Installation</CardTitle>
             <CardDescription>Add to your project</CardDescription>
@@ -160,6 +135,6 @@ console.log(e164.formatted); // +525512345678`}</code>
           </TabsContent>
         </Tabs>
       </div>
-    </div>
+    </article>
   );
 }

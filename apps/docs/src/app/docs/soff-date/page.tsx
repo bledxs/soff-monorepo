@@ -51,6 +51,7 @@ export default function SoffDatePage() {
             soff-date
           </h1>
           <Badge className="bg-soff-date/20 text-soff-date">v{version}</Badge>
+          <Badge variant="outline">~1KB Core</Badge>
         </div>
         <p className="mt-2 text-lg text-muted-foreground">
           Lightweight, tree-shakeable holiday calculator with algorithmic date computation.

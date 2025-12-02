@@ -56,6 +56,7 @@ export default function SoffIdPage() {
             soff-id
           </h1>
           <Badge className="bg-soff-id/20 text-soff-id">v{version}</Badge>
+          <Badge variant="outline">~1KB Core</Badge>
         </div>
         <p className="mt-2 text-lg text-muted-foreground">
           LATAM document validation library - Validate NIT, RUT, CPF, CUIT, and more.

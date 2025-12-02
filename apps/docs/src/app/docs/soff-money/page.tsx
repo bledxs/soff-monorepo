@@ -57,6 +57,7 @@ export default function SoffMoneyPage() {
             soff-money
           </h1>
           <Badge className="bg-soff-money/20 text-soff-money">v{version}</Badge>
+          <Badge variant="outline">~2KB Core</Badge>
         </div>
         <p className="mt-2 text-lg text-muted-foreground">
           Immutable money class with precise arithmetic for LATAM currencies.
