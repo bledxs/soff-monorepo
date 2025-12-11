@@ -1,3 +1,4 @@
+import soffCronPkg from '../../../../packages/soff-cron/package.json';
 import soffDatePkg from '../../../../packages/soff-date/package.json';
 import soffGeoPkg from '../../../../packages/soff-geo/package.json';
 import soffIdPkg from '../../../../packages/soff-id/package.json';
@@ -6,6 +7,7 @@ import soffMoneyPkg from '../../../../packages/soff-money/package.json';
 import soffPhonePkg from '../../../../packages/soff-phone/package.json';
 
 export const versions = {
+  'soff-cron': soffCronPkg.version,
   'soff-date': soffDatePkg.version,
   'soff-geo': soffGeoPkg.version,
   'soff-id': soffIdPkg.version,
@@ -21,6 +23,11 @@ export function getVersion(name: LibraryName): string {
 }
 
 export const libraries = [
+  {
+    name: 'soff-cron' as const,
+    description: soffCronPkg.description,
+    version: soffCronPkg.version,
+  },
   {
     name: 'soff-date' as const,
     description: soffDatePkg.description,

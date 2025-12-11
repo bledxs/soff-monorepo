@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   Calendar,
+  Clock,
   IdCard,
   Theater,
   Coins,
@@ -44,6 +45,12 @@ const gettingStarted = [
 ];
 
 const libraries = [
+  {
+    name: 'soff-cron' as LibraryName,
+    href: '/docs/soff-cron',
+    icon: Clock,
+    colorClass: 'text-soff-cron',
+  },
   {
     name: 'soff-date' as LibraryName,
     href: '/docs/soff-date',

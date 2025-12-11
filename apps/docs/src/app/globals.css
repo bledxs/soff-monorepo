@@ -44,6 +44,7 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   /* Soff brand colors */
+  --color-soff-cron: var(--soff-cron);
   --color-soff-date: var(--soff-date);
   --color-soff-geo: var(--soff-geo);
   --color-soff-id: var(--soff-id);
@@ -138,6 +139,7 @@
 
   /* Library brand colors */
   --soff-brand: oklch(0.75 0.15 195);
+  --soff-cron: oklch(0.7 0.18 265); /* Indigo/Blue-Purple - scheduling, automation */
   --soff-date: oklch(0.75 0.15 195); /* Cyan/Teal - time, calendar */
   --soff-geo: oklch(0.68 0.16 240); /* Blue - geography, maps */
   --soff-id: oklch(0.7 0.18 300); /* Violet/Purple - identity, security */
@@ -228,6 +230,10 @@
 }
 
 /* Library color gradients */
+.gradient-soff-cron {
+  background: linear-gradient(135deg, oklch(0.7 0.18 265), oklch(0.6 0.15 250));
+}
+
 .gradient-soff-date {
   background: linear-gradient(135deg, oklch(0.75 0.15 195), oklch(0.65 0.12 210));
 }
@@ -253,6 +259,10 @@
 }
 
 /* Glow effects */
+.glow-cron {
+  box-shadow: 0 0 20px oklch(0.7 0.18 265 / 0.3);
+}
+
 .glow-date {
   box-shadow: 0 0 20px oklch(0.75 0.15 195 / 0.3);
 }

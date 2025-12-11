@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import {
   Calendar,
+  Clock,
   IdCard,
   Theater,
   Coins,
@@ -20,6 +21,7 @@ import type { LucideIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 const iconMap: Record<string, LucideIcon> = {
+  'soff-cron': Clock,
   'soff-date': Calendar,
   'soff-geo': Map,
   'soff-id': IdCard,
@@ -29,6 +31,7 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 const colorMap: Record<string, string> = {
+  'soff-cron': 'text-soff-cron',
   'soff-date': 'text-soff-date',
   'soff-geo': 'text-soff-geo',
   'soff-id': 'text-soff-id',
@@ -38,6 +41,7 @@ const colorMap: Record<string, string> = {
 };
 
 const gradientMap: Record<string, string> = {
+  'soff-cron': 'gradient-soff-cron',
   'soff-date': 'gradient-soff-date',
   'soff-geo': 'gradient-soff-geo',
   'soff-id': 'gradient-soff-id',
@@ -47,6 +51,7 @@ const gradientMap: Record<string, string> = {
 };
 
 const glowMap: Record<string, string> = {
+  'soff-cron': 'glow-cron',
   'soff-date': 'glow-date',
   'soff-geo': 'glow-geo',
   'soff-id': 'glow-id',
@@ -56,6 +61,7 @@ const glowMap: Record<string, string> = {
 };
 
 const featuresMap: Record<string, string[]> = {
+  'soff-cron': ['Human-readable', 'i18n support', 'Zero dependencies'],
   'soff-date': ['Zero dependencies', '~3KB per locale', '5 countries'],
   'soff-geo': ['Comprehensive data', 'Zero dependencies', 'CO & MX support'],
   'soff-id': ['Official algorithms', '<1KB gzipped', '5 countries'],
