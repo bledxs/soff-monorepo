@@ -39,13 +39,14 @@
 Cron expressions like `*/15 9-17 * * 1-5` are powerful but hard to read. This library:
 
 - ✅ **Converts cron to human text**: "Every 15 minutes, between 9:00 AM and 5:00 PM, Monday through Friday"
+- ✅ **Converts human text to cron**: "every 5 minutes" → `*/5 * * * *` **NEW!**
 - ✅ **Validates cron syntax**: Catch errors before execution
 - ✅ **Parses to structured data**: Extract minute/hour/day patterns
 - ✅ **Zero dependencies**: No bloat, pure TypeScript
 - ✅ **i18n ready**: Built-in Spanish and English support
 - ✅ **Tree-shakeable**: Only import what you need
 
-**Perfect for:** Dashboards, task schedulers, configuration UIs, logs, and documentation.
+**Perfect for:** Dashboards, task schedulers, configuration UIs, logs, documentation, and **non-technical users** who need to create schedules!
 
 ## 📦 Install
 
@@ -77,6 +78,18 @@ formatCron('*/15 9-17 * * 1-5', { locale: 'es' });
 
 formatCron('@daily', { locale: 'en' });
 // → "every day"
+
+// 🔄 Convert natural language to cron expressions
+import { humanizeCron } from 'soff-cron';
+
+humanizeCron('every 5 minutes', { locale: 'en' });
+// → { success: true, cronExpression: "*/5 * * * *" }
+
+humanizeCron('todos los días a las 2 am', { locale: 'es' });
+// → { success: true, cronExpression: "0 2 * * *" }
+
+humanizeCron('every monday at 10am', { locale: 'en' });
+// → { success: true, cronExpression: "0 10 * * 1" }
 
 // ✅ Validate cron expressions
 validateCron('0 2 * * *');
@@ -118,6 +131,77 @@ formatCron('0 14 * * *', { locale: 'en', use24HourFormat: false });
 Want to add more languages? Check out [`src/i18n/`](src/i18n/) for examples!
 
 ## API Reference
+
+### `humanizeCron(text, options?)`
+
+**NEW!** Converts natural language text to cron expressions. Perfect for non-technical users!
+
+**Parameters:**
+
+- `text` (string): Human-readable text (e.g., "every 5 minutes")
+- `options` (object, optional):
+  - `locale` ('en' | 'es'): Input language (default: `'en'`)
+
+**Returns:** `HumanizerResult`
+
+```typescript
+{
+  success: boolean;
+  cronExpression?: string;
+  error?: string;
+  suggestions?: string[];
+}
+```
+
+**Supported patterns (English):**
+
+- Time intervals: "every minute", "every 5 minutes", "every hour", "every 2 hours"
+- Daily: "every day", "every day at 2am", "at 14:30"
+- Weekly: "every week", "every monday", "every monday at 10am"
+- Monthly: "every month", "on the 1st of every month", "on the 15th of every month at 3pm"
+- Weekdays/weekends: "weekdays at 9am", "weekends at 10am"
+
+**Supported patterns (Spanish):**
+
+- Intervalos: "cada minuto", "cada 5 minutos", "cada hora", "cada 2 horas"
+- Diario: "todos los días", "todos los días a las 2am", "a las 14:30"
+- Semanal: "cada semana", "todos los lunes", "cada lunes a las 10am"
+- Mensual: "cada mes", "el día 1 de cada mes", "el dia 15 de cada mes a las 3pm"
+- Días laborales: "días de semana a las 9am", "fines de semana a las 10am"
+
+**Examples:**
+
+```typescript
+// English
+humanizeCron('every 5 minutes', { locale: 'en' });
+// → { success: true, cronExpression: "*/5 * * * *" }
+
+humanizeCron('every monday at 10am', { locale: 'en' });
+// → { success: true, cronExpression: "0 10 * * 1" }
+
+humanizeCron('weekdays at 9am', { locale: 'en' });
+// → { success: true, cronExpression: "0 9 * * 1-5" }
+
+// Spanish
+humanizeCron('cada 10 minutos', { locale: 'es' });
+// → { success: true, cronExpression: "*/10 * * * *" }
+
+humanizeCron('todos los lunes a las 10am', { locale: 'es' });
+// → { success: true, cronExpression: "0 10 * * 1" }
+
+humanizeCron('días de semana a las 9am', { locale: 'es' });
+// → { success: true, cronExpression: "0 9 * * 1-5" }
+
+// Error handling
+humanizeCron('invalid text', { locale: 'en' });
+// → {
+//   success: false,
+//   error: "Could not parse the text...",
+//   suggestions: ["every 5 minutes", "every day at 9 am"]
+// }
+```
+
+---
 
 ### `formatCron(expression, options?)`
 
@@ -272,6 +356,17 @@ export interface FormatterOptions {
   use24HourFormat?: boolean;
   includeSeconds?: boolean;
   verbose?: boolean;
+}
+
+export interface HumanizerOptions {
+  locale?: 'es' | 'en';
+}
+
+export interface HumanizerResult {
+  success: boolean;
+  cronExpression?: string;
+  error?: string;
+  suggestions?: string[];
 }
 
 export interface ValidationResult {
