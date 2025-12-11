@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.2
+
+### Patch Changes
+
+- [#19](https://github.com/bledxs/soff-monorepo/pull/19) [`433d761`](https://github.com/bledxs/soff-monorepo/commit/433d7619b601e132f2d8489eed4718e2592b151b) Thanks [@github-actions](https://github.com/apps/github-actions)! - update i18n strings for weekdays and weekends
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
