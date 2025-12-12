@@ -84,13 +84,13 @@ Built specifically for Latin American business requirements and regulations.
 
 ```bash
 # Install individual packages
-npm install soff-cron soff-date soff-id soff-mask soff-money
+npm install soff-cron soff-date soff-geo soff-id soff-mask soff-money soff-phone
 
 # Or with pnpm
-pnpm add soff-cron soff-date soff-id soff-mask soff-money
+pnpm add soff-cron soff-date soff-geo soff-id soff-mask soff-money soff-phone
 
 # Or with yarn
-yarn add soff-cron soff-date soff-id soff-mask soff-money
+yarn add soff-cron soff-date soff-geo soff-id soff-mask soff-money soff-phone
 ```
 
 ### 📚 Usage Examples

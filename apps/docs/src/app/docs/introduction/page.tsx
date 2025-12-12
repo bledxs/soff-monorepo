@@ -16,8 +16,8 @@ export default function IntroductionPage() {
         </h1>
         <p className="lead text-xl text-muted-foreground">
           Soff is a collection of lightweight, tree-shakeable utilities designed specifically for
-          LATAM developers. Each library focuses on solving common problems in the region with
-          official algorithms and locale-specific implementations.
+          LATAM developers with automated versioning. Each library focuses on solving common
+          problems in the region with official algorithms and locale-specific implementations.
         </p>
       </div>
 
@@ -96,6 +96,29 @@ export default function IntroductionPage() {
       </h2>
 
       <div className="not-prose grid gap-4 md:grid-cols-2">
+        <Link href="/docs/soff-cron" className="group">
+          <Card className="h-full glass-effect border-soff-mask/20 transition-all hover:border-soff-mask/40 hover:shadow-lg hover:shadow-soff-mask/10">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="rounded-lg bg-soff-mask/10 p-2 transition-all group-hover:bg-soff-mask/20">
+                  <Theater size={24} className="text-soff-mask" />
+                </div>
+                <div className="flex-1">
+                  <CardTitle className="flex items-center gap-2">
+                    soff-cron
+                    <Badge className="bg-soff-mask/20 text-soff-mask">v0.1.0</Badge>
+                  </CardTitle>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <CardDescription>
+                Cron expression parser and human-readable formatter with i18n support.
+              </CardDescription>
+            </CardContent>
+          </Card>
+        </Link>
+
         <Link href="/docs/soff-date" className="group">
           <Card className="h-full glass-effect border-soff-date/20 transition-all hover:border-soff-date/40 hover:shadow-lg hover:shadow-soff-date/10">
             <CardHeader>

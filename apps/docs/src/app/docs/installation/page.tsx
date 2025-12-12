@@ -72,7 +72,10 @@ export default function InstallationPage() {
 
         <TabsContent value="npm" className="mt-4">
           <CodeBlock
-            code={`# Holiday calculator
+            code={`# Cron parser
+npm install soff-cron
+
+# Holiday calculator
 npm install soff-date
 
 # Geographic data
@@ -89,7 +92,10 @@ npm install soff-money
 
 # Phone validation
 npm install soff-phone`}
-          >{`# Holiday calculator
+          >{`# Cron parser
+npm install soff-cron
+
+# Holiday calculator
 npm install soff-date
 
 # Geographic data
@@ -110,7 +116,10 @@ npm install soff-phone`}</CodeBlock>
 
         <TabsContent value="pnpm" className="mt-4">
           <CodeBlock
-            code={`# Holiday calculator
+            code={`# Cron parser
+pnpm add soff-cron
+
+# Holiday calculator
 pnpm add soff-date
 
 # Geographic data
@@ -127,7 +136,10 @@ pnpm add soff-money
 
 # Phone validation
 pnpm add soff-phone`}
-          >{`# Holiday calculator
+          >{`# Cron parser
+pnpm add soff-cron
+
+# Holiday calculator
 pnpm add soff-date
 
 # Geographic data
@@ -148,7 +160,10 @@ pnpm add soff-phone`}</CodeBlock>
 
         <TabsContent value="yarn" className="mt-4">
           <CodeBlock
-            code={`# Holiday calculator
+            code={`# Cron parser
+yarn add soff-cron
+
+# Holiday calculator
 yarn add soff-date
 
 # Geographic data
@@ -165,7 +180,10 @@ yarn add soff-money
 
 # Phone validation
 yarn add soff-phone`}
-          >{`# Holiday calculator
+          >{`# Cron parser
+yarn add soff-cron
+
+# Holiday calculator
 yarn add soff-date
 
 # Geographic data
@@ -186,7 +204,10 @@ yarn add soff-phone`}</CodeBlock>
 
         <TabsContent value="bun" className="mt-4">
           <CodeBlock
-            code={`# Holiday calculator
+            code={`# Cron parser
+bun add soff-cron
+
+# Holiday calculator
 bun add soff-date
 
 # Geographic data
@@ -203,7 +224,10 @@ bun add soff-money
 
 # Phone validation
 bun add soff-phone`}
-          >{`# Holiday calculator
+          >{`# Cron parser
+bun add soff-cron
+
+# Holiday calculator
 bun add soff-date
 
 # Geographic data
