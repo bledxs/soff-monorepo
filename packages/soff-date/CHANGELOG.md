@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.5
+
+### Patch Changes
+
+- [#29](https://github.com/bledxs/soff-monorepo/pull/29) [`9646858`](https://github.com/bledxs/soff-monorepo/commit/964685814b0ba7157248fd58e43ca0dd21fcc500) Thanks [@github-actions](https://github.com/apps/github-actions)! - update code structure for better maintainability
+
 ## 1.0.4
 
 ### Patch Changes
