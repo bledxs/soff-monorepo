@@ -1,5 +1,11 @@
 # soff-geo
 
+## 0.2.6
+
+### Patch Changes
+
+- [#42](https://github.com/bledxs/soff-monorepo/pull/42) [`1518ca1`](https://github.com/bledxs/soff-monorepo/commit/1518ca1ee06c45b1d0fb50be37995f36b5a05b76) Thanks [@github-actions](https://github.com/apps/github-actions)! - Merge pull request #41 from bledxs/dependabot/npm_and_yarn/minor-and-patch-e74edba63c
+
 ## 0.2.5
 
 ### Patch Changes
