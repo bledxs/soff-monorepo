@@ -6,11 +6,31 @@
 
 <div align="center">
 
+[![npm](https://img.shields.io/npm/v/soff-phone)](https://www.npmjs.com/package/soff-phone)
+[![License](https://img.shields.io/github/license/bledxs/soff-monorepo)](LICENSE)
+[![Build Status](https://github.com/bledxs/soff-monorepo/actions/workflows/ci.yml/badge.svg)](https://github.com/bledxs/soff-monorepo/actions)
+[![codecov](https://codecov.io/gh/bledxs/soff-monorepo/branch/master/graph/badge.svg)](https://codecov.io/gh/bledxs/soff-monorepo)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/soff-phone)](https://bundlephobia.com/package/soff-phone)
+[![All Contributors](https://img.shields.io/github/all-contributors/bledxs/soff-monorepo?color=ee8449&style=flat-square)](#contributors)
+
 </div>
 
 ---
 
-## Features
+**Zero dependencies** · **TypeScript** · **Tree-shakeable**
+
+## Table of Contents
+
+- [Why?](#why)
+- [Supported Countries](#supported-countries)
+- [Install](#install)
+- [Quick Start](#quick-start)
+- [Bundle Size](#bundle-size)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contributors](#contributors)
+
+## Why?
 
 - 🌲 **Tree-shakeable**: Import only the locales you need
 - 📦 **Zero dependencies**: Lightweight and fast
@@ -47,17 +67,23 @@
 - 🇬🇧 **United Kingdom** (gb) - 10 digits
 - 🇮🇹 **Italy** (it) - 9-10 digits
 
-## Installation
+## Install
 
 ```bash
+# npm
 npm install soff-phone
-# or
+
+# pnpm
 pnpm add soff-phone
-# or
+
+# yarn
 yarn add soff-phone
+
+# bun
+bun add soff-phone
 ```
 
-## Usage
+## Quick Start
 
 ### Colombia 🇨🇴
 
@@ -148,6 +174,32 @@ Each locale is individually tree-shakeable, so you only pay for what you use.
 
 **Example**: If you only import Colombia validation, your bundle will be ~1KB minified (~0.6KB gzipped).
 
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
 ## License
 
-MIT © [Luis C. Rojas](https://github.com/bledxs)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://all-contributors.js.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/bledxs"><img src="https://avatars.githubusercontent.com/u/90062924?v=4" width="100px;" alt="Luis C. Rojas"/><br /><sub><b>Luis C. Rojas</b></sub></a><br /><a href="https://github.com/bledxs/soff-monorepo/commits?author=bledxs" title="Code">💻</a> <a href="https://github.com/bledxs/soff-monorepo/commits?author=bledxs" title="Documentation">📖</a> <a href="#maintenance-bledxs" title="Maintenance">🚧</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

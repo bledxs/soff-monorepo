@@ -11,6 +11,7 @@
 [![Build Status](https://github.com/bledxs/soff-monorepo/actions/workflows/ci.yml/badge.svg)](https://github.com/bledxs/soff-monorepo/actions)
 [![codecov](https://codecov.io/gh/bledxs/soff-monorepo/branch/master/graph/badge.svg)](https://codecov.io/gh/bledxs/soff-monorepo)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/soff-cron)](https://bundlephobia.com/package/soff-cron)
+[![All Contributors](https://img.shields.io/github/all-contributors/bledxs/soff-monorepo?color=ee8449&style=flat-square)](#contributors)
 
 </div>
 
@@ -33,6 +34,7 @@
 - [Types](#types)
 - [Contributing](#contributing)
 - [License](#license)
+- [Contributors](#contributors)
 
 ## 🤔 Why?
 
@@ -378,18 +380,30 @@ export interface ValidationResult {
 
 ## Contributing
 
-Contributions are welcome! Please read the [contributing guidelines](../../CONTRIBUTING.md) before submitting PRs.
-
-**Want to add a new locale?** Check out [`src/i18n/`](src/i18n/) and submit a PR!
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## License
 
-MIT © [Luis C. Rojas](https://github.com/bledxs)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-See [LICENSE](LICENSE) for details.
+## Contributors
 
----
+Thanks goes to these wonderful people ([emoji key](https://all-contributors.js.org/docs/en/emoji-key)):
 
-<div align="center">
-  <sub>Part of the <a href="https://github.com/bledxs/soff-monorepo">Soff Monorepo</a></sub>
-</div>
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/bledxs"><img src="https://avatars.githubusercontent.com/u/90062924?v=4" width="100px;" alt="Luis C. Rojas"/><br /><sub><b>Luis C. Rojas</b></sub></a><br /><a href="https://github.com/bledxs/soff-monorepo/commits?author=bledxs" title="Code">💻</a> <a href="https://github.com/bledxs/soff-monorepo/commits?author=bledxs" title="Documentation">📖</a> <a href="#maintenance-bledxs" title="Maintenance">🚧</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
