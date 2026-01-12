@@ -126,6 +126,7 @@ jobs:
 
       - name: Create Pull Request
         if: steps.check.outputs.skip != 'true' && steps.packages.outputs.list != ''
+        id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -139,3 +140,9 @@ jobs:
             Based on changes in packages: ${{ steps.packages.outputs.list }}
           base: master
           labels: 'CI/CD, changeset'
+
+      - name: Enable Pull Request Automerge
+        if: steps.cpr.outputs.pull-request-number
+        run: gh pr merge --merge --auto "${{ steps.cpr.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
