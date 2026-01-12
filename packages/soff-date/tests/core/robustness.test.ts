@@ -1,8 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { checkIsHoliday, resolveHolidays, findNextHoliday } from '../../src/core/engine';
+import type { HolidayDefinition } from '../../src/core/types';
 
 describe('Robustness', () => {
-  const definitions = []; // Empty definitions for basic checks
+  const definitions: HolidayDefinition[] = []; // Empty definitions for basic checks
 
   it('checkIsHoliday should return null for Invalid Date', () => {
     const invalidDate = new Date('invalid');
