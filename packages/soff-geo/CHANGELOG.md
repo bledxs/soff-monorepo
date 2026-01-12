@@ -1,5 +1,15 @@
 # soff-geo
 
+## 0.2.7
+
+### Patch Changes
+
+- [#47](https://github.com/bledxs/soff-monorepo/pull/47) [`0c81faa`](https://github.com/bledxs/soff-monorepo/commit/0c81faa9b6c98276a3816e92ba0d5e1f190a89ff) Thanks [@github-actions](https://github.com/apps/github-actions)! - Merge pull request #44 from bledxs/dependabot/npm_and_yarn/minor-and-patch-1b5f08e2ea
+
+- [#48](https://github.com/bledxs/soff-monorepo/pull/48) [`5571b50`](https://github.com/bledxs/soff-monorepo/commit/5571b50bc8fae2e8e544abb8595a77792221bcf0) Thanks [@github-actions](https://github.com/apps/github-actions)! - Merge pull request #45 from bledxs/dependabot/npm_and_yarn/globals-17.0.0
+
+- [#46](https://github.com/bledxs/soff-monorepo/pull/46) [`985e3f2`](https://github.com/bledxs/soff-monorepo/commit/985e3f2deb0badaaffc62b5ed50a16bd490c36b3) Thanks [@github-actions](https://github.com/apps/github-actions)! - update README files to include contributors section and badges
+
 ## 0.2.6
 
 ### Patch Changes
