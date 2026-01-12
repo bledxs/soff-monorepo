@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: read
+      pull-requests: write
 
     steps:
       - name: Checkout
@@ -91,11 +91,30 @@ jobs:
 
           cat "$FILENAME"
 
-      - name: Commit and push changeset
+      - name: Create Pull Request with changeset
         if: steps.packages.outputs.list != ''
         run: |
+          BRANCH_NAME="changeset/pr-${{ github.event.pull_request.number }}"
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create new branch
+          git checkout -b "$BRANCH_NAME"
+
+          # Commit changes
           git add .changeset/
           git commit -m "chore: add changeset for PR #${{ github.event.pull_request.number }}"
-          git push
+
+          # Push to new branch
+          git push origin "$BRANCH_NAME"
+
+          # Create PR
+          gh pr create \
+            --base master \
+            --head "$BRANCH_NAME" \
+            --title "chore: add changeset for PR #${{ github.event.pull_request.number }}" \
+            --body "Automated changeset created for PR #${{ github.event.pull_request.number }}: ${{ steps.bump.outputs.description }}" \
+            --label "automated"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
