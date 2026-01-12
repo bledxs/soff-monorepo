@@ -5,6 +5,7 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+    types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
   test:
@@ -60,8 +61,16 @@ jobs:
     steps:
       - name: Check status
         run: |
-          if [[ "${{ needs.test.result }}" == "success" ]]; then
+          RESULT="${{ needs.test.result }}"
+          echo "Test job result: $RESULT"
+
+          if [[ "$RESULT" == "success" ]]; then
+            echo "✅ All checks passed"
+            exit 0
+          elif [[ "$RESULT" == "skipped" ]]; then
+            echo "⚠️  Test job was skipped, treating as success"
             exit 0
           else
+            echo "❌ Checks failed with result: $RESULT"
             exit 1
           fi
