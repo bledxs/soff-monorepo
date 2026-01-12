@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.10
+
+### Patch Changes
+
+- [#50](https://github.com/bledxs/soff-monorepo/pull/50) [`1d98d5c`](https://github.com/bledxs/soff-monorepo/commit/1d98d5caa9f2ed045c9e35864100c71869d95b47) Thanks [@bledxs](https://github.com/bledxs)! - fix: handle invalid dates in engine gracefully
+
 ## 1.0.9
 
 ### Patch Changes
