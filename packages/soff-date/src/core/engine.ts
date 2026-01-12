@@ -26,7 +26,16 @@ function resolveRule(rule: HolidayRule, year: number): Date | null {
 
 /** Formats Date to ISO string (date only) */
 function toISODate(date: Date): string {
-  return date.toISOString().split('T')[0];
+  try {
+    return date.toISOString().split('T')[0];
+  } catch {
+    return '';
+  }
+}
+
+/** Checks if a date is valid */
+function isValidDate(date: Date): boolean {
+  return date instanceof Date && !isNaN(date.getTime());
 }
 
 /** Generates holidays for a year */
@@ -35,12 +44,17 @@ export function resolveHolidays(
   year: number,
   names: Record<string, string> = {},
 ): Holiday[] {
+  if (typeof year !== 'number' || isNaN(year)) {
+    return [];
+  }
+
   return definitions
     .map((def) => {
       const rawDate = resolveRule(def.rule, year);
-      if (!rawDate) return null;
+      if (!rawDate || !isValidDate(rawDate)) return null;
 
       const { date, shifted } = applyShift(rawDate, def.shift ?? 'none');
+      if (!isValidDate(date)) return null;
 
       return {
         date: toISODate(date),
@@ -59,8 +73,12 @@ export function checkIsHoliday(
   date: Date,
   names?: Record<string, string>,
 ): Holiday | null {
+  if (!isValidDate(date)) return null;
+
   const year = date.getUTCFullYear();
   const isoDate = toISODate(date);
+  if (!isoDate) return null;
+
   const holidays = resolveHolidays(definitions, year, names);
   return holidays.find((h) => h.date === isoDate) ?? null;
 }
@@ -71,7 +89,11 @@ export function findNextHoliday(
   from: Date,
   names?: Record<string, string>,
 ): Holiday | null {
+  if (!isValidDate(from)) return null;
+
   const isoFrom = toISODate(from);
+  if (!isoFrom) return null;
+
   const year = from.getUTCFullYear();
 
   // Search in current year
