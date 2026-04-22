@@ -9,6 +9,7 @@ export {
 export { getEasterSunday } from './core/algorithms/easter';
 export { getNthWeekday } from './core/algorithms/nth-weekday';
 export { applyShift } from './core/algorithms/shifts';
+export { formatRelativeTime } from './core/relative-time';
 
 // Types
 export type {
