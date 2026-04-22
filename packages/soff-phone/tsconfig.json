@@ -1,7 +1,6 @@
 {
   "extends": "@soff/tsconfig/library.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
