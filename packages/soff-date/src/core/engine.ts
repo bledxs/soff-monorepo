@@ -44,7 +44,7 @@ export function resolveHolidays(
   year: number,
   names: Record<string, string> = {},
 ): Holiday[] {
-  if (typeof year !== 'number' || Number.isNaN(year)) {
+  if (typeof year !== 'number' || !Number.isInteger(year)) {
     return [];
   }
 

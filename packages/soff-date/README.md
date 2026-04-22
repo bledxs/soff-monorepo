@@ -280,6 +280,8 @@ interface Holiday {
 }
 ```
 
+`year` must be an integer. Non-integer values return an empty array.
+
 ### `isHoliday(date, options?)`
 
 Returns holiday info if the date is a holiday, `null` otherwise.
