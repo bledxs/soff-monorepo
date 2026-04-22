@@ -1,6 +1,14 @@
 import type { HolidayDefinition } from './types';
 import { checkIsHoliday } from './engine';
 
+function isValidDate(date: Date): boolean {
+  return date instanceof Date && Number.isFinite(date.getTime());
+}
+
+function createInvalidDate(): Date {
+  return new Date(Number.NaN);
+}
+
 /**
  * Checks if a date is a weekend (Saturday or Sunday)
  * Uses UTC date to avoid timezone issues
@@ -14,6 +22,7 @@ export function isWeekend(date: Date): boolean {
  * Checks if a date is a business day (not weekend AND not holiday)
  */
 export function checkIsBusinessDay(definitions: HolidayDefinition[], date: Date): boolean {
+  if (!isValidDate(date)) return false;
   if (isWeekend(date)) return false;
   return checkIsHoliday(definitions, date) === null;
 }
@@ -26,6 +35,10 @@ export function addBusinessDays(
   startDate: Date,
   amount: number,
 ): Date {
+  if (!isValidDate(startDate) || !Number.isFinite(amount)) {
+    return createInvalidDate();
+  }
+
   const result = new Date(startDate);
   let remaining = Math.abs(amount);
   const direction = amount >= 0 ? 1 : -1;
@@ -50,6 +63,10 @@ export function getBusinessDaysBetween(
   startDate: Date,
   endDate: Date,
 ): number {
+  if (!isValidDate(startDate) || !isValidDate(endDate)) {
+    return Number.NaN;
+  }
+
   const start = new Date(startDate);
   const end = new Date(endDate);
 

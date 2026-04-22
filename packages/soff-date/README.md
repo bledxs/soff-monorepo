@@ -326,6 +326,13 @@ diffBusinessDays(new Date('2025-01-06'), new Date('2025-01-10'));
 // → 4
 ```
 
+Invalid inputs are handled safely:
+
+- `isBusinessDay(invalidDate)` returns `false`
+- `businessDays(invalidDate, amount)` returns `Invalid Date`
+- `businessDays(date, Infinity)` returns `Invalid Date`
+- `diffBusinessDays(invalidDate, date)` returns `NaN`
+
 ## Types
 
 ```typescript
