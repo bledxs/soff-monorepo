@@ -7,6 +7,11 @@ const eslintConfig = defineConfig([
   ...nextTs,
   // Override default ignores of eslint-config-next.
   {
+    settings: {
+      react: {
+        version: '19.2.5',
+      },
+    },
     languageOptions: {
       parserOptions: {
         project: './tsconfig.json',
