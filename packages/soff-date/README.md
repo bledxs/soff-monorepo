@@ -241,6 +241,8 @@ applyShift(new Date('2026-07-04'), 'observedUS');
 // → { date: Date(2026-07-03), shifted: true }
 ```
 
+`getNthWeekday()` returns `Invalid Date` when the requested occurrence does not exist in the target month or when the input is out of range.
+
 ## Bundle Size
 
 | Import       | Size (minified) |
