@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- [#83](https://github.com/bledxs/soff-monorepo/pull/83) [`d0c6256`](https://github.com/bledxs/soff-monorepo/commit/d0c625687e6012bc829068aabe9eb95b1e885c9c) Thanks [@github-actions](https://github.com/apps/github-actions)! - add dynamic locale selection and corresponding tests
+
 ## 1.0.10
 
 ### Patch Changes
