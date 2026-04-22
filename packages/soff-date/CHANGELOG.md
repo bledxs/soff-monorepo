@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.2.0
+
+### Minor Changes
+
+- [`d883f6d`](https://github.com/bledxs/soff-monorepo/commit/d883f6d1028488b2f97835890e4ece79b34a5357) Thanks [@bledxs](https://github.com/bledxs)! - Add a new public `soff-date/locales` barrel export for dynamic locale selection.
+
+  Harden the package against invalid inputs across public helpers and algorithms:
+  - return an empty array for non-integer years in `resolveHolidays`
+  - return an empty string for invalid dates in `formatRelativeTime`
+  - preserve invalid inputs safely in business day helpers
+  - return `Invalid Date` for unsupported or impossible algorithm inputs in `getEasterSunday`, `getNthWeekday`, and `applyShift`
+
+  Also expand regression coverage and README documentation for the updated runtime contracts.
+
+### Patch Changes
+
+- [#85](https://github.com/bledxs/soff-monorepo/pull/85) [`399fa1f`](https://github.com/bledxs/soff-monorepo/commit/399fa1f563ccb14bff8f62ebc79b782884749cdf) Thanks [@github-actions](https://github.com/apps/github-actions)! - version packages
+
 ## 1.1.0
 
 ### Minor Changes
