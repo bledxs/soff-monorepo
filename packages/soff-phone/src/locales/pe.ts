@@ -17,16 +17,13 @@ export function validate(phone: string, options?: PhoneOptions): PhoneValidation
     return { isValid: false, error: 'Phone number must be 9 digits' };
   }
 
-  let type: 'mobile' | 'landline' | 'unknown' = 'unknown';
+  const type = national.startsWith('9')
+    ? 'mobile'
+    : /^[01]/.test(national)
+      ? 'landline'
+      : undefined;
 
-  // Mobile: Starts with 9
-  if (national.startsWith('9')) {
-    type = 'mobile';
-  }
-  // Landline: Starts with 1 (Lima) or other area codes (0)
-  else if (/^[01]/.test(national)) {
-    type = 'landline';
-  } else {
+  if (!type) {
     return { isValid: false, error: 'Invalid prefix for Peru' };
   }
 

@@ -17,16 +17,9 @@ export function validate(phone: string, options?: PhoneOptions): PhoneValidation
     return { isValid: false, error: 'Phone number must be 9 digits' };
   }
 
-  let type: 'mobile' | 'landline' | 'unknown' = 'unknown';
+  const type = /^[67]/.test(national) ? 'mobile' : /^[89]/.test(national) ? 'landline' : undefined;
 
-  // Mobile: Starts with 6 or 7
-  if (/^[67]/.test(national)) {
-    type = 'mobile';
-  }
-  // Landline: Starts with 8 or 9
-  else if (/^[89]/.test(national)) {
-    type = 'landline';
-  } else {
+  if (!type) {
     return { isValid: false, error: 'Invalid prefix for Spain' };
   }
 

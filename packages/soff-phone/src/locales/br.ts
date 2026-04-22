@@ -17,16 +17,14 @@ export function validate(phone: string, options?: PhoneOptions): PhoneValidation
     return { isValid: false, error: 'Phone number must be 10 or 11 digits' };
   }
 
-  let type: 'mobile' | 'landline' | 'unknown' = 'unknown';
+  const type =
+    national.length === 11 && national[2] === '9'
+      ? 'mobile'
+      : national.length === 10
+        ? 'landline'
+        : undefined;
 
-  // Mobile: 11 digits starting with 9 (e.g., 11 98765-4321)
-  if (national.length === 11 && national[2] === '9') {
-    type = 'mobile';
-  }
-  // Landline: 10 digits
-  else if (national.length === 10) {
-    type = 'landline';
-  } else {
+  if (!type) {
     return { isValid: false, error: 'Invalid phone format for Brazil' };
   }
 

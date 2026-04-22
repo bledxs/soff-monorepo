@@ -22,16 +22,7 @@ export function validate(phone: string, options?: PhoneOptions): PhoneValidation
     return { isValid: false, error: 'Phone number must be 9-10 digits' };
   }
 
-  let type: 'mobile' | 'landline' | 'unknown' = 'unknown';
-
-  // Mobile: Starts with 3
-  if (national.startsWith('3')) {
-    type = 'mobile';
-  }
-  // Landline: various area codes (0, 1, 2, 4, 5, 6, 7, 8, 9)
-  else {
-    type = 'landline';
-  }
+  const type = national.startsWith('3') ? 'mobile' : 'landline';
 
   let formatted = national;
   if (options?.format === 'e164') {

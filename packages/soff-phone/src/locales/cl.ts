@@ -17,16 +17,13 @@ export function validate(phone: string, options?: PhoneOptions): PhoneValidation
     return { isValid: false, error: 'Phone number must be 9 digits' };
   }
 
-  let type: 'mobile' | 'landline' | 'unknown' = 'unknown';
+  const type = national.startsWith('9')
+    ? 'mobile'
+    : /^[2-7]/.test(national)
+      ? 'landline'
+      : undefined;
 
-  // Mobile: Starts with 9
-  if (national.startsWith('9')) {
-    type = 'mobile';
-  }
-  // Landline: Starts with 2 (Santiago) or other area codes
-  else if (/^[2-7]/.test(national)) {
-    type = 'landline';
-  } else {
+  if (!type) {
     return { isValid: false, error: 'Invalid prefix for Chile' };
   }
 

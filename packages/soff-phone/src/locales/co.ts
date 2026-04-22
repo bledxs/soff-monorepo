@@ -16,16 +16,13 @@ export function validate(phone: string, options?: PhoneOptions): PhoneValidation
     return { isValid: false, error: 'Phone number must be 10 digits' };
   }
 
-  let type: 'mobile' | 'landline' | 'unknown' = 'unknown';
+  const type = national.startsWith('3')
+    ? 'mobile'
+    : national.startsWith('60')
+      ? 'landline'
+      : undefined;
 
-  // Mobile: Starts with 3
-  if (national.startsWith('3')) {
-    type = 'mobile';
-  }
-  // Landline: Starts with 60
-  else if (national.startsWith('60')) {
-    type = 'landline';
-  } else {
+  if (!type) {
     return { isValid: false, error: 'Invalid prefix for Colombia' };
   }
 
