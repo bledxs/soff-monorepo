@@ -1,5 +1,11 @@
 # soff-phone
 
+## 0.0.7
+
+### Patch Changes
+
+- [#81](https://github.com/bledxs/soff-monorepo/pull/81) [`1d3298d`](https://github.com/bledxs/soff-monorepo/commit/1d3298d9f4c06fe3da3b09e87974edb1e63aae78) Thanks [@github-actions](https://github.com/apps/github-actions)! - simplify phone type determination logic for multiple locales
+
 ## 0.0.6
 
 ### Patch Changes
