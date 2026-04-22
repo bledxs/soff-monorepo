@@ -15,18 +15,8 @@ type Country = 'co' | 'mx';
 export function GeoSearch() {
   const [country, setCountry] = React.useState<Country>('co');
   const [query, setQuery] = React.useState('');
-  const [results, setResults] = React.useState<SearchResult<Municipality>[]>([]);
-
-  React.useEffect(() => {
-    if (!query) {
-      setResults([]);
-      return;
-    }
-
-    const searchFn = country === 'co' ? searchCo : searchMx;
-    const searchResults = searchFn(query, { limit: 10 });
-    setResults(searchResults);
-  }, [query, country]);
+  const searchFn = country === 'co' ? searchCo : searchMx;
+  const results: SearchResult<Municipality>[] = query ? searchFn(query, { limit: 10 }) : [];
 
   return (
     <div className="space-y-4">
