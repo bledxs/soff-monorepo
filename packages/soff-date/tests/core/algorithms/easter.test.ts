@@ -23,4 +23,19 @@ describe('getEasterSunday', () => {
     expect(() => getEasterSunday(2100)).not.toThrow();
     expect(() => getEasterSunday(1900)).not.toThrow();
   });
+
+  it('retorna Invalid Date para años previos al calendario gregoriano', () => {
+    const result = getEasterSunday(1500);
+    expect(Number.isNaN(result.getTime())).toBe(true);
+  });
+
+  it('retorna Invalid Date para años no enteros', () => {
+    const result = getEasterSunday(2025.5);
+    expect(Number.isNaN(result.getTime())).toBe(true);
+  });
+
+  it('retorna Invalid Date para años no finitos', () => {
+    const result = getEasterSunday(Number.NaN);
+    expect(Number.isNaN(result.getTime())).toBe(true);
+  });
 });

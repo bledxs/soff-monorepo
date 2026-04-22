@@ -243,6 +243,10 @@ applyShift(new Date('2026-07-04'), 'observedUS');
 
 `getNthWeekday()` returns `Invalid Date` when the requested occurrence does not exist in the target month or when the input is out of range.
 
+`getEasterSunday()` returns `Invalid Date` for unsupported years outside the Gregorian calendar (`< 1583`) and for non-integer years.
+
+`applyShift()` preserves `Invalid Date` inputs and returns `shifted: false` instead of marking a move on invalid data.
+
 ## Bundle Size
 
 | Import       | Size (minified) |
