@@ -17,6 +17,6 @@ describe('Robustness', () => {
 
   it('resolveHolidays should handle invalid year gracefully', () => {
     // If year is NaN, it should probably return empty array or not crash
-    expect(resolveHolidays(definitions, NaN)).toEqual([]);
+    expect(resolveHolidays(definitions, Number.NaN)).toEqual([]);
   });
 });

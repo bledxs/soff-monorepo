@@ -35,7 +35,7 @@ function toISODate(date: Date): string {
 
 /** Checks if a date is valid */
 function isValidDate(date: Date): boolean {
-  return date instanceof Date && !isNaN(date.getTime());
+  return date instanceof Date && !Number.isNaN(date.getTime());
 }
 
 /** Generates holidays for a year */
@@ -44,7 +44,7 @@ export function resolveHolidays(
   year: number,
   names: Record<string, string> = {},
 ): Holiday[] {
-  if (typeof year !== 'number' || isNaN(year)) {
+  if (typeof year !== 'number' || Number.isNaN(year)) {
     return [];
   }
 

@@ -51,6 +51,18 @@ describe('Mexico locale', () => {
     expect(transmission).toBeUndefined();
   });
 
+  it('No Transmission of Executive Power in 2031', () => {
+    const holidays = getHolidays(2031);
+    const transmission = holidays.find((h) => h.key === 'transmissionExecutive');
+    expect(transmission).toBeUndefined();
+  });
+
+  it('Transmission of Executive Power returns in 2036 (Oct 1)', () => {
+    const holidays = getHolidays(2036);
+    const transmission = holidays.find((h) => h.key === 'transmissionExecutive');
+    expect(transmission?.date).toBe('2036-10-01');
+  });
+
   it('isHoliday detects holidays', () => {
     const result = isHoliday(new Date('2025-09-16')); // Independence Day
     expect(result?.key).toBe('independenceDay');

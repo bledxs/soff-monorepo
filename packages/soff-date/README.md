@@ -31,6 +31,8 @@
 - [Shift Rules Explained](#shift-rules-explained)
   - [Emiliani (Colombia, Argentina)](#emiliani-colombia-argentina)
   - [Observed US (USA, UK)](#observed-us-usa-uk)
+  - [Nearest Monday (Argentina)](#nearest-monday-argentina)
+  - [Mexico's Presidential Transition Holiday](#mexicos-presidential-transition-holiday)
 - [Advanced: Create Your Own Locale](#advanced-create-your-own-locale)
 - [Advanced: Use Algorithms Directly](#advanced-use-algorithms-directly)
 - [Bundle Size](#bundle-size)
@@ -38,6 +40,7 @@
   - [`getHolidays(year, options?)`](#getholidaysyear-options)
   - [`isHoliday(date, options?)`](#isholidaydate-options)
   - [`getNextHoliday(from?, options?)`](#getnextholidayfrom-options)
+  - [`formatRelativeTime(date, options?)`](#formatrelativetimedate-options)
 - [Business Days Calculation](#business-days-calculation)
 - [Types](#types)
 - [Contributing](#contributing)
@@ -111,13 +114,13 @@ getHolidays(2025, { lang: { ...en, newYear: 'Happy New Year!' } });
 
 ## Available Locales
 
-| Locale       | Import                 | Holidays | Shift Rule |
-| ------------ | ---------------------- | -------- | ---------- |
-| 🇨🇴 Colombia  | `soff-date/locales/co` | 18       | Emiliani   |
-| 🇺🇸 USA       | `soff-date/locales/us` | 10       | Observed   |
-| 🇲🇽 México    | `soff-date/locales/mx` | 8        | NthWeekday |
-| 🇦🇷 Argentina | `soff-date/locales/ar` | 16       | NearestMon |
-| 🇧🇷 Brasil    | `soff-date/locales/br` | 13       | None       |
+| Locale       | Import                 | Holidays | Shift Rule          |
+| ------------ | ---------------------- | -------- | ------------------- |
+| 🇨🇴 Colombia  | `soff-date/locales/co` | 18       | Emiliani            |
+| 🇺🇸 USA       | `soff-date/locales/us` | 10       | Observed            |
+| 🇲🇽 México    | `soff-date/locales/mx` | 8        | NthWeekday + Custom |
+| 🇦🇷 Argentina | `soff-date/locales/ar` | 16       | NearestMonday       |
+| 🇧🇷 Brasil    | `soff-date/locales/br` | 13       | None                |
 
 ## Available Languages
 
@@ -147,6 +150,27 @@ Holidays falling on weekends **move to Monday**.
 // July 4, 2026 = Saturday → Friday July 3
 { date: '2026-07-03', key: 'independenceDayUS', isShifted: true }
 ```
+
+### Nearest Monday (Argentina)
+
+- Tuesday or Wednesday → previous Monday
+- Thursday or Friday → next Monday
+- Monday, Saturday and Sunday stay unchanged
+
+```typescript
+// June 17, 2025 = Tuesday → Monday June 16
+{ date: '2025-06-16', key: 'guemesDay', isShifted: true }
+
+// November 20, 2025 = Thursday → Monday November 24
+{ date: '2025-11-24', key: 'sovereigntyDay', isShifted: true }
+```
+
+### Mexico's Presidential Transition Holiday
+
+Mexico includes a custom holiday for the transmission of executive power.
+
+- From 2024 onward, it is observed on October 1 every 6 years: 2024, 2030, 2036, ...
+- For historical years before 2024, the library preserves the previous December 1 cycle: 2018, 2012, ...
 
 ## Advanced: Create Your Own Locale
 
@@ -194,9 +218,7 @@ export function getHolidays(year: number): Holiday[] {
 ## Advanced: Use Algorithms Directly
 
 ```typescript
-import { getEasterSunday } from 'soff-date/core/algorithms/easter';
-import { getNthWeekday } from 'soff-date/core/algorithms/nth-weekday';
-import { applyShift } from 'soff-date/core/algorithms/shifts';
+import { getEasterSunday, getNthWeekday, applyShift } from 'soff-date';
 
 // Easter Sunday 2025
 getEasterSunday(2025); // → Date(2025, 3, 20)
@@ -250,6 +272,29 @@ Returns holiday info if the date is a holiday, `null` otherwise.
 
 Returns the next holiday from a given date (defaults to today).
 
+### `formatRelativeTime(date, options?)`
+
+Formats a date relative to another date using `Intl.RelativeTimeFormat`.
+
+```typescript
+import { formatRelativeTime } from 'soff-date';
+
+formatRelativeTime(new Date('2024-01-02T12:00:00Z'), {
+  baseDate: new Date('2024-01-01T12:00:00Z'),
+  locale: 'en',
+});
+// → in 1 day
+
+formatRelativeTime(new Date('2024-01-01T12:00:00Z'), {
+  baseDate: new Date('2024-01-02T12:00:00Z'),
+  locale: 'en',
+  numeric: 'auto',
+});
+// → yesterday
+```
+
+Returns an empty string for invalid dates instead of throwing.
+
 ## Business Days Calculation
 
 In addition to holiday calculation, `soff-date` provides utilities to work with business days (skipping weekends and holidays).
@@ -274,13 +319,13 @@ diffBusinessDays(new Date('2025-01-06'), new Date('2025-01-10'));
 ## Types
 
 ```typescript
-type ShiftRule = 'none' | 'emiliani' | 'observedUS' | 'nextMonday';
+type ShiftRule = 'none' | 'emiliani' | 'observedUS' | 'nextMonday' | 'nearestMonday';
 
 type HolidayRule =
   | { type: 'fixed'; month: number; day: number }
   | { type: 'nthWeekday'; month: number; weekday: number; n: number }
   | { type: 'easterRelative'; offset: number }
-  | { type: 'custom'; calc: (year: number) => Date };
+  | { type: 'custom'; calc: (year: number) => Date | null };
 
 interface HolidayDefinition {
   key: string;

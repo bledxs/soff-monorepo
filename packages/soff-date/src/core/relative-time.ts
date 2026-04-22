@@ -12,6 +12,10 @@ export interface RelativeTimeOptions {
   style?: 'long' | 'short' | 'narrow';
 }
 
+function isFiniteDate(date: Date): boolean {
+  return date instanceof Date && Number.isFinite(date.getTime());
+}
+
 /**
  * Formats a date relative to another date (usually "now").
  * Uses Intl.RelativeTimeFormat for localization.
@@ -22,6 +26,10 @@ export interface RelativeTimeOptions {
  */
 export function formatRelativeTime(date: Date, options: RelativeTimeOptions = {}): string {
   const { locale = 'en', baseDate = new Date(), numeric = 'always', style = 'long' } = options;
+
+  if (!isFiniteDate(date) || !isFiniteDate(baseDate)) {
+    return '';
+  }
 
   const diffMs = date.getTime() - baseDate.getTime();
   const diffSecs = Math.round(diffMs / 1000);
@@ -45,5 +53,5 @@ export function formatRelativeTime(date: Date, options: RelativeTimeOptions = {}
     }
   }
 
-  return ''; // Should not verify reachable
+  return '';
 }

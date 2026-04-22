@@ -62,7 +62,7 @@ describe('resolveHolidays', () => {
     const holidays = resolveHolidays(testDefinitions, 2025, testNames);
     const dates = holidays.map((h) => h.date);
 
-    expect(dates).toEqual([...dates].sort());
+    expect(dates).toEqual([...dates].sort((left, right) => left.localeCompare(right)));
   });
 });
 

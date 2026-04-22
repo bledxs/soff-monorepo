@@ -21,9 +21,9 @@ const definitions: HolidayDefinition[] = [
       calc: (year) => {
         if (year >= 2024) {
           if ((year - 2024) % 6 === 0) return new Date(Date.UTC(year, 9, 1)); // Oct 1
-        } else {
+        } else if ((year - 2018) % 6 === 0) {
           // 2018, 2012, etc.
-          if ((year - 2018) % 6 === 0) return new Date(Date.UTC(year, 11, 1)); // Dec 1
+          return new Date(Date.UTC(year, 11, 1)); // Dec 1
         }
         return null;
       },

@@ -34,11 +34,33 @@ describe('formatRelativeTime', () => {
     expect(formatRelativeTime(past, { baseDate: now, locale: 'es' })).toBe('hace 1 día');
   });
 
+  it('should support numeric auto formatting', () => {
+    const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    expect(formatRelativeTime(yesterday, { baseDate: now, locale: 'en', numeric: 'auto' })).toBe(
+      'yesterday',
+    );
+  });
+
+  it('should support short style formatting', () => {
+    const future = new Date(now.getTime() + 2 * 60 * 60 * 1000);
+    expect(formatRelativeTime(future, { baseDate: now, locale: 'en', style: 'short' })).toBe(
+      'in 2 hr.',
+    );
+  });
+
   it('should handle "just now" for very small diffs if configured', () => {
     // Default behavior might just be seconds, but good to test small values
     const past = new Date(now.getTime() - 500); // 0.5s ago
     // Intl.RelativeTimeFormat usually says "0 seconds ago" or "now" depending on config/implementation choice.
     // Let's expect our implementation to handle seconds by default.
     expect(formatRelativeTime(past, { baseDate: now, locale: 'en' })).toMatch(/second/);
+  });
+
+  it('should return empty string for invalid dates', () => {
+    expect(formatRelativeTime(new Date('invalid'), { baseDate: now, locale: 'en' })).toBe('');
+  });
+
+  it('should return empty string for invalid base dates', () => {
+    expect(formatRelativeTime(now, { baseDate: new Date('invalid'), locale: 'en' })).toBe('');
   });
 });
