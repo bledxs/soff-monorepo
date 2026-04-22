@@ -122,6 +122,16 @@ getHolidays(2025, { lang: { ...en, newYear: 'Happy New Year!' } });
 | 🇦🇷 Argentina | `soff-date/locales/ar` | 16       | NearestMonday       |
 | 🇧🇷 Brasil    | `soff-date/locales/br` | 13       | None                |
 
+If you need to select a locale dynamically, you can import all locale namespaces from the public barrel:
+
+```typescript
+import { co, mx, us } from 'soff-date/locales';
+
+co.getHolidays(2025);
+mx.isHoliday(new Date('2025-09-16'));
+us.getNextHoliday(new Date('2025-07-01'));
+```
+
 ## Available Languages
 
 | Language  | Import              |

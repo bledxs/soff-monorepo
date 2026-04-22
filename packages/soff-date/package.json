@@ -28,6 +28,16 @@
         "default": "./dist/core/engine.cjs"
       }
     },
+    "./locales": {
+      "import": {
+        "types": "./dist/locales/index.d.ts",
+        "default": "./dist/locales/index.js"
+      },
+      "require": {
+        "types": "./dist/locales/index.d.cts",
+        "default": "./dist/locales/index.cjs"
+      }
+    },
     "./locales/co": {
       "import": {
         "types": "./dist/locales/co.d.ts",

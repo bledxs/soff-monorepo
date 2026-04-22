@@ -13,6 +13,7 @@ export default defineConfig({
     'core/algorithms/shifts': 'src/core/algorithms/shifts.ts',
 
     // Locales
+    'locales/index': 'src/locales/index.ts',
     'locales/co': 'src/locales/co.ts',
     'locales/us': 'src/locales/us.ts',
     'locales/mx': 'src/locales/mx.ts',
