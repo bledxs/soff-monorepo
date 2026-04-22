@@ -3,6 +3,10 @@
  * Valid for Gregorian calendar (1583+)
  */
 export function getEasterSunday(year: number): Date {
+  if (!Number.isInteger(year) || year < 1583) {
+    return new Date(Number.NaN);
+  }
+
   const a = year % 19;
   const b = Math.floor(year / 100);
   const c = year % 100;

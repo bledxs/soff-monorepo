@@ -35,4 +35,26 @@ describe('getNthWeekday', () => {
       expect(result.toISOString().split('T')[0]).toBe('2025-03-28');
     });
   });
+
+  describe('entradas inválidas o imposibles', () => {
+    it('retorna Invalid Date si la ocurrencia no existe en el mes', () => {
+      const result = getNthWeekday(2025, 2, 1, 5);
+      expect(Number.isNaN(result.getTime())).toBe(true);
+    });
+
+    it('retorna Invalid Date para meses fuera de rango', () => {
+      const result = getNthWeekday(2025, 13, 1, 1);
+      expect(Number.isNaN(result.getTime())).toBe(true);
+    });
+
+    it('retorna Invalid Date para weekdays fuera de rango', () => {
+      const result = getNthWeekday(2025, 1, 7, 1);
+      expect(Number.isNaN(result.getTime())).toBe(true);
+    });
+
+    it('retorna Invalid Date para n igual a cero', () => {
+      const result = getNthWeekday(2025, 1, 1, 0);
+      expect(Number.isNaN(result.getTime())).toBe(true);
+    });
+  });
 });

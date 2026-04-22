@@ -64,6 +64,10 @@ describe('resolveHolidays', () => {
 
     expect(dates).toEqual([...dates].sort((left, right) => left.localeCompare(right)));
   });
+
+  it('retorna arreglo vacío para años no enteros', () => {
+    expect(resolveHolidays(testDefinitions, 2025.5, testNames)).toEqual([]);
+  });
 });
 
 describe('checkIsHoliday', () => {

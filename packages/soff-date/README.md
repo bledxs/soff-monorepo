@@ -241,6 +241,12 @@ applyShift(new Date('2026-07-04'), 'observedUS');
 // → { date: Date(2026-07-03), shifted: true }
 ```
 
+`getNthWeekday()` returns `Invalid Date` when the requested occurrence does not exist in the target month or when the input is out of range.
+
+`getEasterSunday()` returns `Invalid Date` for unsupported years outside the Gregorian calendar (`< 1583`) and for non-integer years.
+
+`applyShift()` preserves `Invalid Date` inputs and returns `shifted: false` instead of marking a move on invalid data.
+
 ## Bundle Size
 
 | Import       | Size (minified) |
@@ -273,6 +279,8 @@ interface Holiday {
   isShifted?: boolean; // True if moved by shift rule
 }
 ```
+
+`year` must be an integer. Non-integer values return an empty array.
 
 ### `isHoliday(date, options?)`
 
@@ -325,6 +333,13 @@ businessDays(new Date('2025-01-03'), 1);
 diffBusinessDays(new Date('2025-01-06'), new Date('2025-01-10'));
 // → 4
 ```
+
+Invalid inputs are handled safely:
+
+- `isBusinessDay(invalidDate)` returns `false`
+- `businessDays(invalidDate, amount)` returns `Invalid Date`
+- `businessDays(date, Infinity)` returns `Invalid Date`
+- `diffBusinessDays(invalidDate, date)` returns `NaN`
 
 ## Types
 

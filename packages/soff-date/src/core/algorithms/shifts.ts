@@ -1,10 +1,18 @@
 import type { ShiftRule } from '../types';
 
+function isValidDate(date: Date): boolean {
+  return date instanceof Date && Number.isFinite(date.getTime());
+}
+
 /**
  * Applies a shift rule to a date
  * @returns { date: Date, shifted: boolean }
  */
 export function applyShift(date: Date, rule: ShiftRule): { date: Date; shifted: boolean } {
+  if (!isValidDate(date)) {
+    return { date, shifted: false };
+  }
+
   const day = date.getUTCDay(); // 0=Sun, 6=Sat
 
   if (rule === 'none') {

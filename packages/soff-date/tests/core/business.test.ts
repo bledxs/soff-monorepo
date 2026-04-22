@@ -36,6 +36,10 @@ describe('Business Days Logic', () => {
       expect(checkIsBusinessDay(mockDefinitions, new Date('2025-01-04'))).toBe(false);
     });
 
+    it('returns false for invalid dates', () => {
+      expect(checkIsBusinessDay(mockDefinitions, new Date('invalid'))).toBe(false);
+    });
+
     it('returns false for holidays', () => {
       // Jan 1st 2025 is Wednesday (Weekday but Holiday)
       expect(checkIsBusinessDay(mockDefinitions, new Date('2025-01-01'))).toBe(false);
@@ -79,6 +83,20 @@ describe('Business Days Logic', () => {
       const result = addBusinessDays(mockDefinitions, start, -1);
       expect(result.toISOString().split('T')[0]).toBe('2025-01-03');
     });
+
+    it('returns an invalid date for invalid start dates', () => {
+      const result = addBusinessDays(mockDefinitions, new Date('invalid'), 1);
+      expect(Number.isNaN(result.getTime())).toBe(true);
+    });
+
+    it('returns an invalid date for non-finite amounts', () => {
+      const result = addBusinessDays(
+        mockDefinitions,
+        new Date('2025-01-06'),
+        Number.POSITIVE_INFINITY,
+      );
+      expect(Number.isNaN(result.getTime())).toBe(true);
+    });
   });
 
   describe('getBusinessDaysBetween', () => {
@@ -113,6 +131,24 @@ describe('Business Days Logic', () => {
     it('returns 0 for same day', () => {
       const start = new Date('2025-01-06');
       expect(getBusinessDaysBetween(mockDefinitions, start, start)).toBe(0);
+    });
+
+    it('returns NaN for invalid start dates', () => {
+      const result = getBusinessDaysBetween(
+        mockDefinitions,
+        new Date('invalid'),
+        new Date('2025-01-06'),
+      );
+      expect(Number.isNaN(result)).toBe(true);
+    });
+
+    it('returns NaN for invalid end dates', () => {
+      const result = getBusinessDaysBetween(
+        mockDefinitions,
+        new Date('2025-01-06'),
+        new Date('invalid'),
+      );
+      expect(Number.isNaN(result)).toBe(true);
     });
   });
 });

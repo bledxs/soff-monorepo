@@ -9,6 +9,13 @@ describe('applyShift', () => {
       expect(date).toEqual(saturday);
       expect(shifted).toBe(false);
     });
+
+    it('preserva fechas inválidas sin trasladarlas', () => {
+      const invalidDate = new Date('invalid');
+      const { date, shifted } = applyShift(invalidDate, 'none');
+      expect(Number.isNaN(date.getTime())).toBe(true);
+      expect(shifted).toBe(false);
+    });
   });
 
   describe('rule: emiliani', () => {
@@ -32,6 +39,13 @@ describe('applyShift', () => {
       expect(date).toEqual(monday);
       expect(shifted).toBe(false);
     });
+
+    it('no marca traslado sobre fechas inválidas', () => {
+      const invalidDate = new Date('invalid');
+      const { date, shifted } = applyShift(invalidDate, 'emiliani');
+      expect(Number.isNaN(date.getTime())).toBe(true);
+      expect(shifted).toBe(false);
+    });
   });
 
   describe('rule: observedUS', () => {
@@ -47,6 +61,13 @@ describe('applyShift', () => {
       const { date, shifted } = applyShift(sunday, 'observedUS');
       expect(date.toISOString().split('T')[0]).toBe('2025-01-06');
       expect(shifted).toBe(true);
+    });
+
+    it('preserva fechas inválidas sin marcar traslado', () => {
+      const invalidDate = new Date('invalid');
+      const { date, shifted } = applyShift(invalidDate, 'observedUS');
+      expect(Number.isNaN(date.getTime())).toBe(true);
+      expect(shifted).toBe(false);
     });
   });
 
@@ -83,6 +104,29 @@ describe('applyShift', () => {
       const saturday = new Date('2025-01-11');
       const { date, shifted } = applyShift(saturday, 'nearestMonday');
       expect(date).toEqual(saturday);
+      expect(shifted).toBe(false);
+    });
+
+    it('preserva fechas inválidas sin marcar traslado', () => {
+      const invalidDate = new Date('invalid');
+      const { date, shifted } = applyShift(invalidDate, 'nearestMonday');
+      expect(Number.isNaN(date.getTime())).toBe(true);
+      expect(shifted).toBe(false);
+    });
+  });
+
+  describe('rule: nextMonday', () => {
+    it('sábado → lunes siguiente', () => {
+      const saturday = new Date('2025-01-04');
+      const { date, shifted } = applyShift(saturday, 'nextMonday');
+      expect(date.toISOString().split('T')[0]).toBe('2025-01-06');
+      expect(shifted).toBe(true);
+    });
+
+    it('preserva fechas inválidas sin marcar traslado', () => {
+      const invalidDate = new Date('invalid');
+      const { date, shifted } = applyShift(invalidDate, 'nextMonday');
+      expect(Number.isNaN(date.getTime())).toBe(true);
       expect(shifted).toBe(false);
     });
   });
