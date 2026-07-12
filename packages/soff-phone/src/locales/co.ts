@@ -1,37 +1,19 @@
-import type { PhoneValidationResult, PhoneOptions } from '../core/types.js';
-import { cleanPhone, formatE164 } from '../core/utils.js';
+import { createValidator } from '../core/validator.js';
 
-const COUNTRY_CODE = '57';
-
-export function validate(phone: string, options?: PhoneOptions): PhoneValidationResult {
-  const cleaned = cleanPhone(phone);
-
-  // Check if it includes country code
-  let national = cleaned;
-  if (cleaned.startsWith(COUNTRY_CODE) && cleaned.length > 10) {
-    national = cleaned.slice(COUNTRY_CODE.length);
-  }
-
-  if (national.length !== 10) {
-    return { isValid: false, error: 'Phone number must be 10 digits' };
-  }
-
-  const type = national.startsWith('3')
-    ? 'mobile'
-    : national.startsWith('60')
-      ? 'landline'
-      : undefined;
-
-  if (!type) {
+export const validate = createValidator({
+  countryCode: '57',
+  getNationalNumber: (cleaned) =>
+    cleaned.startsWith('57') && cleaned.length > 10 ? cleaned.slice(2) : cleaned,
+  evaluateNationalNumber: (national) => {
+    if (national.length !== 10) {
+      return { isValid: false, error: 'Phone number must be 10 digits' };
+    }
+    if (national.startsWith('3')) {
+      return { isValid: true, type: 'mobile' };
+    }
+    if (national.startsWith('60')) {
+      return { isValid: true, type: 'landline' };
+    }
     return { isValid: false, error: 'Invalid prefix for Colombia' };
-  }
-
-  let formatted = national;
-  if (options?.format === 'e164') {
-    formatted = formatE164(COUNTRY_CODE, national);
-  } else if (options?.format === 'international') {
-    formatted = `+${COUNTRY_CODE} ${national}`;
-  }
-
-  return { isValid: true, type, formatted };
-}
+  },
+});
