@@ -114,6 +114,7 @@ validateRFC('XAXX010101000'); // → true/false
 | 🇦🇷 Argentina | `soff-id/locales/ar` | DNI, CUIT, CUIL | National ID & Tax IDs                     |
 | 🇨🇱 Chile     | `soff-id/locales/cl` | RUT, RUN        | Tax ID & National ID                      |
 | 🇲🇽 México    | `soff-id/locales/mx` | RFC, CURP       | Tax ID & Personal ID                      |
+| 🇵🇪 Perú      | `soff-id/locales/pe` | DNI, RUC, CE    | National ID, Tax ID & Foreign ID          |
 
 ## API Reference
 

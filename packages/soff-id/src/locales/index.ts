@@ -79,3 +79,15 @@ export {
   parseCURP,
   parseRFC,
 } from './mx.js';
+export {
+  validateRUC,
+  formatRUC,
+  cleanRUC,
+  calculateRUCCheckDigit,
+  validateDNIPE,
+  formatDNIPE,
+  cleanDNIPE,
+  validateCEPE,
+  formatCEPE,
+  cleanCEPE,
+} from './pe.js';
