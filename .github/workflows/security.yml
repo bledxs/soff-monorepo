@@ -1,4 +1,4 @@
-name: Security Audit
+name: Security
 
 on:
   push:
@@ -12,49 +12,58 @@ on:
     - cron: '0 9 * * 1'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.event.pull_request.number || github.ref || github.run_id }}
+  cancel-in-progress: true
+
+env:
+  HUSKY: 0
+
 jobs:
   audit:
     name: npm audit
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20, 22]
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    timeout-minutes: 15
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Setup Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22
           cache: 'npm'
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
       - name: Run npm audit
-        run: npm audit --audit-level=moderate
-        continue-on-error: true
-        id: audit
+        run: npm audit --audit-level=high
 
       - name: Run npm audit (production only)
-        run: npm audit --production --audit-level=high
-
-      - name: Check for outdated dependencies
-        run: npm outdated || true
+        run: npm audit --omit=dev --audit-level=high
 
   dependency-review:
     name: Dependency Review
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+      pull-requests: write
+    timeout-minutes: 10
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
 
       - name: Dependency Review
-        uses: actions/dependency-review-action@v4
+        uses: actions/dependency-review-action@v5
         with:
           fail-on-severity: moderate
           deny-licenses: GPL-2.0, GPL-3.0
@@ -62,6 +71,7 @@ jobs:
   codeql:
     name: CodeQL Analysis
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       actions: read
       contents: read
@@ -75,9 +85,6 @@ jobs:
         uses: github/codeql-action/init@v4
         with:
           languages: javascript-typescript
-
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v4
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
