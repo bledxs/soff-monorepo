@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1
+
+### Patch Changes
+
+- [#87](https://github.com/bledxs/soff-monorepo/pull/87) [`7e65f0d`](https://github.com/bledxs/soff-monorepo/commit/7e65f0de995e17cae9d1b1b00acdccb19b4bfa6a) Thanks [@github-actions](https://github.com/apps/github-actions)! - version packages
+
 ## 1.2.0
 
 ### Minor Changes
