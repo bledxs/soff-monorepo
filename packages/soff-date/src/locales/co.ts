@@ -48,6 +48,14 @@ const definitions: HolidayDefinition[] = [
     rule: { type: 'fixed', month: 11, day: 11 },
     shift: 'emiliani',
   },
+  {
+    key: 'chiquinquira',
+    rule: {
+      type: 'custom',
+      calc: (year) => (year >= 2026 ? new Date(Date.UTC(year, 6, 9)) : null),
+    },
+    shift: 'emiliani',
+  },
 
   // Relativos a Pascua
   { key: 'holyThursday', rule: { type: 'easterRelative', offset: -3 } },
