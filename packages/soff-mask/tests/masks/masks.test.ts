@@ -17,6 +17,14 @@ import {
   rut,
   cuit,
   nit,
+  dniPE,
+  rucPE,
+  cePE,
+  ciEC,
+  rucEC,
+  phonePE,
+  phoneCL,
+  phoneEC,
   dateDMY,
   dateMDY,
   dateISO,
@@ -52,8 +60,20 @@ describe('Pre-built Masks', () => {
       expect(mask('5512345678', phoneMX)).toBe('(55) 1234 5678');
     });
 
-    it('should mask international phone', () => {
+    it('masks international phone', () => {
       expect(mask('15551234567', phoneIntl)).toBe('+1 (555) 123-4567');
+    });
+
+    it('masks Peruvian phone', () => {
+      expect(mask('987654321', phonePE)).toBe('(987) 654 321');
+    });
+
+    it('masks Chilean phone', () => {
+      expect(mask('912345678', phoneCL)).toBe('(9) 1234 5678');
+    });
+
+    it('masks Ecuadorian phone', () => {
+      expect(mask('091234567', phoneEC)).toBe('(09) 123 4567');
     });
   });
 
@@ -80,24 +100,36 @@ describe('Pre-built Masks', () => {
   });
 
   describe('Document Masks', () => {
-    it('should mask Brazilian CPF', () => {
+    it('masks CPF correctly', () => {
       expect(mask('12345678909', cpf)).toBe('123.456.789-09');
     });
 
-    it('should mask Brazilian CNPJ', () => {
+    it('masks CNPJ correctly', () => {
       expect(mask('12345678000190', cnpj)).toBe('12.345.678/0001-90');
     });
 
-    it('should mask Chilean RUT', () => {
+    it('masks RUT correctly', () => {
       expect(mask('123456789', rut)).toBe('12.345.678-9');
+      expect(mask('12345678K', rut)).toBe('12.345.678-K');
     });
 
-    it('should mask Argentine CUIT', () => {
+    it('masks CUIT correctly', () => {
       expect(mask('20123456789', cuit)).toBe('20-12345678-9');
     });
 
-    it('should mask Colombian NIT', () => {
+    it('masks NIT correctly', () => {
       expect(mask('9001234567', nit)).toBe('900.123.456-7');
+    });
+
+    it('masks Peruvian DNI, RUC, CE', () => {
+      expect(mask('12345678', dniPE)).toBe('12345678');
+      expect(mask('10123456781', rucPE)).toBe('10 12345678 1');
+      expect(mask('ABC123XYZ', cePE)).toBe('ABC123XYZ');
+    });
+
+    it('masks Ecuadorian CI and RUC', () => {
+      expect(mask('1234567890', ciEC)).toBe('1234567890');
+      expect(mask('1234567890001', rucEC)).toBe('1234567890001');
     });
   });
 

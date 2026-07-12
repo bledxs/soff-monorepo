@@ -22,6 +22,10 @@ export type {
   DynamicMaskRule,
 } from './core/types.js';
 
+// Currency masks
+export { maskCurrency, unmaskCurrency } from './core/currency.js';
+export type { CurrencyMaskOptions } from './core/currency.js';
+
 // Pre-built masks
 export * from './masks/index.js';
 

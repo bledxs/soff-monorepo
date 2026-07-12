@@ -18,6 +18,15 @@ export const phoneAR = '(##) ####-####';
 /** International phone: +1 (555) 123-4567 */
 export const phoneIntl = '+# (###) ###-####';
 
+/** Peruvian phone: (9##) ### ### */
+export const phonePE = '(###) ### ###';
+
+/** Chilean phone: (#) #### #### */
+export const phoneCL = '(#) #### ####';
+
+/** Ecuadorian phone: (##) ### #### */
+export const phoneEC = '(##) ### ####';
+
 // Credit card masks
 
 /** Standard credit card: 4111 1111 1111 1111 */
@@ -51,6 +60,24 @@ export const cuit = '##-########-#';
 
 /** Colombian NIT: 900.123.456-7 */
 export const nit = '###.###.###-#';
+
+/** Peruvian DNI: 12345678 */
+export const dniPE = '########';
+
+/** Peruvian RUC: 10 12345678 1 */
+export const rucPE = '## ######## #';
+
+/** Peruvian CE: 123456789 */
+export const cePE = 'SSSSSSSSS';
+
+/** Ecuadorian CI: 1234567890 */
+export const ciEC = '##########';
+
+/** Ecuadorian RUC: 1234567890001 */
+export const rucEC = '#############';
+
+/** Chilean RUT (Alias): 12.345.678-9 */
+export const rutCL = rut;
 
 // Date/Time masks
 

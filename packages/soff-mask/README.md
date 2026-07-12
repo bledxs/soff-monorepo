@@ -149,6 +149,9 @@ mask('9001234567', nit); // → '900.123.456-7'
 | `phoneUS`   | `(###) ###-####`    | (555) 123-4567    |
 | `phoneBR`   | `(##) #####-####`   | (11) 91234-5678   |
 | `phoneAR`   | `(##) ####-####`    | (11) 1234-5678    |
+| `phonePE`   | `(###) ### ###`     | (987) 654 321     |
+| `phoneCL`   | `(#) #### ####`     | (9) 1234 5678     |
+| `phoneEC`   | `(##) ### ####`     | (09) 123 4567     |
 | `phoneIntl` | `+# (###) ###-####` | +1 (555) 123-4567 |
 
 #### Credit Cards
@@ -163,13 +166,18 @@ mask('9001234567', nit); // → '900.123.456-7'
 
 #### Documents (LATAM)
 
-| Mask   | Pattern              | Example Output     |
-| ------ | -------------------- | ------------------ |
-| `cpf`  | `###.###.###-##`     | 123.456.789-09     |
-| `cnpj` | `##.###.###/####-##` | 12.345.678/0001-90 |
-| `rut`  | `##.###.###-S`       | 12.345.678-9       |
-| `cuit` | `##-########-#`      | 20-12345678-9      |
-| `nit`  | `###.###.###-#`      | 900.123.456-7      |
+| Mask    | Pattern              | Example Output     |
+| ------- | -------------------- | ------------------ |
+| `cpf`   | `###.###.###-##`     | 123.456.789-09     |
+| `cnpj`  | `##.###.###/####-##` | 12.345.678/0001-90 |
+| `rut`   | `##.###.###-S`       | 12.345.678-9       |
+| `cuit`  | `##-########-#`      | 20-12345678-9      |
+| `nit`   | `###.###.###-#`      | 900.123.456-7      |
+| `dniPE` | `########`           | 12345678           |
+| `rucPE` | `## ######## #`      | 10 12345678 1      |
+| `cePE`  | `SSSSSSSSS`          | ABC123XYZ          |
+| `ciEC`  | `##########`         | 1234567890         |
+| `rucEC` | `#############`      | 1234567890001      |
 
 #### Dates and Time
 
@@ -192,6 +200,29 @@ mask('9001234567', nit); // → '900.123.456-7'
 | `zipBR`      | `#####-###`       | 12345-678      |
 | `ipAddress`  | `###.###.###.###` | 192.168.1.1    |
 | `percentage` | `##.##%`          | 99.99%         |
+
+## Currency Masks
+
+For currency inputs that format dynamically from right to left (grouping thousands and decimals as you type), use `maskCurrency`:
+
+```typescript
+import { maskCurrency, unmaskCurrency } from 'soff-mask';
+
+// Default: 2 decimals, comma for thousands, dot for decimals
+maskCurrency('123456'); // → '1,234.56'
+
+// Custom options
+maskCurrency('123456', {
+  prefix: '$ ',
+  suffix: ' COP',
+  thousands: '.',
+  decimal: ',',
+  precision: 0,
+}); // → '$ 123.456 COP'
+
+// Unmask back to raw numeric string
+unmaskCurrency('$ 1,234.56'); // → '1234.56'
+```
 
 ## Utility Functions
 
