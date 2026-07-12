@@ -1,5 +1,11 @@
 # soff-phone
 
+## 0.1.0
+
+### Minor Changes
+
+- [#118](https://github.com/bledxs/soff-monorepo/pull/118) [`f9e046d`](https://github.com/bledxs/soff-monorepo/commit/f9e046de103be57147bc348a9c1c29257ae7fa26) Thanks [@github-actions](https://github.com/apps/github-actions)! - Merge branches 'master' and 'master' of https://github.com/bledxs/soff-monorepo
+
 ## 0.0.8
 
 ### Patch Changes
