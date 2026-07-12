@@ -104,7 +104,22 @@ jobs:
           elif [[ "$TITLE" =~ ^(fix|perf|refactor|style|docs|test|chore|ci|build) ]]; then
             echo "type=patch" >> $GITHUB_OUTPUT
           else
-            echo "type=patch" >> $GITHUB_OUTPUT
+            # If the title is not a conventional commit (e.g. a merge),
+            # scan all commits in this push to determine the highest bump.
+            BUMP_TYPE="patch"
+            BEFORE="${{ github.event.before }}"
+            AFTER="${{ github.sha }}"
+            
+            if [[ -n "$BEFORE" && "$BEFORE" != "0000000000000000000000000000000000000000" ]]; then
+              # Get all commit titles in this push
+              COMMITS=$(git log --format=%s "$BEFORE".."$AFTER" 2>/dev/null || echo "")
+              if echo "$COMMITS" | grep -qE "(!:|BREAKING)"; then
+                BUMP_TYPE="major"
+              elif echo "$COMMITS" | grep -qE "^feat"; then
+                BUMP_TYPE="minor"
+              fi
+            fi
+            echo "type=$BUMP_TYPE" >> $GITHUB_OUTPUT
           fi
 
           # Extract description (remove conventional commit prefix)
