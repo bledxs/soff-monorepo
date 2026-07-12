@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.2
+
+### Patch Changes
+
+- [#108](https://github.com/bledxs/soff-monorepo/pull/108) [`194b644`](https://github.com/bledxs/soff-monorepo/commit/194b64403a4a9a0b05076f7f0bb702c11a0dfb62) Thanks [@github-actions](https://github.com/apps/github-actions)! - version packages
+
+- [#110](https://github.com/bledxs/soff-monorepo/pull/110) [`9d2b548`](https://github.com/bledxs/soff-monorepo/commit/9d2b5487743a38be206087198ae6b759d0bfdd9a) Thanks [@github-actions](https://github.com/apps/github-actions)! - Merge branch 'master' of https://github.com/bledxs/soff-monorepo
+
 ## 1.2.1
 
 ### Patch Changes
