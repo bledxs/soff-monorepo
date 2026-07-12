@@ -1,5 +1,11 @@
 # soff-mask
 
+## 0.3.0
+
+### Minor Changes
+
+- [#120](https://github.com/bledxs/soff-monorepo/pull/120) [`0af11c9`](https://github.com/bledxs/soff-monorepo/commit/0af11c9c43d8d8a85f31a0dbcf43529f32b6c5ee) Thanks [@github-actions](https://github.com/apps/github-actions)! - add currency masking functionality and new phone masks
+
 ## 0.2.8
 
 ### Patch Changes
