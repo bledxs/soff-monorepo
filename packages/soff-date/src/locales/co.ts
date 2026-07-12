@@ -1,12 +1,5 @@
-import type { HolidayDefinition, Holiday, HolidayNames } from '../core/types';
-import { resolveHolidays, checkIsHoliday, findNextHoliday } from '../core/engine';
-import {
-  checkIsBusinessDay,
-  addBusinessDays,
-  getBusinessDaysBetween,
-  addBusinessHours,
-  getBusinessHoursBetween,
-} from '../core/business';
+import type { HolidayDefinition } from '../core/types';
+import { createHolidayManager } from '../core/manager';
 import { es } from '../i18n/es';
 
 const definitions: HolidayDefinition[] = [
@@ -83,53 +76,13 @@ const definitions: HolidayDefinition[] = [
   },
 ];
 
-// API pública
-export interface GetHolidaysOptions {
-  lang?: HolidayNames;
-}
-
-export function getHolidays(year: number, options?: GetHolidaysOptions): Holiday[] {
-  const names = options?.lang ?? es;
-  return resolveHolidays(definitions, year, names);
-}
-
-export function isHoliday(date: Date, options?: GetHolidaysOptions): Holiday | null {
-  const names = options?.lang ?? es;
-  return checkIsHoliday(definitions, date, names);
-}
-
-export function getNextHoliday(
-  from: Date = new Date(),
-  options?: GetHolidaysOptions,
-): Holiday | null {
-  const names = options?.lang ?? es;
-  return findNextHoliday(definitions, from, names);
-}
-
-export function isBusinessDay(date: Date): boolean {
-  return checkIsBusinessDay(definitions, date);
-}
-
-export function businessDays(date: Date, amount: number): Date {
-  return addBusinessDays(definitions, date, amount);
-}
-
-export function diffBusinessDays(startDate: Date, endDate: Date): number {
-  return getBusinessDaysBetween(definitions, startDate, endDate);
-}
-
-export function businessHours(
-  date: Date,
-  amount: number,
-  businessHours?: { start: string; end: string },
-): Date {
-  return addBusinessHours(definitions, date, amount, businessHours);
-}
-
-export function diffBusinessHours(
-  startDate: Date,
-  endDate: Date,
-  businessHours?: { start: string; end: string },
-): number {
-  return getBusinessHoursBetween(definitions, startDate, endDate, businessHours);
-}
+export const {
+  getHolidays,
+  isHoliday,
+  getNextHoliday,
+  isBusinessDay,
+  businessDays,
+  diffBusinessDays,
+  businessHours,
+  diffBusinessHours,
+} = createHolidayManager(definitions, es);
