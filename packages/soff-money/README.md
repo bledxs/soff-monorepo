@@ -147,6 +147,9 @@ const [share1, share2, share3] = total.distributeByRatios([1, 2, 2]);
 // From decimal (recommended)
 Money.fromDecimal(1500.5, COP);
 
+// From formatted string
+Money.fromString('$ 1.500,50', ARS);
+
 // From cents (when you already have cents)
 Money.fromCents(150050, COP);
 

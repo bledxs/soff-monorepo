@@ -34,6 +34,35 @@ export class Money implements IMoney {
   }
 
   /**
+   * Create money from a formatted string
+   * @example Money.fromString("$ 1.500,50", ARS) creates $1,500.50
+   */
+  static fromString(value: string, currency: Currency): Money {
+    let cleanValue = value.replace(currency.symbol, '').trim();
+
+    const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+    if (currency.thousandsSeparator) {
+      const thousandsRegex = new RegExp(escapeRegex(currency.thousandsSeparator), 'g');
+      cleanValue = cleanValue.replace(thousandsRegex, '');
+    }
+
+    if (currency.decimalSeparator && currency.decimalSeparator !== '.') {
+      cleanValue = cleanValue.replace(currency.decimalSeparator, '.');
+    }
+
+    cleanValue = cleanValue.replace(/\s+/g, '');
+
+    const decimalAmount = parseFloat(cleanValue);
+
+    if (isNaN(decimalAmount)) {
+      throw new Error(`Cannot parse "${value}" as money`);
+    }
+
+    return Money.fromDecimal(decimalAmount, currency);
+  }
+
+  /**
    * Create zero money
    */
   static zero(currency: Currency): Money {

@@ -32,6 +32,30 @@ describe('Money', () => {
       const money = Money.fromCents(100.7, USD);
       expect(money.cents).toBe(101); // Rounds to nearest integer
     });
+
+    it('should create money from a formatted string (USD)', () => {
+      const money = Money.fromString('$1,500.50', USD);
+      expect(money.cents).toBe(150050);
+      expect(money.toDecimal()).toBe(1500.5);
+    });
+
+    it('should create money from a formatted string with spaces and different separators (COP)', () => {
+      const money = Money.fromString('$ 1.500.000', COP);
+      expect(money.cents).toBe(150000000);
+      expect(money.toDecimal()).toBe(1500000);
+    });
+
+    it('should handle negative formatted strings', () => {
+      const money = Money.fromString('-$1,500.50', USD);
+      expect(money.cents).toBe(-150050);
+      expect(money.toDecimal()).toBe(-1500.5);
+    });
+
+    it('should throw an error for invalid money strings', () => {
+      expect(() => Money.fromString('not-a-number', USD)).toThrow(
+        'Cannot parse "not-a-number" as money'
+      );
+    });
   });
 
   describe('arithmetic', () => {
