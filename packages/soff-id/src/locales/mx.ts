@@ -193,11 +193,8 @@ const CURP_STATE_CODES: Record<string, string> = {
  * @returns State name or null if invalid
  */
 export function getCURPBirthState(curp: string): string | null {
-  const cleaned = cleanDocument(curp).toUpperCase();
-  if (cleaned.length < 13) return null;
-
-  const stateCode = cleaned.slice(11, 13);
-  return CURP_STATE_CODES[stateCode] || null;
+  const stateCode = getCURPStateCode(curp);
+  return stateCode ? CURP_STATE_CODES[stateCode] : null;
 }
 
 /**

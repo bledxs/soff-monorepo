@@ -1,4 +1,5 @@
 import type { Municipality } from '../../core/types.js';
+import { unpackMunicipalities } from '../../core/utils.js';
 
 /**
  * Mexican municipality with INEGI code
@@ -50,24 +51,5 @@ const PACKED_DATA: Record<string, string> = {
  * All municipalities of Mexico
  * Source: INEGI
  */
-export const MUNICIPALITIES: readonly MexicanMunicipality[] = (function () {
-  const result: MexicanMunicipality[] = [];
-
-  for (const deptCode in PACKED_DATA) {
-    const packed = PACKED_DATA[deptCode];
-    const items = packed.split('|');
-    for (const item of items) {
-      const separatorIndex = item.indexOf(':');
-      const suffix = item.substring(0, separatorIndex);
-      const name = item.substring(separatorIndex + 1);
-
-      result.push({
-        code: deptCode + suffix,
-        departmentCode: deptCode,
-        name,
-      });
-    }
-  }
-
-  return result;
-})();
+export const MUNICIPALITIES: readonly MexicanMunicipality[] =
+  unpackMunicipalities<MexicanMunicipality>(PACKED_DATA);

@@ -1,4 +1,5 @@
 import type { Municipality } from '../../core/types.js';
+import { unpackMunicipalities } from '../../core/utils.js';
 
 export interface ArgentineMunicipality extends Municipality {
   code: string;
@@ -14,24 +15,5 @@ const PACKED_DATA: Record<string, string> = {
   M: '001:Mendoza|002:San Rafael|003:Godoy Cruz|004:Guaymallén',
 };
 
-export const MUNICIPALITIES: readonly ArgentineMunicipality[] = (function () {
-  const result: ArgentineMunicipality[] = [];
-
-  for (const deptCode in PACKED_DATA) {
-    const packed = PACKED_DATA[deptCode];
-    const items = packed.split('|');
-    for (const item of items) {
-      const separatorIndex = item.indexOf(':');
-      const suffix = item.substring(0, separatorIndex);
-      const name = item.substring(separatorIndex + 1);
-
-      result.push({
-        code: deptCode + suffix,
-        departmentCode: deptCode,
-        name,
-      });
-    }
-  }
-
-  return result;
-})();
+export const MUNICIPALITIES: readonly ArgentineMunicipality[] =
+  unpackMunicipalities<ArgentineMunicipality>(PACKED_DATA);

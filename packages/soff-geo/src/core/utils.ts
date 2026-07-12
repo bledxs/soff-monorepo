@@ -144,3 +144,28 @@ export function extractDepartmentCode(
 ): string {
   return municipalityCode.slice(0, departmentCodeLength);
 }
+
+/**
+ * Unpack compressed municipality data into an array of municipality objects
+ */
+export function unpackMunicipalities<
+  T extends Municipality & { code: string; departmentCode: string },
+>(packedData: Record<string, string>): T[] {
+  const result: T[] = [];
+  for (const deptCode in packedData) {
+    const packed = packedData[deptCode];
+    const items = packed.split('|');
+    for (const item of items) {
+      const separatorIndex = item.indexOf(':');
+      const suffix = item.substring(0, separatorIndex);
+      const name = item.substring(separatorIndex + 1);
+
+      result.push({
+        code: deptCode + suffix,
+        departmentCode: deptCode,
+        name,
+      } as unknown as T);
+    }
+  }
+  return result;
+}

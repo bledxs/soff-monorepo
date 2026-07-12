@@ -1,4 +1,5 @@
 import type { Municipality } from '../../core/types.js';
+import { unpackMunicipalities } from '../../core/utils.js';
 
 /**
  * Colombian municipality with DANE code
@@ -50,24 +51,5 @@ const PACKED_DATA: Record<string, string> = {
  * All municipalities of Colombia
  * Source: DANE
  */
-export const MUNICIPALITIES: readonly ColombianMunicipality[] = (function () {
-  const result: ColombianMunicipality[] = [];
-
-  for (const deptCode in PACKED_DATA) {
-    const packed = PACKED_DATA[deptCode];
-    const items = packed.split('|');
-    for (const item of items) {
-      const separatorIndex = item.indexOf(':');
-      const suffix = item.substring(0, separatorIndex);
-      const name = item.substring(separatorIndex + 1);
-
-      result.push({
-        code: deptCode + suffix,
-        departmentCode: deptCode,
-        name,
-      });
-    }
-  }
-
-  return result;
-})();
+export const MUNICIPALITIES: readonly ColombianMunicipality[] =
+  unpackMunicipalities<ColombianMunicipality>(PACKED_DATA);
