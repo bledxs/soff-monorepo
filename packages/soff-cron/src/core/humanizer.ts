@@ -8,6 +8,8 @@ import type { HumanizerPatterns } from '../i18n/en.js';
 import { enPatterns } from '../i18n/en.js';
 import { esPatterns } from '../i18n/es.js';
 
+import { ptBRPatterns } from '../i18n/pt-br.js';
+
 /**
  * Options for humanizing text to cron
  */
@@ -62,7 +64,9 @@ export interface HumanizerResult {
  */
 export function humanizeCron(text: string, options: HumanizerOptions = {}): HumanizerResult {
   const { locale = 'en' } = options;
-  const patterns = locale === 'es' ? esPatterns : enPatterns;
+  let patterns = enPatterns;
+  if (locale === 'es') patterns = esPatterns;
+  else if (locale === 'pt-BR') patterns = ptBRPatterns;
 
   // Normalize text: lowercase, trim, remove extra spaces
   const normalized = text.toLowerCase().trim().replace(/\s+/g, ' ');

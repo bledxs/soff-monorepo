@@ -89,7 +89,7 @@ export interface ParsedCron {
 /**
  * Locale options for formatting
  */
-export type Locale = 'es' | 'en';
+export type Locale = 'es' | 'en' | 'pt-BR';
 
 /**
  * Options for formatting cron expressions

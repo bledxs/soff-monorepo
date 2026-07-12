@@ -3,6 +3,7 @@ import type { I18nStrings } from '../i18n/es.js';
 import { parseCron } from './parser.js';
 import { es } from '../i18n/es.js';
 import { en } from '../i18n/en.js';
+import { ptBR } from '../i18n/pt-br.js';
 
 /**
  * Helper function to check if an array of numbers is a consecutive range
@@ -39,7 +40,10 @@ export function formatCron(expression: string, options: FormatterOptions = {}): 
     verbose = false,
   } = options;
 
-  const i18n = locale === 'es' ? es : en;
+  let i18n = en;
+  if (locale === 'es') i18n = es;
+  else if (locale === 'pt-BR') i18n = ptBR;
+
   const parsed = parseCron(expression, includeSeconds);
 
   // Handle special keywords
