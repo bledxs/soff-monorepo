@@ -5,36 +5,65 @@ on:
     branches: [master]
     paths:
       - 'packages/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  HUSKY: 0
 
 jobs:
   create-changeset:
     # Skip if commit is from bot (to avoid loops)
     if: |
-      !contains(github.event.head_commit.author.name, 'github-actions') &&
-      !contains(github.event.head_commit.message, 'chore: add changeset') &&
-      !contains(github.event.head_commit.message, 'chore: version packages')
+      github.event_name == 'workflow_dispatch' ||
+      (
+        !contains(github.event.head_commit.author.name, 'github-actions') &&
+        !contains(github.event.head_commit.message, 'chore: add changeset') &&
+        !contains(github.event.head_commit.message, 'chore: version packages')
+      )
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: write
       pull-requests: write
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
-          fetch-depth: 2
+          fetch-depth: 0
           persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22
+
+      - name: Capture changed files
+        id: changes
+        run: |
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+
+          if [[ -z "$BEFORE" || "$BEFORE" == "0000000000000000000000000000000000000000" ]]; then
+            if git rev-parse --verify HEAD^ >/dev/null 2>&1; then
+              git diff --name-only HEAD^ HEAD > changed-files.txt
+            else
+              git ls-tree -r --name-only "$AFTER" > changed-files.txt
+            fi
+          else
+            git diff --name-only "$BEFORE" "$AFTER" > changed-files.txt
+          fi
+
+          echo "Changed files:"
+          cat changed-files.txt
 
       - name: Check if changeset already exists for this commit
         id: check
         run: |
-          # Check if any changeset was added in this commit
-          CHANGESET_ADDED=$(git diff --name-only HEAD~1 HEAD | grep "^\.changeset/.*\.md$" | grep -v "README.md" || true)
+          CHANGESET_ADDED=$(grep -E '^\.changeset/.*\.md$' changed-files.txt | grep -v 'README.md' || true)
           if [ -n "$CHANGESET_ADDED" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
             echo "Changeset already exists in this commit"
@@ -42,13 +71,30 @@ jobs:
             echo "skip=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Resolve release title
+        if: steps.check.outputs.skip != 'true'
+        id: release-title
+        run: |
+          TITLE=$(git log -1 --pretty=%s)
+
+          if [[ "$TITLE" =~ ^Merge\ pull\ request\ #([0-9]+) ]]; then
+            PR_NUMBER="${BASH_REMATCH[1]}"
+            PR_TITLE=$(gh pr view "$PR_NUMBER" --json title -q '.title')
+
+            if [ -n "$PR_TITLE" ]; then
+              TITLE="$PR_TITLE"
+            fi
+          fi
+
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Determine version bump from commit message
         if: steps.check.outputs.skip != 'true'
         id: bump
         run: |
-          MESSAGE="${{ github.event.head_commit.message }}"
-          # Get first line only
-          TITLE=$(echo "$MESSAGE" | head -n 1)
+          TITLE="${{ steps.release-title.outputs.title }}"
 
           # Check for breaking change indicator
           if [[ "$TITLE" == *"!"* ]] || [[ "$TITLE" == *"BREAKING"* ]]; then
@@ -71,18 +117,15 @@ jobs:
         run: |
           PACKAGES=""
 
-          # Get changed files in this commit
-          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+          # Get changed files in this push
+          CHANGED_FILES=$(cat changed-files.txt)
 
-          # Extract unique package directories from changed files
-          # We filter for files that are inside a subdirectory of packages/
-          CHANGED_DIRS=$(echo "$CHANGED_FILES" | grep "^packages/[^/]*/" | cut -d/ -f2 | sort | uniq)
+          CHANGED_DIRS=$(echo "$CHANGED_FILES" | grep "^packages/[^/]*/" | cut -d/ -f2 | sort | uniq || true)
 
           for dir in $CHANGED_DIRS; do
             PACKAGE_JSON="packages/$dir/package.json"
             if [ -f "$PACKAGE_JSON" ]; then
-              # Extract package name using node to be safe with JSON parsing
-              PKG_NAME=$(node -p "try { require('./$PACKAGE_JSON').name } catch(e) { '' }")
+              PKG_NAME=$(node -p "try { const pkg = require('./$PACKAGE_JSON'); pkg.private ? '' : pkg.name } catch(e) { '' }")
               
               if [ -n "$PKG_NAME" ]; then
                 PACKAGES="$PACKAGES $PKG_NAME"
@@ -105,6 +148,10 @@ jobs:
           DESC="${{ steps.bump.outputs.description }}"
           SHORT_SHA="${{ github.sha }}"
           SHORT_SHA=${SHORT_SHA:0:7}
+
+          if [ -z "$DESC" ]; then
+            DESC="Update packages from commit $SHORT_SHA"
+          fi
 
           # Generate unique filename
           FILENAME=".changeset/push-${SHORT_SHA}-$(date +%s).md"
@@ -139,10 +186,13 @@ jobs:
 
             Based on changes in packages: ${{ steps.packages.outputs.list }}
           base: master
-          labels: 'CI/CD, changeset'
+          add-paths: |
+            .changeset/*.md
+          labels: automated
 
       - name: Enable Pull Request Automerge
         if: steps.cpr.outputs.pull-request-number
+        continue-on-error: true
         run: gh pr merge --merge --auto "${{ steps.cpr.outputs.pull-request-number }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

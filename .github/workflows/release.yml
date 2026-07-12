@@ -4,13 +4,24 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  HUSKY: 0
+  NPM_CONFIG_PROVENANCE: true
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     permissions:
       id-token: write # Required for OIDC trusted publishing
@@ -19,19 +30,20 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
+          cache-dependency-path: package-lock.json
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Update npm to latest version
-        run: npm install -g npm@latest
+      - name: Align npm version with packageManager
+        run: npm install -g npm@$(node -p "JSON.parse(require('node:fs').readFileSync('package.json', 'utf8')).packageManager.split('@')[1]")
 
       - name: Install dependencies
         run: npm ci
