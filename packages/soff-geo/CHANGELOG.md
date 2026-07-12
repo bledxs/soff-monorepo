@@ -1,5 +1,11 @@
 # soff-geo
 
+## 0.2.8
+
+### Patch Changes
+
+- [#114](https://github.com/bledxs/soff-monorepo/pull/114) [`3febae6`](https://github.com/bledxs/soff-monorepo/commit/3febae69acc0a9f57554b1cb61050008e78eea67) Thanks [@github-actions](https://github.com/apps/github-actions)! - bump the minor-and-patch group across 1 directory with 28 updates
+
 ## 0.2.7
 
 ### Patch Changes

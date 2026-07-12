@@ -1,6 +1,6 @@
 {
   "name": "soff-geo",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Lightweight geographic data library for LATAM - Departments, municipalities, postal codes and more",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -110,15 +110,15 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@soff/tsconfig": "*",
-    "@vitest/coverage-v8": "^4.1.5",
-    "eslint": "^10.2.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^10.7.0",
     "eslint-config-prettier": "^10.1.8",
-    "globals": "^17.5.0",
-    "prettier": "^3.8.3",
+    "globals": "^17.7.0",
+    "prettier": "^3.9.5",
     "rimraf": "^6.1.3",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.0",
+    "typescript-eslint": "^8.63.0",
     "vitest": "^4.1.5"
   },
   "publishConfig": {
