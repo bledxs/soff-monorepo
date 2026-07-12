@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.9
+
+### Patch Changes
+
+- [#116](https://github.com/bledxs/soff-monorepo/pull/116) [`78053e7`](https://github.com/bledxs/soff-monorepo/commit/78053e779969a948b65ab2146cbf4dc8b6e7098c) Thanks [@github-actions](https://github.com/apps/github-actions)! - Merge branch 'master' of https://github.com/bledxs/soff-monorepo
+
 ## 0.0.8
 
 ### Patch Changes
