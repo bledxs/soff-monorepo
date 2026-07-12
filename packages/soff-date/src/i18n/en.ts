@@ -25,6 +25,7 @@ export const en: HolidayNames = {
   columbusDay: 'Columbus Day',
   independenceCartagena: 'Independence of Cartagena',
   immaculateConception: 'Immaculate Conception',
+  chiquinquira: 'Our Lady of the Rosary of Chiquinquirá',
 
   // Mexico
   constitutionDay: 'Constitution Day',

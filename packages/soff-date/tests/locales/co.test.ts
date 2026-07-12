@@ -66,6 +66,14 @@ describe('Colombia locale', () => {
       expect(ascension?.date).toBe('2025-06-02');
       expect(ascension?.isShifted).toBe(true);
     });
+
+    it('Chiquinquirá 2026 se traslada al lunes (Ley 2578)', () => {
+      const holidays = getHolidays(2026);
+      const chiquinquira = holidays.find((h) => h.key === 'chiquinquira');
+      // 9 de julio de 2026 es jueves, pasa a lunes 13 de julio
+      expect(chiquinquira?.date).toBe('2026-07-13');
+      expect(chiquinquira?.isShifted).toBe(true);
+    });
   });
 
   describe('Semana Santa 2025', () => {
