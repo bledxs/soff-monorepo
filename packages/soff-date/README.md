@@ -121,6 +121,9 @@ getHolidays(2025, { lang: { ...en, newYear: 'Happy New Year!' } });
 | 🇲🇽 México    | `soff-date/locales/mx` | 8        | NthWeekday + Custom |
 | 🇦🇷 Argentina | `soff-date/locales/ar` | 16       | NearestMonday       |
 | 🇧🇷 Brasil    | `soff-date/locales/br` | 13       | None                |
+| 🇵🇪 Perú      | `soff-date/locales/pe` | 13       | None                |
+| 🇨🇱 Chile     | `soff-date/locales/cl` | 16       | NearestMonday       |
+| 🇪🇨 Ecuador   | `soff-date/locales/ec` | 11       | NearestMonday       |
 
 If you need to select a locale dynamically, you can import all locale namespaces from the public barrel:
 
@@ -340,6 +343,24 @@ Invalid inputs are handled safely:
 - `businessDays(invalidDate, amount)` returns `Invalid Date`
 - `businessDays(date, Infinity)` returns `Invalid Date`
 - `diffBusinessDays(invalidDate, date)` returns `NaN`
+
+### Business Hours (SLA)
+
+You can also compute business hours based on working hours configuration (defaults to `08:00` - `17:00`).
+
+```typescript
+import { businessHours, diffBusinessHours } from 'soff-date/locales/co';
+
+const config = { start: '08:00', end: '17:00' };
+
+// Add 4 business hours
+businessHours(new Date('2025-01-02T10:00:00Z'), 4, config);
+// → Date('2025-01-02T14:00:00Z')
+
+// Calculate business hours between dates
+diffBusinessHours(new Date('2025-01-02T15:00:00Z'), new Date('2025-01-03T10:00:00Z'), config);
+// → 4 (2 hours from day 1, 2 hours from day 2)
+```
 
 ## Types
 

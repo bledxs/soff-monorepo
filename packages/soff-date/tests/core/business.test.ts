@@ -4,6 +4,8 @@ import {
   addBusinessDays,
   isWeekend,
   getBusinessDaysBetween,
+  addBusinessHours,
+  getBusinessHoursBetween,
 } from '../../src/core/business';
 import type { HolidayDefinition } from '../../src/core/types';
 
@@ -149,6 +151,113 @@ describe('Business Days Logic', () => {
         new Date('invalid'),
       );
       expect(Number.isNaN(result)).toBe(true);
+    });
+  });
+
+  describe('Business Hours (SLA)', () => {
+    describe('getBusinessHoursBetween', () => {
+      it('calculates hours on the same business day', () => {
+        // Thursday 2025-01-02, 10:00 to 14:00 -> 4 hours
+        const start = new Date('2025-01-02T10:00:00Z');
+        const end = new Date('2025-01-02T14:00:00Z');
+        expect(getBusinessHoursBetween(mockDefinitions, start, end)).toBe(4);
+      });
+
+      it('caps hours to business hour boundaries', () => {
+        // Thursday 2025-01-02, 06:00 to 19:00 -> 9 hours (08:00 to 17:00)
+        const start = new Date('2025-01-02T06:00:00Z');
+        const end = new Date('2025-01-02T19:00:00Z');
+        expect(getBusinessHoursBetween(mockDefinitions, start, end)).toBe(9);
+      });
+
+      it('calculates hours across multiple days', () => {
+        // Thu Jan 2 at 15:00 to Fri Jan 3 at 10:00
+        // Thu: 15:00 to 17:00 = 2 hours
+        // Fri: 08:00 to 10:00 = 2 hours
+        // Total = 4 hours
+        const start = new Date('2025-01-02T15:00:00Z');
+        const end = new Date('2025-01-03T10:00:00Z');
+        expect(getBusinessHoursBetween(mockDefinitions, start, end)).toBe(4);
+      });
+
+      it('skips weekends', () => {
+        // Fri Jan 3 at 15:00 to Mon Jan 6 at 10:00
+        // Fri: 15:00 to 17:00 = 2 hours
+        // Sat/Sun = skipped
+        // Mon: 08:00 to 10:00 = 2 hours
+        // Total = 4 hours
+        const start = new Date('2025-01-03T15:00:00Z');
+        const end = new Date('2025-01-06T10:00:00Z');
+        expect(getBusinessHoursBetween(mockDefinitions, start, end)).toBe(4);
+      });
+
+      it('skips holidays', () => {
+        // Tue Dec 31 at 16:00 to Thu Jan 2 at 10:00 (Jan 1 is holiday)
+        // Tue: 16:00 to 17:00 = 1 hour
+        // Wed: skipped (holiday)
+        // Thu: 08:00 to 10:00 = 2 hours
+        // Total = 3 hours
+        const start = new Date('2024-12-31T16:00:00Z');
+        const end = new Date('2025-01-02T10:00:00Z');
+        expect(getBusinessHoursBetween(mockDefinitions, start, end)).toBe(3);
+      });
+
+      it('returns negative if start > end', () => {
+        const start = new Date('2025-01-03T10:00:00Z');
+        const end = new Date('2025-01-02T15:00:00Z');
+        expect(getBusinessHoursBetween(mockDefinitions, start, end)).toBe(-4);
+      });
+    });
+
+    describe('addBusinessHours', () => {
+      it('adds hours within the same day', () => {
+        const start = new Date('2025-01-02T10:00:00Z');
+        const result = addBusinessHours(mockDefinitions, start, 4);
+        expect(result.toISOString()).toBe('2025-01-02T14:00:00.000Z');
+      });
+
+      it('rolls over to next day when hours exceed business day', () => {
+        // Thu Jan 2 at 15:00 + 4 hours
+        // 2 hours today (until 17:00) + 2 hours tomorrow (from 08:00)
+        // -> Fri Jan 3 at 10:00
+        const start = new Date('2025-01-02T15:00:00Z');
+        const result = addBusinessHours(mockDefinitions, start, 4);
+        expect(result.toISOString()).toBe('2025-01-03T10:00:00.000Z');
+      });
+
+      it('skips weekends when adding hours', () => {
+        // Fri Jan 3 at 15:00 + 4 hours
+        // 2 hours today (until 17:00) + 2 hours Mon (from 08:00)
+        // -> Mon Jan 6 at 10:00
+        const start = new Date('2025-01-03T15:00:00Z');
+        const result = addBusinessHours(mockDefinitions, start, 4);
+        expect(result.toISOString()).toBe('2025-01-06T10:00:00.000Z');
+      });
+
+      it('skips holidays when adding hours', () => {
+        // Tue Dec 31 at 16:00 + 3 hours
+        // 1 hour today (until 17:00) + Wed (skipped) + 2 hours Thu (from 08:00)
+        // -> Thu Jan 2 at 10:00
+        const start = new Date('2024-12-31T16:00:00Z');
+        const result = addBusinessHours(mockDefinitions, start, 3);
+        expect(result.toISOString()).toBe('2025-01-02T10:00:00.000Z');
+      });
+
+      it('subtracts hours correctly', () => {
+        // Fri Jan 3 at 10:00 - 4 hours
+        // 2 hours today (back to 08:00) + 2 hours Thu (back from 17:00)
+        // -> Thu Jan 2 at 15:00
+        const start = new Date('2025-01-03T10:00:00Z');
+        const result = addBusinessHours(mockDefinitions, start, -4);
+        expect(result.toISOString()).toBe('2025-01-02T15:00:00.000Z');
+      });
+
+      it('snaps a date outside business hours into business hours (adding)', () => {
+        // Sun Jan 5 at 12:00 + 1 hour -> Mon Jan 6 at 09:00
+        const start = new Date('2025-01-05T12:00:00Z');
+        const result = addBusinessHours(mockDefinitions, start, 1);
+        expect(result.toISOString()).toBe('2025-01-06T09:00:00.000Z');
+      });
     });
   });
 });

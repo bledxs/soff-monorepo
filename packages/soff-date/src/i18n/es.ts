@@ -53,4 +53,27 @@ export const es: HolidayNames = {
   independenceDayUS: 'Día de la Independencia',
   thanksgivingDay: 'Día de Acción de Gracias',
   veteransDay: 'Día de los Veteranos',
+
+  // Perú
+  independenceDay1: 'Día de la Independencia',
+  independenceDay2: 'Fiestas Patrias',
+  battleOfJunin: 'Batalla de Junín',
+  santaRosaDeLima: 'Santa Rosa de Lima',
+  battleOfAngamos: 'Combate de Angamos',
+  battleOfAyacucho: 'Batalla de Ayacucho',
+
+  // Chile
+  holySaturday: 'Sábado Santo',
+  navyDay: 'Día de las Glorias Navales',
+  indigenousPeoplesDay: 'Día Nacional de los Pueblos Indígenas',
+  ourLadyOfMountCarmel: 'Día de la Virgen del Carmen',
+  armyDay: 'Día de las Glorias del Ejército',
+  reformationDay: 'Día de las Iglesias Evangélicas y Protestantes',
+
+  // Ecuador
+  battleOfPichincha: 'Batalla de Pichincha',
+  firstCryOfIndependence: 'Primer Grito de Independencia',
+  independenceOfGuayaquil: 'Independencia de Guayaquil',
+  allSoulsDay: 'Día de los Difuntos',
+  independenceOfCuenca: 'Independencia de Cuenca',
 };

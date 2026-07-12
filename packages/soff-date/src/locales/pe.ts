@@ -11,30 +11,18 @@ import { es } from '../i18n/es';
 
 const definitions: HolidayDefinition[] = [
   { key: 'newYear', rule: { type: 'fixed', month: 1, day: 1 } },
-  // First Monday of Feb (Constitution)
-  { key: 'constitutionDay', rule: { type: 'nthWeekday', month: 2, weekday: 1, n: 1 } },
-  // Third Monday of Mar (Benito Juarez)
-  { key: 'benitoJuarez', rule: { type: 'nthWeekday', month: 3, weekday: 1, n: 3 } },
+  { key: 'holyThursday', rule: { type: 'easterRelative', offset: -3 } },
+  { key: 'goodFriday', rule: { type: 'easterRelative', offset: -2 } },
   { key: 'laborDay', rule: { type: 'fixed', month: 5, day: 1 } },
-  { key: 'independenceDay', rule: { type: 'fixed', month: 9, day: 16 } },
-  // Third Monday of Nov (Revolution)
-  { key: 'revolutionDay', rule: { type: 'nthWeekday', month: 11, weekday: 1, n: 3 } },
-  // Transmission of Executive Power
-  {
-    key: 'transmissionExecutive',
-    rule: {
-      type: 'custom',
-      calc: (year) => {
-        if (year >= 2024) {
-          if ((year - 2024) % 6 === 0) return new Date(Date.UTC(year, 9, 1)); // Oct 1
-        } else if ((year - 2018) % 6 === 0) {
-          // 2018, 2012, etc.
-          return new Date(Date.UTC(year, 11, 1)); // Dec 1
-        }
-        return null;
-      },
-    },
-  },
+  { key: 'saintPeterPaul', rule: { type: 'fixed', month: 6, day: 29 } },
+  { key: 'independenceDay1', rule: { type: 'fixed', month: 7, day: 28 } },
+  { key: 'independenceDay2', rule: { type: 'fixed', month: 7, day: 29 } },
+  { key: 'battleOfJunin', rule: { type: 'fixed', month: 8, day: 6 } },
+  { key: 'santaRosaDeLima', rule: { type: 'fixed', month: 8, day: 30 } },
+  { key: 'battleOfAngamos', rule: { type: 'fixed', month: 10, day: 8 } },
+  { key: 'allSaints', rule: { type: 'fixed', month: 11, day: 1 } },
+  { key: 'immaculateConception', rule: { type: 'fixed', month: 12, day: 8 } },
+  { key: 'battleOfAyacucho', rule: { type: 'fixed', month: 12, day: 9 } },
   { key: 'christmas', rule: { type: 'fixed', month: 12, day: 25 } },
 ];
 

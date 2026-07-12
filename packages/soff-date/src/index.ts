@@ -5,6 +5,8 @@ export {
   checkIsBusinessDay,
   addBusinessDays,
   getBusinessDaysBetween,
+  addBusinessHours,
+  getBusinessHoursBetween,
 } from './core/business';
 export { getEasterSunday } from './core/algorithms/easter';
 export { getNthWeekday } from './core/algorithms/nth-weekday';
